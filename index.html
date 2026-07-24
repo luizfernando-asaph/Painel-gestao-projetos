@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Gestão de Projetos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-950:#160933; --ink-900:#1e0f47;
+    --slate-500:#6b6580; --slate-300:#d8d3e8;
+    --card:#ffffff; --border:#e9e4f6; --bg:#f7f5fd;
+    --green-600:#15803d; --green-50:#eefbf1;
+    --amber-600:#c2660a; --amber-50:#fff6e8;
+    --red-600:#b91c1c; --red-50:#fdecec;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink-950);padding:26px 20px 60px;}
+  .wrap{max-width:1440px;margin:0 auto;}
+
+  /* NAV */
+  .tabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+  .tab-btn{
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;
+    padding:12px 22px;border-radius:12px;border:1px solid var(--border);
+    background:#fff;color:var(--slate-500);cursor:pointer;
+    display:flex;align-items:center;gap:8px;transition:all .15s ease;
+  }
+  .tab-btn:hover{color:var(--ink-950);}
+  .tab-btn.active{color:#fff;border-color:transparent;box-shadow:0 10px 24px -14px rgba(0,0,0,0.4);}
+  .tab-btn .dotc{width:8px;height:8px;border-radius:50%;}
+
+  #tab-geral.active{background:linear-gradient(120deg,#0f2e26,#1f5b47);}
+  #tab-politicas.active{background:linear-gradient(120deg,#0f5c53,#14b8a6);}
+  #tab-sankhya.active{background:linear-gradient(120deg,#7c2d12,#ea580c);}
+  #tab-inovacao.active{background:linear-gradient(120deg,#2b1065,#7c3aed);}
+
+  /* ===== PANORAMA (I.S) specific styles ===== */
+  .pz-top{
+    background:#16352b;border-radius:12px;padding:18px 26px;display:flex;align-items:center;gap:18px;color:#fff;
+    box-shadow:0 14px 30px -18px rgba(0,0,0,0.4);margin-bottom:16px;
+  }
+  .pz-logo{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .pz-top h1{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;margin:0;letter-spacing:.3px;}
+  .pz-updated{margin-left:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.3px;}
+  .pz-updated b{font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;}
+
+  .pz-kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-bottom:16px;}
+  .pz-kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;}
+  .pz-kpi.solid{background:#2f5233;color:#fff;}
+  .pz-kpi .pz-lbl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:var(--slate-500);margin-bottom:6px;}
+  .pz-kpi.solid .pz-lbl{color:rgba(255,255,255,0.75);}
+  .pz-kpi .pz-num{font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;line-height:1.1;}
+  .pz-bar{height:6px;border-radius:6px;background:#eee;margin-top:8px;overflow:hidden;}
+  .pz-bar .fill{height:100%;border-radius:6px;}
+  .pz-bar .fill.green{background:linear-gradient(90deg,#8bc34a,#4a7c2f);}
+  .pz-bar .fill.amber{background:linear-gradient(90deg,#ffd54f,#f9a825);}
+  .pz-bar .fill.red{background:linear-gradient(90deg,#ef9a9a,#c62828);}
+  .pz-pctlbl{font-size:10px;font-weight:700;margin-top:3px;color:var(--slate-500);}
+
+  .pz-section-head{background:#16352b;color:#fff;font-family:'Manrope',sans-serif;font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase;padding:10px 16px;border-radius:8px;text-align:center;margin-bottom:10px;}
+  .pz-section-head.danger{background:#b71c1c;}
+
+  .pz-grid3{display:grid;grid-template-columns:1.1fr 1.3fr 1.1fr;gap:14px;margin-bottom:16px;}
+  .pz-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .pz-list{margin:0;padding:0;list-style:none;}
+  .pz-list li{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;font-weight:600;}
+  .pz-list li:last-child{border-bottom:none;}
+  .pz-list .dotc{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+  .pz-list .val{font-family:'Manrope',sans-serif;font-weight:800;margin-right:4px;}
+  .pz-list.risk li{background:#fdecec;}
+
+  .donut-wrap{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px;flex-wrap:wrap;}
+  .donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(#4a7c2f 0% 72%, #f9d71c 72% 100%);position:relative;display:flex;align-items:center;justify-content:center;}
+  .donut::after{content:"";position:absolute;width:78px;height:78px;border-radius:50%;background:#fff;}
+  .donut-legend{font-size:12px;font-weight:700;}
+  .donut-legend .row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .donut-legend .sq{width:11px;height:11px;border-radius:3px;}
+
+  .pz-marco{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border);font-size:12.5px;font-weight:600;}
+  .pz-marco:last-child{border-bottom:none;}
+  .pz-marco .grn{width:9px;height:9px;border-radius:50%;background:#2e7d32;flex-shrink:0;}
+  .pz-marco .date{margin-left:auto;background:#eef3ee;padding:4px 10px;border-radius:6px;font-weight:700;font-size:11.5px;}
+
+  .pz-table-wrap{overflow-x:auto;margin-bottom:16px;}
+  table.pz-table{width:100%;border-collapse:collapse;min-width:1100px;background:#fff;border-radius:10px;overflow:hidden;}
+  table.pz-table thead th{background:#16352b;color:#fff;font-size:10.5px;font-weight:800;text-transform:uppercase;padding:10px 10px;text-align:center;white-space:nowrap;}
+  table.pz-table tbody td{padding:12px 10px;text-align:center;font-size:12.5px;border-bottom:1px solid var(--border);}
+  .pz-op{display:flex;align-items:center;gap:8px;font-weight:800;font-family:'Manrope',sans-serif;justify-content:center;}
+  .pz-badge{display:inline-block;padding:5px 10px;border-radius:6px;font-weight:800;font-size:11px;}
+  .pz-badge.green{background:#dcedc8;color:#33691e;}
+  .pz-badge.amber{background:#fff3cd;color:#8a6100;}
+  .pz-badge.red{background:#c62828;color:#fff;}
+  .pz-badge.stable{background:#dff5e1;color:#1b5e20;}
+
+  .pz-risk-desc{text-align:left !important;max-width:260px;}
+  .pz-score{font-weight:800;}
+  .pz-score-badge{background:#c62828;color:#fff;padding:5px 12px;border-radius:6px;font-weight:800;font-size:11.5px;}
+
+  @media (max-width:1100px){
+    .pz-kpis{grid-template-columns:repeat(4,1fr);}
+    .pz-grid3{grid-template-columns:1fr;}
+  }
+
+  .panel{display:none;}
+  .panel.active{display:block;animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  /* HEADER (theme-aware via CSS vars set per section) */
+  .header{
+    border-radius:20px;padding:30px 38px;display:flex;align-items:center;gap:20px;color:#fff;
+    box-shadow:0 20px 40px -18px rgba(0,0,0,0.35);position:relative;overflow:hidden;
+    background:linear-gradient(120deg,var(--h1) 0%,var(--h2) 100%);
+  }
+  .header::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);}
+  .header-icon{width:54px;height:54px;border-radius:15px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .header-icon svg{width:28px;height:28px;}
+  .header h1{font-family:'Manrope',sans-serif;font-size:25px;font-weight:800;margin:0 0 4px;text-transform:uppercase;letter-spacing:.3px;}
+  .header p{margin:0;font-size:13px;font-weight:600;color:rgba(255,255,255,0.75);letter-spacing:.4px;text-transform:uppercase;}
+  .header .ref{margin-left:auto;text-align:right;font-size:12px;color:rgba(255,255,255,0.8);}
+  .header .ref b{display:block;font-family:'Manrope',sans-serif;font-size:15px;color:#fff;}
+
+  /* KPI GRID */
+  .kpis{display:grid;gap:14px;margin:20px 0;}
+  .kpis.cols-4{grid-template-columns:repeat(4,1fr);}
+  .kpis.cols-5{grid-template-columns:repeat(5,1fr);}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:14px;}
+  .kpi .dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0;background:var(--acc);}
+  .kpi .num{font-family:'Manrope',sans-serif;font-size:21px;font-weight:800;line-height:1.1;}
+  .kpi .lbl{font-size:10.5px;font-weight:600;color:var(--slate-500);text-transform:uppercase;letter-spacing:.3px;margin-top:3px;}
+
+  /* CARD / TABLE */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 12px 28px -20px rgba(0,0,0,0.25);margin-bottom:18px;}
+  .card-head{padding:16px 22px;border-bottom:1px solid var(--border);font-family:'Manrope',sans-serif;font-weight:800;font-size:14.5px;display:flex;align-items:center;justify-content:space-between;}
+  .card-head span.sub{font-family:'Inter',sans-serif;font-weight:500;font-size:11.5px;color:var(--slate-500);text-transform:none;}
+  .table-scroll{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;min-width:760px;}
+  thead th{background:var(--ink-900);color:#fff;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:12px 14px;text-align:left;white-space:nowrap;}
+  tbody td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#faf9ff;}
+  .name{font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;}
+  .muted{color:var(--slate-500);font-size:12px;}
+  .bar-wrap{width:90px;height:7px;border-radius:8px;background:#eae6f7;overflow:hidden;margin-top:5px;}
+  .bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#22c55e,#15803d);}
+  .pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:8px;font-size:11.5px;font-weight:700;white-space:nowrap;}
+  .pill .pip{width:6px;height:6px;border-radius:50%;}
+  .pill.ok{background:var(--green-50);color:var(--green-600);}
+  .pill.ok .pip{background:var(--green-600);}
+  .pill.warn{background:var(--amber-50);color:var(--amber-600);}
+  .pill.warn .pip{background:var(--amber-600);}
+  .pill.risk{background:var(--red-50);color:var(--red-600);}
+  .pill.risk .pip{background:var(--red-600);}
+  .pill.na{background:#f1eefb;color:var(--slate-500);}
+  .pill.na .pip{background:var(--slate-500);}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .list{margin:0;padding:0;list-style:none;}
+  .list li{padding:12px 22px;border-bottom:1px solid var(--border);font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+  .list li:last-child{border-bottom:none;}
+  .list li .ico{width:20px;height:20px;border-radius:6px;background:var(--acc);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;margin-top:1px;}
+
+  .footnote{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;font-size:12px;color:var(--slate-500);line-height:1.6;}
+  .footnote b{color:var(--ink-950);}
+
+  @media (max-width:1000px){
+    .kpis.cols-4,.kpis.cols-5{grid-template-columns:repeat(2,1fr);}
+    .two-col{grid-template-columns:1fr;}
+    .header{flex-direction:column;text-align:center;}
+    .header .ref{margin-left:0;text-align:center;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-geral" onclick="showPanel('geral')"><span class="dotc" style="background:#2f5233;"></span>Panorama 2026</button>
+    <button class="tab-btn" id="tab-politicas" onclick="showPanel('politicas')"><span class="dotc" style="background:#14b8a6;"></span>Políticas</button>
+    <button class="tab-btn" id="tab-sankhya" onclick="showPanel('sankhya')"><span class="dotc" style="background:#ea580c;"></span>Sankhya</button>
+    <button class="tab-btn" id="tab-inovacao" onclick="showPanel('inovacao')"><span class="dotc" style="background:#7c3aed;"></span>Inovação</button>
+  </div>
+
+  <!-- ===================== PANORAMA (I.S) ===================== -->
+  <section id="geral" class="panel active">
+    <div class="pz-top">
+      <div class="pz-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 8l10 6 10-6-10-6ZM2 16l10 6 10-6M2 12l10 6 10-6"/></svg></div>
+      <h1>PANORAMA DAS IMPLANTAÇÕES 2026</h1>
+      <div class="pz-updated">DATA DA ATUALIZAÇÃO <b id="pz-date">24/07/2026 15:45</b></div>
+    </div>
+
+    <div class="pz-kpis">
+      <div class="pz-kpi solid"><div class="pz-lbl">Projetos</div><div class="pz-num">12</div><div class="pz-lbl">no portfólio</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Concluídos</div><div class="pz-num">11</div><div class="pz-bar"><div class="fill green" style="width:92%;"></div></div><div class="pz-pctlbl">92%</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Em andamento</div><div class="pz-num">1</div><div class="pz-bar"><div class="fill amber" style="width:8%;"></div></div><div class="pz-pctlbl">8%</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Receita contrat.</div><div class="pz-num">R$ 2.820.257,96</div><div class="pz-bar"><div class="fill green" style="width:100%;"></div></div><div class="pz-pctlbl">100%</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Rec. implantada</div><div class="pz-num">R$ 2.820.257,96</div><div class="pz-bar"><div class="fill green" style="width:100%;"></div></div><div class="pz-pctlbl">100%</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Rec. em mobiliz.</div><div class="pz-num">R$ 1.108.000,00</div><div class="pz-bar"><div class="fill amber" style="width:39%;"></div></div><div class="pz-pctlbl">39%</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Rec. em risco</div><div class="pz-num">R$ 1.108.000,00</div><div class="pz-bar"><div class="fill red" style="width:39%;"></div></div><div class="pz-pctlbl">39%</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Tempo médio implant.</div><div class="pz-num">54,66 Dias</div></div>
+    </div>
+
+    <div class="pz-grid3">
+      <div class="pz-card">
+        <div class="pz-section-head" style="border-radius:0;margin-bottom:0;">Sumário Executivo</div>
+        <ul class="pz-list">
+          <li><span class="dotc" style="background:#2f5233;"></span><span class="val">12</span> Projetos no Portfólio</li>
+          <li><span class="dotc" style="background:#2f5233;"></span><span class="val">11</span> Concluídos</li>
+          <li><span class="dotc" style="background:#f9d71c;"></span><span class="val">1</span> Em Andamento</li>
+          <li><span class="dotc" style="background:#c62828;"></span><span class="val">1</span> Risco Alto</li>
+        </ul>
+        <div style="padding:12px 14px;background:#fdecec;font-weight:800;font-size:12.5px;display:flex;justify-content:space-between;">
+          <span>Receita Risco</span><span>R$ 1.108.000,00</span>
+        </div>
+      </div>
+
+      <div class="pz-card">
+        <div class="pz-section-head" style="border-radius:0;margin-bottom:0;">Distribuição da Receita</div>
+        <div class="donut-wrap">
+          <div class="donut"></div>
+          <div class="donut-legend">
+            <div class="row"><span class="sq" style="background:#4a7c2f;"></span>Rec. Implantada — 72%</div>
+            <div class="row"><span class="sq" style="background:#f9d71c;"></span>Rec. em Mobiliz. — 28%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pz-card">
+        <div class="pz-section-head" style="border-radius:0;margin-bottom:0;">Próximos Marcos (Go Live)</div>
+        <div class="pz-marco"><span class="grn"></span>76 HC &middot; 38 Pas &middot; TIM<span class="date">08/07</span></div>
+        <div class="pz-marco"><span class="grn"></span>60 HC &middot; 27 Veíc. &middot; Coelba<span class="date">03/08</span></div>
+      </div>
+    </div>
+
+    <div class="pz-section-head danger">Projeto em Andamento e Análise de Riscos</div>
+    <div class="pz-table-wrap">
+      <table class="pz-table">
+        <thead><tr>
+          <th>Nome Operação</th><th>Equipes que Faturam</th><th>Faturamento Unitário</th><th>Receita Mensal</th>
+          <th>HC</th><th>Veículos</th><th>UF</th><th>Status</th><th>Assinatura Contrato</th><th>Kickoff e TAP</th>
+          <th>Go Live</th><th>Deadline</th><th>Risco</th><th>Tendência</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="pz-op">Coelba</td>
+            <td>20</td>
+            <td><span class="pz-badge green">R$ 55.400</span></td>
+            <td><span class="pz-badge green">R$ 1.108.000</span></td>
+            <td>60</td><td>27</td><td>BA</td>
+            <td><span class="pz-badge amber">Em Andamento</span></td>
+            <td>18/mai</td><td>25/mai</td><td>—</td><td>03/ago</td>
+            <td><span class="pz-badge red">75 &middot; Alto Risco</span></td>
+            <td><span class="pz-badge stable">● Estável</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pz-table-wrap">
+      <table class="pz-table">
+        <thead><tr>
+          <th style="text-align:left;">Análise de Riscos</th><th>Impacto</th><th>Probabilidade</th><th>Nota</th><th>Score</th>
+          <th style="text-align:left;">Ação de Mitigação</th><th>Prazo de Solução</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="pz-risk-desc">Aprov. da doc. da empresa no sistema SES/Coelba</td>
+            <td class="pz-score">5</td><td class="pz-score">5</td><td class="pz-score">25</td>
+            <td><span class="pz-score-badge">Crítico</span></td>
+            <td class="pz-risk-desc">Concluir documentos e acompanhar diariamente.</td>
+            <td>Até 22/07</td>
+          </tr>
+          <tr>
+            <td class="pz-risk-desc">Ausência de retorno formal da Coelba</td>
+            <td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
+            <td><span class="pz-score-badge">Crítico</span></td>
+            <td class="pz-risk-desc">Intensificar follow-up executivo e formalizar pendências.</td>
+            <td>08/jul</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footnote"><b>Fonte:</b> Panorama das Implantações 2026 (planilha de acompanhamento operacional). <b>Observação:</b> a tabela de riscos no arquivo original continha mais linhas que foram cortadas na captura de tela enviada — se você tiver a planilha completa, envie o link que eu adiciono as demais.</div>
+  </section>
+
+  <!-- ===================== INOVAÇÃO ===================== -->
+  <section id="inovacao" class="panel" style="--h1:#2b1065;--h2:#7c3aed;--acc:#7c3aed;">
+    <div class="header">
+      <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></div>
+      <div>
+        <h1>Inovação e Melhoria Contínua</h1>
+        <p>Painel financeiro de projetos &middot; iniciativas e maturidade</p>
+      </div>
+      <div class="ref">Data referência<b>24/07/2026</b></div>
+    </div>
+
+    <div class="kpis cols-4" style="margin-top:16px;">
+      <div class="kpi"><div class="dot">5</div><div><div class="num">5</div><div class="lbl">Iniciativas ativas</div></div></div>
+      <div class="kpi"><div class="dot">2</div><div><div class="num">2</div><div class="lbl">Em execução</div></div></div>
+      <div class="kpi"><div class="dot">1</div><div><div class="num">1</div><div class="lbl">Em MVP</div></div></div>
+      <div class="kpi"><div class="dot">R$</div><div><div class="num">~R$ 1,03M</div><div class="lbl">Invest. inicial mapeado</div></div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">Projetos de Inovação <span class="sub">Prazos, investimento e retorno</span></div>
+      <div class="table-scroll">
+        <table style="min-width:1700px;">
+          <thead><tr>
+            <th>ID</th><th>Nome do Projeto</th><th>Prazo Início</th><th>Prazo Final</th><th>Deadline</th>
+            <th>Investimento Inicial</th><th>PayBack</th><th>PayBack Ajustado</th><th>Taxa Interna de Retorno</th>
+            <th>Fase do Projeto</th><th>% de Avanço</th><th>Detalhes</th><th>Prazo</th>
+          </tr></thead>
+          <tbody>
+
+            <tr>
+              <td><span class="id-badge" style="background:#7c3aed;">3.1</span></td>
+              <td class="name">MIRA<div class="muted" style="font-size:11px;">Monitoramento Inteligente e Roteirização Automatizada</div></td>
+              <td>Mar/2026</td>
+              <td>Abr/2027</td>
+              <td>14 meses</td>
+              <td class="name">R$ 142.194</td>
+              <td>1 ano e 1 mês</td>
+              <td>1 ano e 3 meses</td>
+              <td style="color:var(--green-600);font-weight:800;">79,7%</td>
+              <td><span class="pill na"><span class="pip"></span>A Iniciar</span></td>
+              <td><div class="pct">0%</div><div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#d8d3e8;"></div></div></td>
+              <td class="muted">Estruturação do projeto e definição de escopo.</td>
+              <td class="muted">–</td>
+            </tr>
+
+            <tr>
+              <td><span class="id-badge" style="background:#7c3aed;">3.2</span></td>
+              <td class="name">PRECIFICAÇÃO POR IA</td>
+              <td>28/02/2026</td>
+              <td>30/06/2026</td>
+              <td>31/07/2026</td>
+              <td class="name">R$ 272.171</td>
+              <td>2 anos e 9 meses</td>
+              <td>2 anos e 7 meses</td>
+              <td style="color:var(--green-600);font-weight:800;">38,78%</td>
+              <td><span class="pill ok"><span class="pip"></span>Execução</span></td>
+              <td><div class="pct">75%</div><div class="bar-wrap"><div class="bar-fill" style="width:75%;"></div></div></td>
+              <td class="muted">75% de avanço.</td>
+              <td>31/07/2026</td>
+            </tr>
+
+            <tr>
+              <td><span class="id-badge" style="background:#7c3aed;">3.3</span></td>
+              <td class="name">IA COB<div class="muted" style="font-size:11px;">Cenário White Label (MVP)</div></td>
+              <td>28/02/2026</td>
+              <td>04/07/2026</td>
+              <td>~3 meses (MVP)</td>
+              <td class="name">R$ 97.522<div class="muted" style="font-size:11px;">pendente de aprovação</div></td>
+              <td class="muted">Não apurado</td>
+              <td class="muted">Não apurado</td>
+              <td class="muted" style="font-size:11.5px;">ROI 12m: -61,6%<br>ROI 24m: 19,2%<br>ROI 36m: 46,2%</td>
+              <td><span class="pill warn"><span class="pip"></span>MVP</span></td>
+              <td><div class="muted">Pendente de aprovação</div></td>
+              <td class="muted">Pendente de aprovação.</td>
+              <td class="muted">–</td>
+            </tr>
+
+            <tr>
+              <td><span class="id-badge" style="background:#7c3aed;">3.4</span></td>
+              <td class="name">DATA LAKE<div class="muted" style="font-size:11px;">DATALAKE MEF</div></td>
+              <td>28/02/2026</td>
+              <td>28/02/2027</td>
+              <td>12 meses</td>
+              <td class="name">R$ 515.908</td>
+              <td>2 anos e 3 meses</td>
+              <td>2 anos e 6 meses</td>
+              <td style="color:var(--green-600);font-weight:800;">51,32%</td>
+              <td><span class="pill ok"><span class="pip"></span>Execução</span></td>
+              <td><div class="pct">15%</div><div class="bar-wrap"><div class="bar-fill" style="width:15%;"></div></div></td>
+              <td class="muted">Em desenvolvimento.</td>
+              <td>28/02/2027</td>
+            </tr>
+
+            <tr>
+              <td><span class="id-badge" style="background:#7c3aed;">3.5</span></td>
+              <td class="name">AUTOMAÇÃO PROC. VENDAS<div class="muted" style="font-size:11px;">Estruturação de Vendas</div></td>
+              <td>15/05/2026</td>
+              <td>31/07/2026</td>
+              <td>1 mês</td>
+              <td class="muted">Não disponível</td>
+              <td class="muted">—</td>
+              <td class="muted">—</td>
+              <td class="muted">—</td>
+              <td><span class="pill ok"><span class="pip"></span>Execução</span></td>
+              <td><div class="pct">35%</div><div class="bar-wrap"><div class="bar-fill" style="width:35%;"></div></div></td>
+              <td class="muted">Em execução.</td>
+              <td>31/07/2026</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footnote">
+      <b>Fontes:</b> business case de viabilidade (MIRA, Precificação por IA e Data Lake), TAP/cenários (IA COB) e aba "DP Inovação" da planilha de gestão (datas de início e go-live do cronograma).
+      <b>Divergência identificada:</b> o cronograma da aba "DP Inovação" indica Data Lake com duração de 12 meses (fev/2026–fev/2027), enquanto o business case original previa 5 meses (out/2026–fev/2027). Mantivemos as datas do cronograma por serem a fonte mais recente — vale confirmar qual está correta.
+      Para IA COB, usamos o cenário "White Label" (menor investimento, tratado como MVP), ainda pendente de aprovação.
+    </div>
+  </section>
+
+  <!-- ===================== POLÍTICAS ===================== -->
+  <section id="politicas" class="panel" style="--h1:#0b3d38;--h2:#14b8a6;--acc:#0f766e;">
+    <div class="header">
+      <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4Z"/></svg></div>
+      <div>
+        <h1>Status Report — Políticas</h1>
+        <p>Governança e padronização de processos</p>
+      </div>
+      <div class="ref">Data referência<b>24/07/2026</b></div>
+    </div>
+
+    <div class="kpis cols-4">
+      <div class="kpi"><div class="dot">86%</div><div><div class="num">86%</div><div class="lbl">Implantadas</div></div></div>
+      <div class="kpi"><div class="dot">12</div><div><div class="num">12</div><div class="lbl">Políticas concluídas</div></div></div>
+      <div class="kpi"><div class="dot">2</div><div><div class="num">2</div><div class="lbl">Em andamento</div></div></div>
+      <div class="kpi"><div class="dot">14</div><div><div class="num">14</div><div class="lbl">Total de políticas</div></div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">Status por módulo</div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>Módulo</th><th>Líder</th><th>Padronização</th><th>Escrita e Ajustes</th>
+            <th>Apres. ao GT</th><th>Aprovação GT/CEO/Diret.</th><th>Apres. Comitê Gestão</th><th>Status</th>
+          </tr></thead>
+          <tbody id="pol-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footnote"><b>Fonte:</b> aba "Políticas" da planilha de gestão de projetos. <b>Status final</b> considera a última etapa (Apresentação ao Comitê de Gestão).</div>
+  </section>
+
+  <!-- ===================== SANKHYA ===================== -->
+  <section id="sankhya" class="panel" style="--h1:#5c1d09;--h2:#ea580c;--acc:#ea580c;">
+    <div class="header">
+      <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+      <div>
+        <h1>Status Report — Implantação Sankhya</h1>
+        <p>ERP &middot; Módulos, risco e treinamento</p>
+      </div>
+      <div class="ref">Data referência<b>24/07/2026</b></div>
+    </div>
+
+    <div class="kpis cols-5">
+      <div class="kpi"><div class="dot">96%</div><div><div class="num">96%</div><div class="lbl">Avanço do plano</div></div></div>
+      <div class="kpi"><div class="dot">13/15</div><div><div class="num">13 de 15</div><div class="lbl">Módulos implantados</div></div></div>
+      <div class="kpi"><div class="dot">93%</div><div><div class="num">93%</div><div class="lbl">Risco controlado</div></div></div>
+      <div class="kpi"><div class="dot">83%</div><div><div class="num">83%</div><div class="lbl">Treinamento</div></div></div>
+      <div class="kpi"><div class="dot">✓</div><div><div class="num">Dentro do prazo</div><div class="lbl">Deadline 30/07/2026</div></div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-head">Índice de risco do projeto</div>
+        <ul class="list">
+          <li><span class="ico" style="background:#15803d;">✓</span>13 módulos controlados</li>
+          <li><span class="ico" style="background:#c2660a;">!</span>2 módulos em atenção</li>
+          <li><span class="ico" style="background:#ea580c;">Σ</span>Índice geral: 93% controlado</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-head">Investimento Sankhya</div>
+        <ul class="list">
+          <li><span class="ico" style="background:#ea580c;">R$</span>ERP Sankhya (total): <b>R$ 2.248.486</b></li>
+          <li><span class="ico" style="background:#ea580c;">25</span>Investido em 2025: R$ 515.605 (23%)</li>
+          <li><span class="ico" style="background:#ea580c;">26</span>Orçado 2026: R$ 630.266 (28%) &middot; Realizado: R$ 315.133 (50%)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">Status por módulo</div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Módulo</th><th>Líder</th><th>Status</th><th>% de Avanço</th><th>Treinamento Maio</th><th>Treinamento Junho</th></tr></thead>
+          <tbody id="sank-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-head">Principais pontos de atenção</div>
+        <ul class="list">
+          <li><span class="ico" style="background:#c2660a;">!</span>Suprimentos: concluir relatórios da BM Code</li>
+          <li><span class="ico" style="background:#c2660a;">!</span>Patrimônio: dependente de estruturação da área</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-head">Próximos passos</div>
+        <ul class="list">
+          <li><span class="ico" style="background:#7c3aed;">→</span>GPD — em iniciação</li>
+          <li><span class="ico" style="background:#7c3aed;">→</span>Orçamentos e metas (Controladoria) — em execução, prazo 30/07/2026</li>
+          <li><span class="ico" style="background:#7c3aed;">→</span>Personalizar Allstrategy (Controladoria) — em iniciação, prazo 30/07/2026</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footnote"><b>Fonte:</b> aba "Sankhya" da planilha de gestão de projetos. <b>Atenção:</b> algumas datas de prazo por módulo vieram corrompidas na exportação da planilha original (ex.: "8-Jan" para percentuais) — vale conferir a formatação de data/hora na fonte antes de divulgar externamente.</div>
+  </section>
+
+</div>
+
+<script>
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+const politicas = [
+  ["Privacidade","Paulo Everton","Concluído","Em Andamento","Em Andamento","Em Andamento","Concluído","ok"],
+  ["Segurança da Informação","Paulo Everton","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Gestão de Acessos e Identidades","Paulo Everton","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Alçadas","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Gestão de Frotas","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Viagens","Sylvia Domingos","Concluído","Concluído","Concluído","Em Andamento","Concluído","ok"],
+  ["Fundo Fixo","João Paulo","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Recrutamento e Seleção","Elis Prata","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Eventos (Mkt e Endo)","Elis Prata","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Compras","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Deslocamento","João Paulo","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Gestão de Contratos","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
+  ["Cessão de Equip. e Rec. Tecnológicos","Sylvia Domingos","Concluído","Em Andamento","Em Andamento","Em Andamento","Em Andamento","warn"],
+  ["Política do Ciclo Financeiro","João Paulo","Concluído","Concluído","Concluído","Concluído","Em Andamento","warn"],
+];
+
+function stepPill(v){
+  if(v==="Concluído") return '<span class="pill ok"><span class="pip"></span>Concluído</span>';
+  if(v==="Em Andamento") return '<span class="pill warn"><span class="pip"></span>Em Andamento</span>';
+  return '<span class="pill na"><span class="pip"></span>'+v+'</span>';
+}
+
+document.getElementById('pol-body').innerHTML = politicas.map(r=>`
+  <tr>
+    <td class="name">${r[0]}</td>
+    <td>${r[1]}</td>
+    <td>${stepPill(r[2])}</td>
+    <td>${stepPill(r[3])}</td>
+    <td>${stepPill(r[4])}</td>
+    <td>${stepPill(r[5])}</td>
+    <td>${stepPill(r[6])}</td>
+    <td>${r[7]==='ok' ? '<span class="pill ok"><span class="pip"></span>Implantada</span>' : '<span class="pill warn"><span class="pip"></span>Em andamento</span>'}</td>
+  </tr>`).join('');
+
+const sankhya = [
+  ["Gestão Acessos","Paulo Everton","Controlado","86%","100%","100%"],
+  ["Vendas","Rafaela Silva","Controlado","100%","100%","100%"],
+  ["Suprimentos","Sylvia Domingos","Controlado","94%","1%","61%"],
+  ["Estoque","Sylvia Domingos","Controlado","97%","100%","61%"],
+  ["Patrimonial","Sylvia Domingos","Controlado","91%","100%","100%"],
+  ["Contrato","Sylvia Domingos","Controlado","100%","100%","100%"],
+  ["Orçamento","Sylvia Domingos","Controlado","92%","2%","100%"],
+  ["Conciliação Contábil","Phillipe Vascon.","Controlado","92%","70%","70%"],
+  ["Fiscal","Phillipe Vascon.","Controlado","100%","—","70%"],
+  ["Financeiro - Pagamentos","João Paulo","Controlado","100%","14%","71%"],
+  ["Financeiro - Recebimentos","João Paulo","Controlado","100%","14%","71%"],
+  ["Financeiro - Fat. Contrato","João Paulo","Controlado","100%","14%","71%"],
+  ["Folha de Pagamento","Iara Leite","Controlado","90%","10%","87%"],
+  ["GPD","Luiz Santos","Iniciação","—","—","—"],
+  ["Sankhya Flow","Luiz Santos","Controlado","100%","100%","100%"],
+];
+
+function statusPill(s){
+  if(s==="Controlado") return '<span class="pill ok"><span class="pip"></span>Controlado</span>';
+  if(s==="Iniciação") return '<span class="pill na"><span class="pip"></span>Iniciação</span>';
+  return '<span class="pill warn"><span class="pip"></span>'+s+'</span>';
+}
+
+document.getElementById('sank-body').innerHTML = sankhya.map(r=>`
+  <tr>
+    <td class="name">${r[0]}</td>
+    <td>${r[1]}</td>
+    <td>${statusPill(r[2])}</td>
+    <td>${r[3]==='—' ? '<span class="muted">—</span>' : '<div class="pct">'+r[3]+'</div>'}</td>
+    <td>${r[4]==='—' ? '<span class="muted">—</span>' : r[4]}</td>
+    <td>${r[5]==='—' ? '<span class="muted">—</span>' : r[5]}</td>
+  </tr>`).join('');
+</script>
+</body>
+</html>
