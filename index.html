@@ -72,7 +72,7 @@
   .pz-list.risk li{background:#fdecec;}
 
   .donut-wrap{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px;flex-wrap:wrap;}
-  .donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(#4a7c2f 0% 72%, #f9d71c 72% 100%);position:relative;display:flex;align-items:center;justify-content:center;}
+  .donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(#4a7c2f 0% 61%, #f9d71c 61% 100%);position:relative;display:flex;align-items:center;justify-content:center;}
   .donut::after{content:"";position:absolute;width:78px;height:78px;border-radius:50%;background:#fff;}
   .donut-legend{font-size:12px;font-weight:700;}
   .donut-legend .row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
@@ -97,6 +97,9 @@
   .pz-risk-desc{text-align:left !important;max-width:260px;}
   .pz-score{font-weight:800;}
   .pz-score-badge{background:#c62828;color:#fff;padding:5px 12px;border-radius:6px;font-weight:800;font-size:11.5px;}
+  .pz-score-badge.alto{background:#e8720c;}
+  .pz-score-badge.medio{background:#d4a017;}
+  .pz-score-badge.resolvido{background:#15803d;}
 
   @media (max-width:1100px){
     .pz-kpis{grid-template-columns:repeat(4,1fr);}
@@ -197,7 +200,7 @@
       <div class="pz-kpi"><div class="pz-lbl">Concluídos</div><div class="pz-num">11</div><div class="pz-bar"><div class="fill green" style="width:92%;"></div></div><div class="pz-pctlbl">92%</div></div>
       <div class="pz-kpi"><div class="pz-lbl">Em andamento</div><div class="pz-num">1</div><div class="pz-bar"><div class="fill amber" style="width:8%;"></div></div><div class="pz-pctlbl">8%</div></div>
       <div class="pz-kpi"><div class="pz-lbl">Receita contrat.</div><div class="pz-num">R$ 2.820.257,96</div><div class="pz-bar"><div class="fill green" style="width:100%;"></div></div><div class="pz-pctlbl">100%</div></div>
-      <div class="pz-kpi"><div class="pz-lbl">Rec. implantada</div><div class="pz-num">R$ 2.820.257,96</div><div class="pz-bar"><div class="fill green" style="width:100%;"></div></div><div class="pz-pctlbl">100%</div></div>
+      <div class="pz-kpi"><div class="pz-lbl">Rec. implantada</div><div class="pz-num">R$ 1.712.257,96</div><div class="pz-bar"><div class="fill green" style="width:61%;"></div></div><div class="pz-pctlbl">61%</div></div>
       <div class="pz-kpi"><div class="pz-lbl">Rec. em mobiliz.</div><div class="pz-num">R$ 1.108.000,00</div><div class="pz-bar"><div class="fill amber" style="width:39%;"></div></div><div class="pz-pctlbl">39%</div></div>
       <div class="pz-kpi"><div class="pz-lbl">Rec. em risco</div><div class="pz-num">R$ 1.108.000,00</div><div class="pz-bar"><div class="fill red" style="width:39%;"></div></div><div class="pz-pctlbl">39%</div></div>
       <div class="pz-kpi"><div class="pz-lbl">Tempo médio implant.</div><div class="pz-num">54,66 Dias</div></div>
@@ -222,8 +225,8 @@
         <div class="donut-wrap">
           <div class="donut"></div>
           <div class="donut-legend">
-            <div class="row"><span class="sq" style="background:#4a7c2f;"></span>Rec. Implantada — 72%</div>
-            <div class="row"><span class="sq" style="background:#f9d71c;"></span>Rec. em Mobiliz. — 28%</div>
+            <div class="row"><span class="sq" style="background:#4a7c2f;"></span>Rec. Implantada — 61%</div>
+            <div class="row"><span class="sq" style="background:#f9d71c;"></span>Rec. em Mobiliz. — 39%</div>
           </div>
         </div>
       </div>
@@ -276,15 +279,128 @@
           <tr>
             <td class="pz-risk-desc">Ausência de retorno formal da Coelba</td>
             <td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
-            <td><span class="pz-score-badge">Crítico</span></td>
-            <td class="pz-risk-desc">Intensificar follow-up executivo e formalizar pendências.</td>
+            <td><span class="pz-score-badge resolvido">Concluído</span></td>
+            <td class="pz-risk-desc">Intensificar follow-up executivo e formalizar pendências. <em>(Resolvido)</em></td>
             <td>08/jul</td>
+          </tr>
+          <tr>
+            <td class="pz-risk-desc">Regularização da base de Itabuna</td>
+            <td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
+            <td><span class="pz-score-badge">Crítico</span></td>
+            <td class="pz-risk-desc">Priorizar Santo Antônio de Jesus e concluir regularização em paralelo.</td>
+            <td>Antes da expansão</td>
+          </tr>
+          <tr>
+            <td class="pz-risk-desc">Emissão do CNPJ da Bahia</td>
+            <td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
+            <td><span class="pz-score-badge">Crítico</span></td>
+            <td class="pz-risk-desc">Acompanhamento diário com Contabilidade e Jurídico.</td>
+            <td>Imediato</td>
+          </tr>
+          <tr>
+            <td class="pz-risk-desc">Entrega de EPIs, EPCs e Talabartes</td>
+            <td class="pz-score">4</td><td class="pz-score">4</td><td class="pz-score">16</td>
+            <td><span class="pz-score-badge alto">Alto</span></td>
+            <td class="pz-risk-desc">Compras locais, fornecedores alternativos e transporte próprio.</td>
+            <td>31/jul</td>
+          </tr>
+          <tr>
+            <td class="pz-risk-desc">Qualidade dos EPIs</td>
+            <td class="pz-score">5</td><td class="pz-score">3</td><td class="pz-score">15</td>
+            <td><span class="pz-score-badge alto">Alto</span></td>
+            <td class="pz-risk-desc">Bloquear lote, registrar evidências e substituir equipamentos.</td>
+            <td>Até 17/07</td>
+          </tr>
+          <tr>
+            <td class="pz-risk-desc">Regularização documental (Alvará/AVCB)</td>
+            <td class="pz-score">4</td><td class="pz-score">3</td><td class="pz-score">12</td>
+            <td><span class="pz-score-badge medio">Médio</span></td>
+            <td class="pz-risk-desc">Monitoramento semanal com Contabilidade, SESMT e Facilities.</td>
+            <td>03/ago</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="footnote"><b>Fonte:</b> Panorama das Implantações 2026 (planilha de acompanhamento operacional). <b>Observação:</b> a tabela de riscos no arquivo original continha mais linhas que foram cortadas na captura de tela enviada — se você tiver a planilha completa, envie o link que eu adiciono as demais.</div>
+    <div class="pz-section-head">Projetos Implantados 2026</div>
+    <div class="pz-table-wrap">
+      <table class="pz-table">
+        <thead><tr>
+          <th>Nome Operação</th><th>Equipes que Faturam</th><th>Faturamento Unitário</th><th>Receita Mensal</th>
+          <th>HC</th><th>Veículos</th><th>UF</th><th>Tipo</th><th>Assinatura Contrato</th><th>Kickoff e TAP</th>
+          <th>Go Live</th><th>Deadline</th><th>Planejado</th><th>Observação</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="pz-op">Coelba</td><td>20</td><td>R$ 55.400</td><td>R$ 1.108.000</td><td>60</td><td>27</td><td>BA</td>
+            <td>Novo Negócio</td><td>18/mai</td><td>25/mai</td>
+            <td><span class="pz-badge amber">3/ago</span></td><td>75</td><td>3/ago</td>
+            <td><span class="pz-badge stable">● Estável</span></td>
+          </tr>
+          <tr>
+            <td class="pz-op">TIM | PAS</td><td>38</td><td>R$ 10.074</td><td>R$ 382.804</td><td>76</td><td>NA</td><td>CE</td>
+            <td>Ampliação</td><td>8/jun</td><td>22/jun</td>
+            <td><span class="pz-badge green">8/jul</span></td><td>30</td><td>8/jul</td><td>—</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Enel – 2ª onda | ND</td><td>10</td><td>R$ 21.000</td><td>R$ 210.000</td><td>10</td><td>10</td><td>SP</td>
+            <td>Ampliação</td><td>18/mai</td><td>20/mai</td>
+            <td><span class="pz-badge green">1/jul</span></td><td>43</td><td>1/jul</td><td>Motos On the job CE</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Enel – 2ª Eletrotécnico | SP</td><td>4</td><td>R$ 25.000</td><td>R$ 100.000</td><td>4</td><td>4</td><td>SP</td>
+            <td>Ampliação</td><td>18/mai</td><td>21/mai</td>
+            <td><span class="pz-badge green">1/jul</span></td><td>43</td><td>1/jul</td><td>MOC</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Equatorial Uruaçu</td><td>7</td><td>R$ 43.002</td><td>R$ 301.014</td><td>14</td><td>9</td><td>GO</td>
+            <td>Novo Negócio</td><td>1/mai</td><td>29/abr</td>
+            <td><span class="pz-badge green">1/jul</span></td><td>60</td><td>1/jul</td><td>—</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Neoenergia Eletricista</td><td>14</td><td>R$ 19.000</td><td>R$ 266.000</td><td>14</td><td>0</td><td>SP</td>
+            <td>Ampliação</td><td>6/abr</td><td>13/mai</td>
+            <td><span class="pz-badge green">12/jun</span></td><td>66</td><td>12/jun</td><td>—</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Neoenergia Ag. Com.</td><td>2</td><td>R$ 14.000</td><td>R$ 28.000</td><td>2</td><td>0</td><td>SP</td>
+            <td>Ampliação</td><td>6/abr</td><td>6/abr</td>
+            <td><span class="pz-badge green">12/jun</span></td><td>66</td><td>12/jun</td><td>—</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Enel – 1ª onda | ND</td><td>10</td><td>R$ 21.000</td><td>R$ 210.000</td><td>10</td><td>10</td><td>SP</td>
+            <td>Ampliação</td><td>17/abr</td><td>14/abr</td>
+            <td><span class="pz-badge green">2/jun</span></td><td>45</td><td>2/jun</td><td>Motos On the job CE</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Hiperformance</td><td>3</td><td>R$ 28.013</td><td>R$ 84.040</td><td>3</td><td>NA</td><td>CE</td>
+            <td>Novo Negócio</td><td>20/dez</td><td>20/dez</td>
+            <td><span class="pz-badge green">28/fev</span></td><td>68</td><td>28/fev</td><td>—</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Sabesp</td><td>4</td><td>R$ 7.600</td><td>R$ 30.400</td><td>4</td><td>NA</td><td>CE</td>
+            <td>Ampliação</td><td>20/jan</td><td>20/dez</td>
+            <td><span class="pz-badge green">6/mai</span></td><td>106</td><td>6/mai</td><td>—</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Enel – Eletrotécnico | CE</td><td>3</td><td>R$ 25.000</td><td>R$ 75.000</td><td>3</td><td>3</td><td>CE</td>
+            <td>Novo Negócio</td><td>13/abr</td><td>14/abr</td>
+            <td><span class="pz-badge green">2/mai</span></td><td>19</td><td>2/mai</td><td>MOC</td>
+          </tr>
+          <tr>
+            <td class="pz-op">Enel – Eletrotécnico | SP</td><td>1</td><td>R$ 25.000</td><td>R$ 25.000</td><td>1</td><td>1</td><td>SP</td>
+            <td>Novo Negócio</td><td>13/abr</td><td>14/abr</td>
+            <td><span class="pz-badge green">18/mai</span></td><td>35</td><td>18/mai</td><td>MOC</td>
+          </tr>
+          <tr style="background:#f4f2fb;font-weight:800;">
+            <td class="pz-op">Total — 12 Clientes</td><td>116</td><td colspan="1">R$ 294.089</td><td>R$ 2.820.258</td>
+            <td>201</td><td>64</td><td colspan="7">Tempo médio de implantação: 54,66 dias</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footnote"><b>Fonte:</b> Panorama das Implantações 2026 (aba "I.S" da planilha de acompanhamento operacional). <b>Última correção:</b> o risco "Ausência de retorno formal da Coelba" foi marcado como <b>resolvido</b> na planilha (deixou de ser Crítico). Correção anterior: valor de Receita Implantada ajustado para R$ 1.712.257,96 (61%).</div>
   </section>
 
   <!-- ===================== INOVAÇÃO ===================== -->
@@ -420,7 +536,7 @@
     </div>
 
     <div class="kpis cols-4">
-      <div class="kpi"><div class="dot">86%</div><div><div class="num">86%</div><div class="lbl">Implantadas</div></div></div>
+      <div class="kpi"><div class="dot">79%</div><div><div class="num">79%</div><div class="lbl">Implantadas</div></div></div>
       <div class="kpi"><div class="dot">12</div><div><div class="num">12</div><div class="lbl">Políticas concluídas</div></div></div>
       <div class="kpi"><div class="dot">2</div><div><div class="num">2</div><div class="lbl">Em andamento</div></div></div>
       <div class="kpi"><div class="dot">14</div><div><div class="num">14</div><div class="lbl">Total de políticas</div></div></div>
@@ -439,7 +555,7 @@
       </div>
     </div>
 
-    <div class="footnote"><b>Fonte:</b> aba "Políticas" da planilha de gestão de projetos. <b>Status final</b> considera a última etapa (Apresentação ao Comitê de Gestão).</div>
+    <div class="footnote"><b>Fonte:</b> aba "Políticas" da planilha de gestão de projetos. <b>Status final</b> considera a última etapa (Apresentação ao Comitê de Gestão). <b>Atualização:</b> o percentual geral caiu de 86% para 79% porque a política "Viagens" retrocedeu — a etapa de Apresentação ao Comitê de Gestão, antes concluída, voltou para "Em Andamento".</div>
   </section>
 
   <!-- ===================== SANKHYA ===================== -->
@@ -527,7 +643,7 @@ const politicas = [
   ["Gestão de Acessos e Identidades","Paulo Everton","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
   ["Alçadas","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
   ["Gestão de Frotas","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-  ["Viagens","Sylvia Domingos","Concluído","Concluído","Concluído","Em Andamento","Concluído","ok"],
+  ["Viagens","Sylvia Domingos","Concluído","Concluído","Concluído","Em Andamento","Em Andamento","warn"],
   ["Fundo Fixo","João Paulo","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
   ["Recrutamento e Seleção","Elis Prata","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
   ["Eventos (Mkt e Endo)","Elis Prata","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
