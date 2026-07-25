@@ -35,6 +35,7 @@
   #tab-politicas.active{background:linear-gradient(120deg,#0f5c53,#14b8a6);}
   #tab-sankhya.active{background:linear-gradient(120deg,#7c2d12,#ea580c);}
   #tab-inovacao.active{background:linear-gradient(120deg,#2b1065,#7c3aed);}
+  #tab-roadmap.active{background:linear-gradient(120deg,#0c4a6e,#0284c7);}
 
   /* ===== PANORAMA (I.S) specific styles ===== */
   .pz-top{
@@ -100,6 +101,7 @@
   .pz-score-badge.alto{background:#e8720c;}
   .pz-score-badge.medio{background:#d4a017;}
   .pz-score-badge.resolvido{background:#15803d;}
+  .pz-score-badge.andamento{background:#c2660a;}
 
   @media (max-width:1100px){
     .pz-kpis{grid-template-columns:repeat(4,1fr);}
@@ -175,6 +177,39 @@
     .header{flex-direction:column;text-align:center;}
     .header .ref{margin-left:0;text-align:center;}
   }
+
+  /* ===== ROADMAP specific styles ===== */
+  .rm-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+  .rm-sum-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;text-align:center;}
+  .rm-sum-card .n{font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;}
+  .rm-sum-card .l{font-size:11px;font-weight:700;color:var(--slate-500);text-transform:uppercase;letter-spacing:.3px;margin-top:4px;}
+  .rm-sum-card.ok .n{color:#15803d;}
+  .rm-sum-card.warn .n{color:#c2660a;}
+  .rm-sum-card.risk .n{color:#b91c1c;}
+  .rm-sum-card.total .n{color:#0284c7;}
+
+  .rm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .rm-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:0 10px 24px -18px rgba(2,132,199,0.25);}
+  .rm-card h3{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;margin:0 0 10px;color:var(--ink-950);}
+  .rm-card .rm-pct-row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+  .rm-card .rm-pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;}
+  .rm-card .rm-pct.ok{color:#15803d;}
+  .rm-card .rm-pct.warn{color:#c2660a;}
+  .rm-card .rm-bar{height:8px;border-radius:8px;background:#eee;overflow:hidden;margin-bottom:14px;}
+  .rm-card .rm-bar .fill{height:100%;border-radius:8px;}
+  .rm-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .rm-badge{font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:7px;}
+  .rm-badge.c{background:#eefbf1;color:#15803d;}
+  .rm-badge.e{background:#fff6e8;color:#c2660a;}
+  .rm-badge.a{background:#f1eefb;color:var(--slate-500);}
+  .rm-badge.r{background:#fdecec;color:#b91c1c;}
+  .rm-foot{display:flex;justify-content:space-between;font-size:11px;color:var(--slate-500);border-top:1px solid var(--border);padding-top:10px;}
+  .rm-foot b{color:var(--ink-950);}
+
+  @media (max-width:900px){
+    .rm-summary{grid-template-columns:repeat(2,1fr);}
+    .rm-grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
@@ -185,6 +220,7 @@
     <button class="tab-btn" id="tab-politicas" onclick="showPanel('politicas')"><span class="dotc" style="background:#14b8a6;"></span>Políticas</button>
     <button class="tab-btn" id="tab-sankhya" onclick="showPanel('sankhya')"><span class="dotc" style="background:#ea580c;"></span>Sankhya</button>
     <button class="tab-btn" id="tab-inovacao" onclick="showPanel('inovacao')"><span class="dotc" style="background:#7c3aed;"></span>Inovação</button>
+    <button class="tab-btn" id="tab-roadmap" onclick="showPanel('roadmap')"><span class="dotc" style="background:#0284c7;"></span>Roadmap</button>
   </div>
 
   <!-- ===================== PANORAMA (I.S) ===================== -->
@@ -192,7 +228,7 @@
     <div class="pz-top">
       <div class="pz-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 8l10 6 10-6-10-6ZM2 16l10 6 10-6M2 12l10 6 10-6"/></svg></div>
       <h1>PANORAMA DAS IMPLANTAÇÕES 2026</h1>
-      <div class="pz-updated">DATA DA ATUALIZAÇÃO <b id="pz-date">24/07/2026 15:45</b></div>
+      <div class="pz-updated">DATA DA ATUALIZAÇÃO <b id="pz-date">24/07/2026 18:21</b></div>
     </div>
 
     <div class="pz-kpis">
@@ -274,7 +310,7 @@
             <td class="pz-score">5</td><td class="pz-score">5</td><td class="pz-score">25</td>
             <td><span class="pz-score-badge">Crítico</span></td>
             <td class="pz-risk-desc">Concluir documentos e acompanhar diariamente.</td>
-            <td>Até 22/07</td>
+            <td>24/07</td>
           </tr>
           <tr>
             <td class="pz-risk-desc">Ausência de retorno formal da Coelba</td>
@@ -286,21 +322,21 @@
           <tr>
             <td class="pz-risk-desc">Regularização da base de Itabuna</td>
             <td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
-            <td><span class="pz-score-badge">Crítico</span></td>
-            <td class="pz-risk-desc">Priorizar Santo Antônio de Jesus e concluir regularização em paralelo.</td>
+            <td><span class="pz-score-badge resolvido">Concluído</span></td>
+            <td class="pz-risk-desc">Priorizar Santo Antônio de Jesus e concluir regularização em paralelo. <em>(Resolvido)</em></td>
             <td>Antes da expansão</td>
           </tr>
           <tr>
             <td class="pz-risk-desc">Emissão do CNPJ da Bahia</td>
             <td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
-            <td><span class="pz-score-badge">Crítico</span></td>
-            <td class="pz-risk-desc">Acompanhamento diário com Contabilidade e Jurídico.</td>
+            <td><span class="pz-score-badge resolvido">Concluído</span></td>
+            <td class="pz-risk-desc">Acompanhamento diário com Contabilidade e Jurídico. <em>(Resolvido)</em></td>
             <td>Imediato</td>
           </tr>
           <tr>
             <td class="pz-risk-desc">Entrega de EPIs, EPCs e Talabartes</td>
             <td class="pz-score">4</td><td class="pz-score">4</td><td class="pz-score">16</td>
-            <td><span class="pz-score-badge alto">Alto</span></td>
+            <td><span class="pz-score-badge andamento">Em Andamento</span></td>
             <td class="pz-risk-desc">Compras locais, fornecedores alternativos e transporte próprio.</td>
             <td>31/jul</td>
           </tr>
@@ -400,7 +436,7 @@
       </table>
     </div>
 
-    <div class="footnote"><b>Fonte:</b> Panorama das Implantações 2026 (aba "I.S" da planilha de acompanhamento operacional). <b>Última correção:</b> o risco "Ausência de retorno formal da Coelba" foi marcado como <b>resolvido</b> na planilha (deixou de ser Crítico). Correção anterior: valor de Receita Implantada ajustado para R$ 1.712.257,96 (61%).</div>
+    <div class="footnote"><b>Fonte:</b> Panorama das Implantações 2026 (aba "I.S" da planilha de acompanhamento operacional). <b>Últimas correções (24/07 18:21):</b> os riscos "Regularização da base de Itabuna" e "Emissão do CNPJ da Bahia" foram <b>resolvidos</b> (deixaram de ser Crítico); "Entrega de EPIs, EPCs e Talabartes" foi rebaixado de Alto para <b>Em Andamento</b>.</div>
   </section>
 
   <!-- ===================== INOVAÇÃO ===================== -->
@@ -625,6 +661,108 @@
     </div>
 
     <div class="footnote"><b>Fonte:</b> aba "Sankhya" da planilha de gestão de projetos. <b>Atenção:</b> algumas datas de prazo por módulo vieram corrompidas na exportação da planilha original (ex.: "8-Jan" para percentuais) — vale conferir a formatação de data/hora na fonte antes de divulgar externamente.</div>
+  </section>
+
+  <!-- ===================== ROADMAP ===================== -->
+  <section id="roadmap" class="panel" style="--h1:#0c4a6e;--h2:#0284c7;--acc:#0284c7;">
+    <div class="header">
+      <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13 6-3m-6 3V7m6 10 5.447 2.724A1 1 0 0 0 21 18.83V8.065a1 1 0 0 0-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div>
+      <div>
+        <h1>Roadmap de Implantações</h1>
+        <p>Painel de controle por operação &middot; go-live e % de avanço</p>
+      </div>
+      <div class="ref">Data referência<b>24/07/2026</b></div>
+    </div>
+
+    <div class="rm-summary" style="margin-top:16px;">
+      <div class="rm-sum-card ok"><div class="n">10</div><div class="l">Operações concluídas</div></div>
+      <div class="rm-sum-card warn"><div class="n">2</div><div class="l">Em andamento</div></div>
+      <div class="rm-sum-card risk"><div class="n">0</div><div class="l">Atrasadas</div></div>
+      <div class="rm-sum-card total"><div class="n">12</div><div class="l">Total de operações</div></div>
+    </div>
+
+    <div class="rm-grid">
+
+      <div class="rm-card">
+        <h3>EletroTecnico — 1ª Onda</h3>
+        <div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+        <div class="rm-badges"><span class="rm-badge c">Concluído: 56</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>18/05</b></div>
+      </div>
+
+      <div class="rm-card">
+        <h3>EletroTecnico — 2ª Onda</h3>
+        <div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+        <div class="rm-badges"><span class="rm-badge c">Concluído: 26</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>19/06</b></div>
+      </div>
+
+      <div class="rm-card">
+        <h3>Neoenergia</h3>
+        <div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+        <div class="rm-badges"><span class="rm-badge c">Concluído: 83</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>12/06</b></div>
+      </div>
+
+      <div class="rm-card">
+        <h3>Enel — 1ª Onda</h3>
+        <div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+        <div class="rm-badges"><span class="rm-badge c">Concluído: 48</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>02/06</b></div>
+      </div>
+
+      <div class="rm-card">
+        <h3>Enel — 2ª Onda</h3>
+        <div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+        <div class="rm-badges"><span class="rm-badge c">Concluído: 45</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>01/07</b></div>
+      </div>
+
+      <div class="rm-card">
+        <h3>Equatorial — Uruaçu</h3>
+        <div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+        <div class="rm-badges"><span class="rm-badge c">Concluído: 84</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>30/06</b></div>
+      </div>
+
+      <div class="rm-card">
+        <h3>TIM</h3>
+        <div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+        <div class="rm-badges"><span class="rm-badge c">Concluído: 49</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>08/07</b></div>
+      </div>
+
+      <div class="rm-card" style="border-color:#f5c9a0;">
+        <h3>Coelba</h3>
+        <div class="rm-pct-row"><span class="rm-pct warn">61%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:61%;background:linear-gradient(90deg,#ffb74d,#c2660a);"></div></div>
+        <div class="rm-badges">
+          <span class="rm-badge c">Concluído: 68</span>
+          <span class="rm-badge a">A Iniciar: 19</span>
+          <span class="rm-badge r">Atrasado: 5</span>
+          <span class="rm-badge e">Em Andamento: 20</span>
+        </div>
+        <div class="rm-foot"><span>Go Live</span><b>03/08</b></div>
+      </div>
+
+      <div class="rm-card" style="border-color:#d8d3e8;">
+        <h3>Light — RJ</h3>
+        <div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+        <div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+        <div class="rm-badges"><span class="rm-badge a">A Iniciar: 72</span></div>
+        <div class="rm-foot"><span>Go Live</span><b>18/09</b></div>
+      </div>
+
+    </div>
+
+    <div class="footnote" style="margin-top:16px;"><b>Fonte:</b> aba "I.S" da planilha de gestão de projetos, seção "ROADMAP" (linha ~360 a 390 na origem), que resume cada operação de implantação. <b>Observação:</b> essa seção da planilha traz uma contagem-resumo (10 concluídas / 2 em andamento) ligeiramente diferente do card executivo do Panorama (11 concluídas / 1 em andamento) — é uma inconsistência que já existe na própria planilha de origem entre as duas visões; vale alinhar com quem mantém a fonte qual delas é a oficial. Os detalhamentos linha a linha (WBS/cronograma de cada operação, com centenas de tarefas) não foram replicados aqui — se precisar dessa granularidade completa, posso gerar uma visão adicional específica.</div>
   </section>
 
 </div>
