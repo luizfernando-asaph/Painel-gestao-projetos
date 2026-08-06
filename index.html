@@ -29,74 +29,12 @@ display:flex;align-items:center;gap:8px;transition:all .15s ease;
 .tab-btn:hover{color:var(--ink-950);}
 .tab-btn.active{color:#fff;border-color:transparent;box-shadow:0 10px 24px -14px rgba(0,0,0,0.4);}
 .tab-btn .dotc{width:8px;height:8px;border-radius:50%;}
-#tab-geral.active{background:linear-gradient(120deg,#0f2e26,#1f5b47);}
+#tab-produtos.active{background:linear-gradient(120deg,#0f2e26,#1f5b47);}
+#tab-projetos.active{background:linear-gradient(120deg,#2b1065,#7c3aed);}
+#tab-proj_autom.active{background:linear-gradient(120deg,#0c4a4a,#0891b2);}
 #tab-politicas.active{background:linear-gradient(120deg,#0f5c53,#14b8a6);}
-#tab-sankhya.active{background:linear-gradient(120deg,#7c2d12,#ea580c);}
-#tab-inovacao.active{background:linear-gradient(120deg,#2b1065,#7c3aed);}
+#tab-erp.active{background:linear-gradient(120deg,#7c2d12,#ea580c);}
 #tab-roadmap.active{background:linear-gradient(120deg,#0c4a6e,#0284c7);}
-#tab-coelba.active{background:linear-gradient(120deg,#7f1d1d,#dc2626);}
-/* ===== PANORAMA (I.S) specific styles ===== */
-.pz-top{
-background:#16352b;border-radius:12px;padding:18px 26px;display:flex;align-items:center;gap:18px;color:#fff;
-box-shadow:0 14px 30px -18px rgba(0,0,0,0.4);margin-bottom:16px;
-}
-.pz-logo{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.pz-top h1{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;margin:0;letter-spacing:.3px;}
-.pz-updated{margin-left:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.3px;}
-.pz-updated b{font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;}
-.pz-kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-bottom:16px;}
-.pz-kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;}
-.pz-kpi.solid{background:#2f5233;color:#fff;}
-.pz-kpi .pz-lbl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;color:var(--slate-500);margin-bottom:6px;}
-.pz-kpi.solid .pz-lbl{color:rgba(255,255,255,0.75);}
-.pz-kpi .pz-num{font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;line-height:1.1;}
-.pz-bar{height:6px;border-radius:6px;background:#eee;margin-top:8px;overflow:hidden;}
-.pz-bar .fill{height:100%;border-radius:6px;}
-.pz-bar .fill.green{background:linear-gradient(90deg,#8bc34a,#4a7c2f);}
-.pz-bar .fill.amber{background:linear-gradient(90deg,#ffd54f,#f9a825);}
-.pz-bar .fill.red{background:linear-gradient(90deg,#ef9a9a,#c62828);}
-.pz-pctlbl{font-size:10px;font-weight:700;margin-top:3px;color:var(--slate-500);}
-.pz-section-head{background:#16352b;color:#fff;font-family:'Manrope',sans-serif;font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase;padding:10px 16px;border-radius:8px;text-align:center;margin-bottom:10px;}
-.pz-section-head.danger{background:#b71c1c;}
-.pz-grid3{display:grid;grid-template-columns:1.1fr 1.3fr 1.1fr;gap:14px;margin-bottom:16px;}
-.pz-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.pz-list{margin:0;padding:0;list-style:none;}
-.pz-list li{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12.5px;font-weight:600;}
-.pz-list li:last-child{border-bottom:none;}
-.pz-list .dotc{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
-.pz-list .val{font-family:'Manrope',sans-serif;font-weight:800;margin-right:4px;}
-.pz-list.risk li{background:#fdecec;}
-.donut-wrap{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px;flex-wrap:wrap;}
-.donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(#4a7c2f 0% 61%, #f9d71c 61% 100%);position:relative;display:flex;align-items:center;justify-content:center;}
-.donut::after{content:"";position:absolute;width:78px;height:78px;border-radius:50%;background:#fff;}
-.donut-legend{font-size:12px;font-weight:700;}
-.donut-legend .row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.donut-legend .sq{width:11px;height:11px;border-radius:3px;}
-.pz-marco{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border);font-size:12.5px;font-weight:600;}
-.pz-marco:last-child{border-bottom:none;}
-.pz-marco .grn{width:9px;height:9px;border-radius:50%;background:#2e7d32;flex-shrink:0;}
-.pz-marco .date{margin-left:auto;background:#eef3ee;padding:4px 10px;border-radius:6px;font-weight:700;font-size:11.5px;}
-.pz-table-wrap{overflow-x:auto;margin-bottom:16px;}
-table.pz-table{width:100%;border-collapse:collapse;min-width:1100px;background:#fff;border-radius:10px;overflow:hidden;}
-table.pz-table thead th{background:#16352b;color:#fff;font-size:10.5px;font-weight:800;text-transform:uppercase;padding:10px 10px;text-align:center;white-space:nowrap;}
-table.pz-table tbody td{padding:12px 10px;text-align:center;font-size:12.5px;border-bottom:1px solid var(--border);}
-.pz-op{display:flex;align-items:center;gap:8px;font-weight:800;font-family:'Manrope',sans-serif;justify-content:center;}
-.pz-badge{display:inline-block;padding:5px 10px;border-radius:6px;font-weight:800;font-size:11px;}
-.pz-badge.green{background:#dcedc8;color:#33691e;}
-.pz-badge.amber{background:#fff3cd;color:#8a6100;}
-.pz-badge.red{background:#c62828;color:#fff;}
-.pz-badge.stable{background:#dff5e1;color:#1b5e20;}
-.pz-risk-desc{text-align:left !important;max-width:260px;}
-.pz-score{font-weight:800;}
-.pz-score-badge{background:#c62828;color:#fff;padding:5px 12px;border-radius:6px;font-weight:800;font-size:11.5px;}
-.pz-score-badge.alto{background:#e8720c;}
-.pz-score-badge.medio{background:#d4a017;}
-.pz-score-badge.resolvido{background:#15803d;}
-.pz-score-badge.andamento{background:#c2660a;}
-@media (max-width:1100px){
-.pz-kpis{grid-template-columns:repeat(4,1fr);}
-.pz-grid3{grid-template-columns:1fr;}
-}
 .panel{display:none;}
 .panel.active{display:block;animation:fade .25s ease;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
@@ -118,8 +56,8 @@ background:linear-gradient(120deg,var(--h1) 0%,var(--h2) 100%);
 .kpis.cols-4{grid-template-columns:repeat(4,1fr);}
 .kpis.cols-5{grid-template-columns:repeat(5,1fr);}
 .kpi{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:14px;}
-.kpi .dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0;background:var(--acc);}
-.kpi .num{font-family:'Manrope',sans-serif;font-size:21px;font-weight:800;line-height:1.1;}
+.kpi .dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;background:var(--acc);}
+.kpi .num{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;line-height:1.1;}
 .kpi .lbl{font-size:10.5px;font-weight:600;color:var(--slate-500);text-transform:uppercase;letter-spacing:.3px;margin-top:3px;}
 /* CARD / TABLE */
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 12px 28px -20px rgba(0,0,0,0.25);margin-bottom:18px;}
@@ -128,7 +66,7 @@ background:linear-gradient(120deg,var(--h1) 0%,var(--h2) 100%);
 .table-scroll{overflow-x:auto;}
 table{width:100%;border-collapse:collapse;min-width:760px;}
 thead th{background:var(--ink-900);color:#fff;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:12px 14px;text-align:left;white-space:nowrap;}
-tbody td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top;}
+tbody td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top;white-space:nowrap;}
 tbody tr:last-child td{border-bottom:none;}
 tbody tr:hover{background:#faf9ff;}
 .name{font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;}
@@ -153,6 +91,7 @@ tbody tr:hover{background:#faf9ff;}
 .list li .ico{width:20px;height:20px;border-radius:6px;background:var(--acc);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;margin-top:1px;}
 .footnote{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;font-size:12px;color:var(--slate-500);line-height:1.6;}
 .footnote b{color:var(--ink-950);}
+.id-badge{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 6px;border-radius:6px;color:#fff;font-family:'Manrope',sans-serif;font-weight:800;font-size:11px;}
 @media (max-width:1000px){
 .kpis.cols-4,.kpis.cols-5{grid-template-columns:repeat(2,1fr);}
 .two-col{grid-template-columns:1fr;}
@@ -160,13 +99,14 @@ tbody tr:hover{background:#faf9ff;}
 .header .ref{margin-left:0;text-align:center;}
 }
 /* ===== ROADMAP specific styles ===== */
-.rm-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+.rm-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px;}
 .rm-sum-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;text-align:center;}
 .rm-sum-card .n{font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;}
 .rm-sum-card .l{font-size:11px;font-weight:700;color:var(--slate-500);text-transform:uppercase;letter-spacing:.3px;margin-top:4px;}
 .rm-sum-card.ok .n{color:#15803d;}
 .rm-sum-card.warn .n{color:#c2660a;}
 .rm-sum-card.risk .n{color:#b91c1c;}
+.rm-sum-card.na .n{color:var(--slate-500);}
 .rm-sum-card.total .n{color:#0284c7;}
 .rm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .rm-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:0 10px 24px -18px rgba(2,132,199,0.25);}
@@ -189,232 +129,53 @@ tbody tr:hover{background:#faf9ff;}
 .rm-summary{grid-template-columns:repeat(2,1fr);}
 .rm-grid{grid-template-columns:1fr;}
 }
-/* ===== STATUS REPORT COELBA specific styles ===== */
-.cb-callout{background:#fff7ed;border:1px solid #fed7aa;border-left:5px solid #dc2626;border-radius:12px;padding:16px 20px;font-size:13px;line-height:1.7;margin-bottom:18px;color:#7c2d12;}
-.cb-callout b{color:#7f1d1d;}
-tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-900);padding:10px 14px;border-bottom:1px solid var(--border);}
-.cb-id{color:var(--slate-500);font-weight:700;font-size:12px;}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="tabs">
-<button class="tab-btn active" id="tab-geral" onclick="showPanel('geral')"><span class="dotc" style="background:#2f5233;"></span>Panorama 2026</button>
+<button class="tab-btn active" id="tab-produtos" onclick="showPanel('produtos')"><span class="dotc" style="background:#2f5233;"></span>Produtos</button>
+<button class="tab-btn" id="tab-projetos" onclick="showPanel('projetos')"><span class="dotc" style="background:#7c3aed;"></span>Projetos</button>
+<button class="tab-btn" id="tab-proj_autom" onclick="showPanel('proj_autom')"><span class="dotc" style="background:#0891b2;"></span>Proj. Automação</button>
 <button class="tab-btn" id="tab-politicas" onclick="showPanel('politicas')"><span class="dotc" style="background:#14b8a6;"></span>Políticas</button>
-<button class="tab-btn" id="tab-sankhya" onclick="showPanel('sankhya')"><span class="dotc" style="background:#ea580c;"></span>Sankhya</button>
-<button class="tab-btn" id="tab-inovacao" onclick="showPanel('inovacao')"><span class="dotc" style="background:#7c3aed;"></span>Inovação</button>
-<button class="tab-btn" id="tab-coelba" onclick="showPanel('coelba')"><span class="dotc" style="background:#dc2626;"></span>Status Report Coelba</button>
+<button class="tab-btn" id="tab-erp" onclick="showPanel('erp')"><span class="dotc" style="background:#ea580c;"></span>ERP</button>
 <button class="tab-btn" id="tab-roadmap" onclick="showPanel('roadmap')"><span class="dotc" style="background:#0284c7;"></span>Roadmap</button>
 </div>
 
-<!-- ===================== PANORAMA (I.S) ===================== -->
-<section id="geral" class="panel active">
-<div class="pz-top">
-<div class="pz-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 8l10 6 10-6-10-6ZM2 16l10 6 10-6M2 12l10 6 10-6"/></svg></div>
-<h1>PANORAMA DAS IMPLANTAÇÕES 2026</h1>
-<div class="pz-updated">DATA DA ATUALIZAÇÃO <b id="pz-date">03/08/2026 19:01</b></div>
+<!-- ===================== PRODUTOS ===================== -->
+<section id="produtos" class="panel active" style="--h1:#0f2e26;--h2:#1f5b47;--acc:#1f5b47;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 8l10 6 10-6-10-6ZM2 16l10 6 10-6M2 12l10 6 10-6"/></svg></div>
+<div>
+<h1>Produtos Sob Medida</h1>
+<p>Painel de produtos &middot; iniciativas, prazos e faturamento</p>
 </div>
-<div class="pz-kpis">
-<div class="pz-kpi solid"><div class="pz-lbl">Projetos</div><div class="pz-num">11</div><div class="pz-lbl">no portfólio</div></div>
-<div class="pz-kpi"><div class="pz-lbl">Concluídos</div><div class="pz-num">11</div><div class="pz-bar"><div class="fill green" style="width:100%;"></div></div><div class="pz-pctlbl">100%</div></div>
-<div class="pz-kpi"><div class="pz-lbl">Em andamento</div><div class="pz-num">0</div><div class="pz-bar"><div class="fill amber" style="width:0%;"></div></div><div class="pz-pctlbl">0%</div></div>
-<div class="pz-kpi"><div class="pz-lbl">Receita contrat.</div><div class="pz-num">R$ 2.820.257,96</div><div class="pz-bar"><div class="fill green" style="width:100%;"></div></div><div class="pz-pctlbl">100%</div></div>
-<div class="pz-kpi"><div class="pz-lbl">Rec. implantada</div><div class="pz-num">R$ 2.820.257,96</div><div class="pz-bar"><div class="fill green" style="width:100%;"></div></div><div class="pz-pctlbl">100%</div></div>
-<div class="pz-kpi"><div class="pz-lbl">Rec. em mobiliz.</div><div class="pz-num">R$ 1.108.000,00</div><div class="pz-bar"><div class="fill amber" style="width:0%;"></div></div><div class="pz-pctlbl">0%</div></div>
-<div class="pz-kpi"><div class="pz-lbl">Rec. em risco</div><div class="pz-num">R$ —</div><div class="pz-bar"><div class="fill red" style="width:0%;"></div></div><div class="pz-pctlbl">0%</div></div>
-<div class="pz-kpi"><div class="pz-lbl">Tempo médio implant.</div><div class="pz-num">54,66 Dias</div></div>
+<div class="ref">Data referência<b>24/07/2026</b></div>
 </div>
-<div class="pz-grid3">
-<div class="pz-card">
-<div class="pz-section-head" style="border-radius:0;margin-bottom:0;">Sumário Executivo</div>
-<ul class="pz-list">
-<li><span class="dotc" style="background:#2f5233;"></span><span class="val">11</span> Projetos no Portfólio</li>
-<li><span class="dotc" style="background:#2f5233;"></span><span class="val">11</span> Concluídos</li>
-<li><span class="dotc" style="background:#f9d71c;"></span><span class="val">0</span> Em Andamento</li>
-<li><span class="dotc" style="background:#c62828;"></span><span class="val">1</span> Risco Alto</li>
-</ul>
-<div style="padding:12px 14px;background:#fdecec;font-weight:800;font-size:12.5px;display:flex;justify-content:space-between;">
-<span>Receita Risco</span><span>R$ 1.108.000,00</span>
+<div class="kpis cols-5" style="margin-top:16px;">
+<div class="kpi"><div class="dot">12</div><div><div class="num">12</div><div class="lbl">Iniciativas ativas</div></div></div>
+<div class="kpi"><div class="dot">12</div><div><div class="num">12</div><div class="lbl">Concluído</div></div></div>
+<div class="kpi"><div class="dot">100%</div><div><div class="num">100%</div><div class="lbl">% Avanço do pipeline</div></div></div>
+<div class="kpi"><div class="dot">R$</div><div><div class="num">R$ 24.507</div><div class="lbl">Média fat. unitário</div></div></div>
+<div class="kpi"><div class="dot">R$</div><div><div class="num">R$ 2.820.258</div><div class="lbl">Faturamento total</div></div></div>
 </div>
-</div>
-<div class="pz-card">
-<div class="pz-section-head" style="border-radius:0;margin-bottom:0;">Distribuição da Receita</div>
-<div class="donut-wrap">
-<div class="donut" style="background:conic-gradient(#4a7c2f 0% 100%);"></div>
-<div class="donut-legend">
-<div class="row"><span class="sq" style="background:#4a7c2f;"></span>Rec. Implantada — 100%</div>
-</div>
-</div>
-</div>
-<div class="pz-card">
-<div class="pz-section-head" style="border-radius:0;margin-bottom:0;">Próximos Marcos (Go Live)</div>
-<div class="pz-marco" style="color:var(--slate-500);font-style:italic;">Nenhum marco pendente — todas as operações do portfólio concluídas.</div>
-</div>
-</div>
-<div class="pz-section-head danger">Projeto em Andamento e Análise de Riscos</div>
-<div class="pz-table-wrap">
-<table class="pz-table">
+<div class="card">
+<div class="card-head">Produtos <span class="sub">Prazos, investimento e retorno</span></div>
+<div class="table-scroll">
+<table style="min-width:1300px;">
 <thead><tr>
-<th>Nome Operação</th><th>Equipes que Faturam</th><th>Faturamento Unitário</th><th>Receita Mensal</th>
-<th>HC</th><th>Veículos</th><th>UF</th><th>Status</th><th>Assinatura Contrato</th><th>Kickoff e TAP</th>
-<th>Go Live</th><th>Deadline</th><th>Risco</th><th>Tendência</th>
+<th>ID</th><th>Nome do Projeto</th><th>Assinatura Contrato</th><th>Kick Off</th><th>Prazo Final</th>
+<th>Status</th><th>HC</th><th>Veículos</th><th>UF</th><th>Tipo de Negócio</th><th>Faturamento Unitário</th><th>Lucro</th>
 </tr></thead>
-<tbody>
-<tr>
-<td class="pz-op">Coelba</td>
-<td>20</td>
-<td><span class="pz-badge green">R$ 55.400</span></td>
-<td><span class="pz-badge green">R$ 1.108.000</span></td>
-<td>60</td><td>27</td><td>BA</td>
-<td><span class="pz-badge green">Concluído</span></td>
-<td>18/mai</td><td>25/mai</td><td>03/ago</td><td>75</td>
-<td><span class="pz-badge red">Alto Risco</span></td>
-<td><span class="pz-badge stable">Concluído</span></td>
-</tr>
-</tbody>
+<tbody id="produtos-body"></tbody>
 </table>
 </div>
-<div class="pz-table-wrap">
-<table class="pz-table">
-<thead><tr>
-<th style="text-align:left;">Análise de Riscos</th><th>Impacto</th><th>Probabilidade</th><th>Nota</th><th>Score</th>
-<th style="text-align:left;">Ação de Mitigação</th><th>Prazo de Solução</th>
-</tr></thead>
-<tbody>
-<tr>
-<td class="pz-risk-desc">Aprov. da doc. da empresa no sistema SES/Coelba</td>
-<td class="pz-score">5</td><td class="pz-score">5</td><td class="pz-score">25</td>
-<td><span class="pz-score-badge resolvido">Concluído</span></td>
-<td class="pz-risk-desc">Concluir documentos e acompanhar diariamente. <em>(Resolvido)</em></td>
-<td>22/07</td>
-</tr>
-<tr>
-<td class="pz-risk-desc">Ausência de retorno formal da Coelba</td>
-<td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
-<td><span class="pz-score-badge resolvido">Concluído</span></td>
-<td class="pz-risk-desc">Intensificar follow-up executivo e formalizar pendências. <em>(Resolvido)</em></td>
-<td>08/jul</td>
-</tr>
-<tr>
-<td class="pz-risk-desc">Regularização da base de Itabuna</td>
-<td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
-<td><span class="pz-score-badge resolvido">Concluído</span></td>
-<td class="pz-risk-desc">Priorizar Santo Antônio de Jesus e concluir regularização em paralelo. <em>(Resolvido)</em></td>
-<td>Antes da expansão</td>
-</tr>
-<tr>
-<td class="pz-risk-desc">Emissão do CNPJ da Bahia</td>
-<td class="pz-score">5</td><td class="pz-score">4</td><td class="pz-score">20</td>
-<td><span class="pz-score-badge resolvido">Concluído</span></td>
-<td class="pz-risk-desc">Acompanhamento diário com Contabilidade e Jurídico. <em>(Resolvido)</em></td>
-<td>Imediato</td>
-</tr>
-<tr>
-<td class="pz-risk-desc">Entrega de EPIs, EPCs e Talabartes</td>
-<td class="pz-score">4</td><td class="pz-score">4</td><td class="pz-score">16</td>
-<td><span class="pz-score-badge resolvido">Concluído</span></td>
-<td class="pz-risk-desc">Compras locais, fornecedores alternativos e transporte próprio. <em>(Resolvido)</em></td>
-<td>31/jul</td>
-</tr>
-<tr>
-<td class="pz-risk-desc">Qualidade dos EPIs</td>
-<td class="pz-score">5</td><td class="pz-score">3</td><td class="pz-score">15</td>
-<td><span class="pz-score-badge resolvido">Concluído</span></td>
-<td class="pz-risk-desc">Bloquear lote, registrar evidências e substituir equipamentos. <em>(Resolvido)</em></td>
-<td>Até 17/07</td>
-</tr>
-<tr>
-<td class="pz-risk-desc">Regularização documental (Alvará/AVCB)</td>
-<td class="pz-score">4</td><td class="pz-score">3</td><td class="pz-score">12</td>
-<td><span class="pz-score-badge resolvido">Concluído</span></td>
-<td class="pz-risk-desc">Monitoramento semanal com Contabilidade, SESMT e Facilities. <em>(Resolvido)</em></td>
-<td>03/ago</td>
-</tr>
-</tbody>
-</table>
 </div>
-<div class="pz-section-head">Projetos Implantados 2026</div>
-<div class="pz-table-wrap">
-<table class="pz-table">
-<thead><tr>
-<th>Nome Operação</th><th>Equipes que Faturam</th><th>Faturamento Unitário</th><th>Receita Mensal</th>
-<th>HC</th><th>Veículos</th><th>UF</th><th>Tipo</th><th>Assinatura Contrato</th><th>Kickoff e TAP</th>
-<th>Go Live</th><th>Deadline</th><th>Planejado</th><th>Observação</th>
-</tr></thead>
-<tbody>
-<tr>
-<td class="pz-op">Coelba</td><td>20</td><td>R$ 55.400</td><td>R$ 1.108.000</td><td>60</td><td>27</td><td>BA</td>
-<td>Novo Negócio</td><td>18/mai</td><td>25/mai</td>
-<td><span class="pz-badge green">3/ago</span></td><td>75</td><td>3/ago</td>
-<td><span class="pz-badge stable">✓ Concluído</span></td>
-</tr>
-<tr>
-<td class="pz-op">TIM | PAS</td><td>38</td><td>R$ 10.074</td><td>R$ 382.804</td><td>76</td><td>NA</td><td>CE</td>
-<td>Ampliação</td><td>8/jun</td><td>22/jun</td>
-<td><span class="pz-badge green">8/jul</span></td><td>30</td><td>8/jul</td><td>—</td>
-</tr>
-<tr>
-<td class="pz-op">Enel – 2ª onda | ND</td><td>10</td><td>R$ 21.000</td><td>R$ 210.000</td><td>10</td><td>10</td><td>SP</td>
-<td>Ampliação</td><td>18/mai</td><td>20/mai</td>
-<td><span class="pz-badge green">1/jul</span></td><td>43</td><td>1/jul</td><td>Motos On the job CE</td>
-</tr>
-<tr>
-<td class="pz-op">Enel – 2ª Eletrotécnico | SP</td><td>4</td><td>R$ 25.000</td><td>R$ 100.000</td><td>4</td><td>4</td><td>SP</td>
-<td>Ampliação</td><td>18/mai</td><td>21/mai</td>
-<td><span class="pz-badge green">1/jul</span></td><td>43</td><td>1/jul</td><td>MOC</td>
-</tr>
-<tr>
-<td class="pz-op">Equatorial Uruaçu</td><td>7</td><td>R$ 43.002</td><td>R$ 301.014</td><td>14</td><td>9</td><td>GO</td>
-<td>Novo Negócio</td><td>1/mai</td><td>29/abr</td>
-<td><span class="pz-badge green">1/jul</span></td><td>60</td><td>1/jul</td><td>—</td>
-</tr>
-<tr>
-<td class="pz-op">Neoenergia Eletricista</td><td>14</td><td>R$ 19.000</td><td>R$ 266.000</td><td>14</td><td>0</td><td>SP</td>
-<td>Ampliação</td><td>6/abr</td><td>13/mai</td>
-<td><span class="pz-badge green">12/jun</span></td><td>66</td><td>12/jun</td><td>—</td>
-</tr>
-<tr>
-<td class="pz-op">Neoenergia Ag. Com.</td><td>2</td><td>R$ 14.000</td><td>R$ 28.000</td><td>2</td><td>0</td><td>SP</td>
-<td>Ampliação</td><td>6/abr</td><td>6/abr</td>
-<td><span class="pz-badge green">12/jun</span></td><td>66</td><td>12/jun</td><td>—</td>
-</tr>
-<tr>
-<td class="pz-op">Enel – 1ª onda | ND</td><td>10</td><td>R$ 21.000</td><td>R$ 210.000</td><td>10</td><td>10</td><td>SP</td>
-<td>Ampliação</td><td>17/abr</td><td>14/abr</td>
-<td><span class="pz-badge green">2/jun</span></td><td>45</td><td>2/jun</td><td>Motos On the job CE</td>
-</tr>
-<tr>
-<td class="pz-op">Hiperformance</td><td>3</td><td>R$ 28.013</td><td>R$ 84.040</td><td>3</td><td>NA</td><td>CE</td>
-<td>Novo Negócio</td><td>20/dez</td><td>20/dez</td>
-<td><span class="pz-badge green">28/fev</span></td><td>68</td><td>28/fev</td><td>—</td>
-</tr>
-<tr>
-<td class="pz-op">Sabesp</td><td>4</td><td>R$ 7.600</td><td>R$ 30.400</td><td>4</td><td>NA</td><td>CE</td>
-<td>Ampliação</td><td>20/jan</td><td>20/dez</td>
-<td><span class="pz-badge green">6/mai</span></td><td>106</td><td>6/mai</td><td>—</td>
-</tr>
-<tr>
-<td class="pz-op">Enel – Eletrotécnico | CE</td><td>3</td><td>R$ 25.000</td><td>R$ 75.000</td><td>3</td><td>3</td><td>CE</td>
-<td>Novo Negócio</td><td>13/abr</td><td>14/abr</td>
-<td><span class="pz-badge green">2/mai</span></td><td>19</td><td>2/mai</td><td>MOC</td>
-</tr>
-<tr>
-<td class="pz-op">Enel – Eletrotécnico | SP</td><td>1</td><td>R$ 25.000</td><td>R$ 25.000</td><td>1</td><td>1</td><td>SP</td>
-<td>Novo Negócio</td><td>13/abr</td><td>14/abr</td>
-<td><span class="pz-badge green">18/mai</span></td><td>35</td><td>18/mai</td><td>MOC</td>
-</tr>
-<tr style="background:#f4f2fb;font-weight:800;">
-<td class="pz-op">Total — 12 Clientes</td><td>116</td><td colspan="1">R$ 294.089</td><td>R$ 2.820.258</td>
-<td>201</td><td>64</td><td colspan="7">Tempo médio de implantação: 54,66 dias</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="footnote"><b>Fonte:</b> Panorama das Implantações 2026 (aba "PANORAMA 2026" da planilha de acompanhamento operacional, print de 03/08/2026 19:01). <b>Atualização:</b> nenhuma mudança nos números em relação ao print anterior (02/08 16:21) — Coelba segue <b>Concluída</b> (Go Live realizado), receita implantada em 100% (R$ 2.820.257,96) e não há receita em risco; apenas o horário do print da fonte foi atualizado. <b>Observação (mantida):</b> o contador de "Projetos no Portfólio" segue em 11; a planilha de origem não indica qual operação saiu do portfólio, então a tabela "Projetos Implantados 2026" logo abaixo permanece com as 12 linhas históricas até confirmação.</div>
+<div class="footnote"><b>Fonte:</b> aba "PRODUTOS" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026. <b>Observação:</b> a aba de origem reserva mais 6 posições no pipeline (IDs 13 a 18, status "A Iniciar") sem nome de projeto ou dados preenchidos — não estão contabilizadas nos KPIs acima (12 iniciativas ativas / 12 concluídas) nem na tabela, por ainda não terem sido atribuídas a um cliente.</div>
 </section>
 
-<!-- ===================== INOVAÇÃO ===================== -->
-<section id="inovacao" class="panel" style="--h1:#2b1065;--h2:#7c3aed;--acc:#7c3aed;">
+<!-- ===================== PROJETOS (Inovação e Melhoria Contínua) ===================== -->
+<section id="projetos" class="panel" style="--h1:#2b1065;--h2:#7c3aed;--acc:#7c3aed;">
 <div class="header">
 <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></div>
 <div>
@@ -449,7 +210,7 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <td>1 ano e 1 mês</td>
 <td>1 ano e 3 meses</td>
 <td style="color:var(--green-600);font-weight:800;">79,7%</td>
-<td><span class="pill na"><span class="pip"></span>A Iniciar</span></td>
+<td><span class="pill na"><span class="pip"></span>Iniciado</span></td>
 <td><div class="pct">0%</div><div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#d8d3e8;"></div></div></td>
 <td class="muted">Estruturação do projeto e definição de escopo.</td>
 <td class="muted">–</td>
@@ -518,12 +279,39 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 </table>
 </div>
 </div>
-<div class="footnote">
-<b>Fontes:</b> business case de viabilidade (MIRA, Precificação por IA e Data Lake), TAP/cenários (IA COB) e aba "DP Inovação" da planilha de gestão (datas de início e go-live do cronograma).
-<b>Divergência identificada:</b> o cronograma da aba "DP Inovação" indica Data Lake com duração de 12 meses (fev/2026–fev/2027), enquanto o business case original previa 5 meses (out/2026–fev/2027). Mantivemos as datas do cronograma por serem a fonte mais recente — vale confirmar qual está correta.
-Para IA COB, usamos o cenário "White Label" (menor investimento, tratado como MVP), ainda pendente de aprovação.
-<b>Correção (03/08):</b> o indicador "Em execução" estava contando apenas 2 projetos; a aba de origem confirma 3 projetos em fase "Execução" (Precificação por IA, Data Lake e Automação Proc. Vendas) — corrigido de 2 para 3.
+<div class="footnote"><b>Fonte:</b> aba "PROJETOS" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026.</div>
+</section>
+
+<!-- ===================== PROJ_AUTOM (Automação de Processos) ===================== -->
+<section id="proj_autom" class="panel" style="--h1:#0c4a4a;--h2:#0891b2;--acc:#0891b2;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div>
+<div>
+<h1>Automação de Processos</h1>
+<p>Projetos em andamento &middot; consultas, views e relatórios</p>
 </div>
+<div class="ref">Data referência<b>24/07/2026</b></div>
+</div>
+<div class="kpis cols-5" style="margin-top:16px;">
+<div class="kpi"><div class="dot">22</div><div><div class="num">22</div><div class="lbl">Iniciativas ativas</div></div></div>
+<div class="kpi"><div class="dot">18</div><div><div class="num">18</div><div class="lbl">Concluídos</div></div></div>
+<div class="kpi"><div class="dot">4</div><div><div class="num">4</div><div class="lbl">Em andamento</div></div></div>
+<div class="kpi"><div class="dot">82%</div><div><div class="num">82%</div><div class="lbl">% Avanço</div></div></div>
+<div class="kpi"><div class="dot">19</div><div><div class="num">19</div><div class="lbl">Em fluxo de validação</div></div></div>
+</div>
+<div class="card">
+<div class="card-head">Projetos de Automação <span class="sub">Consultas, views, procedures e relatórios internos</span></div>
+<div class="table-scroll">
+<table style="min-width:1500px;">
+<thead><tr>
+<th>ID</th><th>Tipo</th><th>Consulta / View</th><th>Especialista</th><th>Demandante</th><th>Prazo</th>
+<th>Validador</th><th>Status Entrega</th><th>Validação</th><th>Status Atual</th><th>Observação</th>
+</tr></thead>
+<tbody id="autom-body"></tbody>
+</table>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "PROJ_AUTOM" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026. <b>Observação:</b> o KPI "Em fluxo de validação" (19) corresponde ao número de itens com alguma observação/tratativa registrada na coluna "Observação" da aba de origem; os demais totais (Iniciativas ativas, Concluídos, Em andamento, % Avanço) reproduzem os indicadores-resumo da própria planilha.</div>
 </section>
 
 <!-- ===================== POLÍTICAS ===================== -->
@@ -531,94 +319,59 @@ Para IA COB, usamos o cenário "White Label" (menor investimento, tratado como M
 <div class="header">
 <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4Z"/></svg></div>
 <div>
-<h1>Status Report — Políticas</h1>
+<h1>Sustentação — Políticas</h1>
 <p>Governança e padronização de processos</p>
 </div>
 <div class="ref">Data referência<b>24/07/2026</b></div>
 </div>
 <div class="kpis cols-4">
-<div class="kpi"><div class="dot">79%</div><div><div class="num">79%</div><div class="lbl">Implantadas</div></div></div>
-<div class="kpi"><div class="dot">12</div><div><div class="num">12</div><div class="lbl">Políticas concluídas</div></div></div>
-<div class="kpi"><div class="dot">2</div><div><div class="num">2</div><div class="lbl">Em andamento</div></div></div>
-<div class="kpi"><div class="dot">14</div><div><div class="num">14</div><div class="lbl">Total de políticas</div></div></div>
+<div class="kpi"><div class="dot">79%</div><div><div class="num">79%</div><div class="lbl">% de avanço</div></div></div>
+<div class="kpi"><div class="dot">11</div><div><div class="num">11</div><div class="lbl">Políticas concluídas</div></div></div>
+<div class="kpi"><div class="dot">3</div><div><div class="num">3</div><div class="lbl">Em andamento</div></div></div>
+<div class="kpi"><div class="dot">14</div><div><div class="num">14</div><div class="lbl">Pipeline de políticas</div></div></div>
 </div>
 <div class="card">
-<div class="card-head">Status por módulo</div>
+<div class="card-head">Políticas <span class="sub">Etapas do fluxo de padronização</span></div>
 <div class="table-scroll">
-<table>
+<table style="min-width:1300px;">
 <thead><tr>
-<th>Módulo</th><th>Líder</th><th>Padronização</th><th>Escrita e Ajustes</th>
-<th>Apres. ao GT</th><th>Aprovação GT/CEO/Diret.</th><th>Apres. Comitê Gestão</th><th>Status</th>
+<th>ID</th><th>Nome do Projeto</th><th>Padronização</th><th>Escrita Inicial</th><th>Grupo Técnico</th>
+<th>Ajustes GT</th><th>Aprovação Executiva</th><th>Comitê de Gestão</th><th>Card / Guardião / Treinamento / Divulgação</th><th>Status</th>
 </tr></thead>
 <tbody id="pol-body"></tbody>
 </table>
 </div>
 </div>
-<div class="footnote"><b>Fonte:</b> aba "Políticas" da planilha de gestão de projetos. <b>Status final</b> considera a última etapa (Apresentação ao Comitê de Gestão). <b>Atualização:</b> o percentual geral caiu de 86% para 79% porque a política "Viagens" retrocedeu — a etapa de Apresentação ao Comitê de Gestão, antes concluída, voltou para "Em Andamento".</div>
+<div class="footnote"><b>Fonte:</b> aba "POLITICAS" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026. <b>Status final</b> considera a última etapa do fluxo (Divulgação). As colunas "Card", "Guardião", "Treinamento Área" e "Divulgação" foram agrupadas em uma única coluna por terem sempre o mesmo valor entre si em cada linha da fonte.</div>
 </section>
 
-<!-- ===================== SANKHYA ===================== -->
-<section id="sankhya" class="panel" style="--h1:#5c1d09;--h2:#ea580c;--acc:#ea580c;">
+<!-- ===================== ERP (Sankhya) ===================== -->
+<section id="erp" class="panel" style="--h1:#5c1d09;--h2:#ea580c;--acc:#ea580c;">
 <div class="header">
 <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
 <div>
-<h1>Status Report — Implantação Sankhya</h1>
-<p>ERP &middot; Módulos, risco e treinamento</p>
+<h1>Sustentação — ERP Sankhya</h1>
+<p>Módulos, risco e treinamento</p>
 </div>
 <div class="ref">Data referência<b>24/07/2026</b></div>
 </div>
 <div class="kpis cols-5">
-<div class="kpi"><div class="dot">96%</div><div><div class="num">96%</div><div class="lbl">Avanço do plano</div></div></div>
-<div class="kpi"><div class="dot">13/15</div><div><div class="num">13 de 15</div><div class="lbl">Módulos implantados</div></div></div>
-<div class="kpi"><div class="dot">93%</div><div><div class="num">93%</div><div class="lbl">Risco controlado</div></div></div>
-<div class="kpi"><div class="dot">83%</div><div><div class="num">83%</div><div class="lbl">Treinamento</div></div></div>
-<div class="kpi"><div class="dot">✓</div><div><div class="num">Dentro do prazo</div><div class="lbl">Deadline 30/07/2026</div></div></div>
-</div>
-<div class="two-col">
-<div class="card">
-<div class="card-head">Índice de risco do projeto</div>
-<ul class="list">
-<li><span class="ico" style="background:#15803d;">✓</span>13 módulos controlados</li>
-<li><span class="ico" style="background:#c2660a;">!</span>2 módulos em atenção</li>
-<li><span class="ico" style="background:#ea580c;">Σ</span>Índice geral: 93% controlado</li>
-</ul>
-</div>
-<div class="card">
-<div class="card-head">Investimento Sankhya</div>
-<ul class="list">
-<li><span class="ico" style="background:#ea580c;">R$</span>ERP Sankhya (total): <b>R$ 2.248.486</b></li>
-<li><span class="ico" style="background:#ea580c;">25</span>Investido em 2025: R$ 515.605 (23%)</li>
-<li><span class="ico" style="background:#ea580c;">26</span>Orçado 2026: R$ 630.266 (28%) &middot; Realizado: R$ 315.133 (50%)</li>
-</ul>
-</div>
+<div class="kpi"><div class="dot">16</div><div><div class="num">16</div><div class="lbl">Pipeline Sankhya</div></div></div>
+<div class="kpi"><div class="dot">13</div><div><div class="num">13 de 16</div><div class="lbl">Risco sob controle</div></div></div>
+<div class="kpi"><div class="dot">81%</div><div><div class="num">81%</div><div class="lbl">% módulos baixo risco</div></div></div>
+<div class="kpi"><div class="dot">86%</div><div><div class="num">86%</div><div class="lbl">% de avanço médio</div></div></div>
+<div class="kpi"><div class="dot">14%</div><div><div class="num">14%</div><div class="lbl">Em andamento (restante)</div></div></div>
 </div>
 <div class="card">
 <div class="card-head">Status por módulo</div>
 <div class="table-scroll">
 <table>
-<thead><tr><th>Módulo</th><th>Líder</th><th>Status</th><th>% de Avanço</th><th>Treinamento Maio</th><th>Treinamento Junho</th></tr></thead>
-<tbody id="sank-body"></tbody>
+<thead><tr><th>ID</th><th>Módulo</th><th>Risco</th><th>% de Avanço</th><th>Status</th><th>Relatórios</th><th>Treinamento</th><th>Líder</th></tr></thead>
+<tbody id="erp-body"></tbody>
 </table>
 </div>
 </div>
-<div class="two-col">
-<div class="card">
-<div class="card-head">Principais pontos de atenção</div>
-<ul class="list">
-<li><span class="ico" style="background:#c2660a;">!</span>Suprimentos: concluir relatórios da BM Code</li>
-<li><span class="ico" style="background:#c2660a;">!</span>Patrimônio: dependente de estruturação da área</li>
-</ul>
-</div>
-<div class="card">
-<div class="card-head">Próximos passos</div>
-<ul class="list">
-<li><span class="ico" style="background:#7c3aed;">→</span>GPD — em iniciação</li>
-<li><span class="ico" style="background:#7c3aed;">→</span>Orçamentos e metas (Controladoria) — em execução, prazo 30/07/2026</li>
-<li><span class="ico" style="background:#7c3aed;">→</span>Personalizar Allstrategy (Controladoria) — em iniciação, prazo 30/07/2026</li>
-</ul>
-</div>
-</div>
-<div class="footnote"><b>Fonte:</b> aba "Sankhya" da planilha de gestão de projetos. <b>Atenção:</b> algumas datas de prazo por módulo vieram corrompidas na exportação da planilha original (ex.: "8-Jan" para percentuais) — vale conferir a formatação de data/hora na fonte antes de divulgar externamente.</div>
+<div class="footnote"><b>Fonte:</b> aba "ERP" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026.</div>
 </section>
 
 <!-- ===================== ROADMAP ===================== -->
@@ -629,13 +382,14 @@ Para IA COB, usamos o cenário "White Label" (menor investimento, tratado como M
 <h1>Roadmap de Implantações</h1>
 <p>Painel de controle por operação &middot; go-live e % de avanço</p>
 </div>
-<div class="ref">Data referência<b>03/08/2026</b></div>
+<div class="ref">Data referência<b>06/08/2026</b></div>
 </div>
 <div class="rm-summary" style="margin-top:16px;">
-<div class="rm-sum-card ok"><div class="n">11</div><div class="l">Operações concluídas</div></div>
+<div class="rm-sum-card ok"><div class="n">7</div><div class="l">Operações concluídas</div></div>
 <div class="rm-sum-card warn"><div class="n">1</div><div class="l">Em andamento</div></div>
+<div class="rm-sum-card na"><div class="n">5</div><div class="l">A iniciar</div></div>
 <div class="rm-sum-card risk"><div class="n">0</div><div class="l">Atrasadas</div></div>
-<div class="rm-sum-card total"><div class="n">16</div><div class="l">Total de operações</div></div>
+<div class="rm-sum-card total"><div class="n">13</div><div class="l">Total de operações</div></div>
 </div>
 <div class="rm-grid">
 <div class="rm-card">
@@ -687,11 +441,11 @@ Para IA COB, usamos o cenário "White Label" (menor investimento, tratado como M
 <div class="rm-badges"><span class="rm-badge c">Concluído: 49</span></div>
 <div class="rm-foot"><span>Go Live</span><b>08/07</b></div>
 </div>
-<div class="rm-card">
+<div class="rm-card" style="border-color:#fde68a;">
 <h3>Coelba</h3>
-<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
-<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
-<div class="rm-badges"><span class="rm-badge c">Concluído: 112</span></div>
+<div class="rm-pct-row"><span class="rm-pct warn">88%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:88%;background:linear-gradient(90deg,#f9d71c,#c2660a);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 98</span><span class="rm-badge e">Em Andamento: 14</span></div>
 <div class="rm-foot"><span>Go Live</span><b>03/08</b></div>
 </div>
 <div class="rm-card" style="border-color:#d8d3e8;">
@@ -705,149 +459,32 @@ Para IA COB, usamos o cenário "White Label" (menor investimento, tratado como M
 <h3>Âncora Maranhão 1 — Atendimento Presencial</h3>
 <div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
 <div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
-<div class="rm-badges"><span class="rm-badge a">A Iniciar: 19</span></div>
-<div class="rm-foot"><span>Go Live</span><b>10/02/27</b></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 24</span></div>
+<div class="rm-foot"><span>Go Live</span><b>25/02/27</b></div>
 </div>
 <div class="rm-card" style="border-color:#d8d3e8;">
 <h3>Âncora Maranhão 2 — Leitura, Fat. e Cobrança</h3>
 <div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
 <div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
-<div class="rm-badges"><span class="rm-badge a">A Iniciar: 22</span></div>
-<div class="rm-foot"><span>Go Live</span><b>08/02/27</b></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 27</span></div>
+<div class="rm-foot"><span>Go Live</span><b>25/02/27</b></div>
 </div>
 <div class="rm-card" style="border-color:#d8d3e8;">
 <h3>Âncora Maranhão 3 — Serviços Técnicos</h3>
 <div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
 <div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
-<div class="rm-badges"><span class="rm-badge a">A Iniciar: 21</span></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 26</span></div>
 <div class="rm-foot"><span>Go Live</span><b>25/02/27</b></div>
 </div>
 <div class="rm-card" style="border-color:#d8d3e8;">
 <h3>Âncora Maranhão 4 — Poda e Limpeza de Faixa</h3>
 <div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
 <div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
-<div class="rm-badges"><span class="rm-badge a">A Iniciar: 20</span></div>
-<div class="rm-foot"><span>Go Live</span><b>04/02/27</b></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 26</span></div>
+<div class="rm-foot"><span>Go Live</span><b>25/02/27</b></div>
 </div>
 </div>
-<div class="footnote" style="margin-top:16px;"><b>Fonte:</b> aba "ROADMAP" (linha-resumo por operação) e aba "BD" (linhas 1 a 685) da planilha de gestão de projetos (PMO_JULHO_2026). <b>Atualização (04/08):</b> card <b>Coelba</b> marcado como 100% concluído (112 itens), conforme confirmado — a aba de origem ainda registrava os itens 17/18 como "Em Andamento", mas o Go Live (03/08) já ocorreu e todo o cronograma foi encerrado. <b>Novos projetos (04/08):</b> incluído o programa <b>Âncora Maranhão</b>, com 4 novas operações listadas na aba "BD" (Atendimento Presencial, Leitura/Fat./Cobrança, Serviços Técnicos, Poda e Limpeza de Faixa), todas em 0% / "A Iniciar". <b>Atenção:</b> as datas de início/Go Live dessas 4 operações vieram gravadas na aba "BD" com o ano registrado 100 anos a menos (ex.: "21/11/1926" em vez de 21/11/2026) — corrigimos a exibição somando 100 anos; vale confirmar a formatação de data na origem. Os badges "A Iniciar" refletem a contagem de itens do cronograma na aba BD, já que essas 4 operações não têm linha-resumo própria na aba ROADMAP. <b>Observação (mantida):</b> a contagem-resumo original da planilha para as operações já existentes (10 concluídas / 2 em andamento antes desta atualização) é ligeiramente diferente do card executivo do Panorama — inconsistência pré-existente na própria planilha entre as duas visões; os 4 novos projetos Âncora Maranhão foram somados apenas ao "Total de operações", já que ainda não têm classificação própria de concluído/andamento/atrasado na fonte. Os detalhamentos linha a linha completos (WBS/cronograma de cada operação) não foram replicados aqui — se precisar dessa granularidade, posso gerar uma visão adicional específica.</div>
-</section>
-
-<!-- ===================== STATUS REPORT COELBA ===================== -->
-<section id="coelba" class="panel" style="--h1:#7f1d1d;--h2:#dc2626;--acc:#dc2626;">
-<div class="header">
-<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11.8V5l-8-3-8 3v5.2C4 17.5 12 22 12 22Z"/><path d="M9 12l2 2 4-4"/></svg></div>
-<div>
-<h1>Status Report — PMO Coelba</h1>
-<p>Mobilização / preparação para implantação</p>
-</div>
-<div class="ref">Data referência<b>02/08/2026</b></div>
-</div>
-<div class="kpis cols-4" style="margin-top:16px;">
-<div class="kpi"><div class="dot" style="background:var(--green-600);">97</div><div><div class="num">97</div><div class="lbl">Concluído</div></div></div>
-<div class="kpi"><div class="dot" style="background:var(--amber-600);">11</div><div><div class="num">11</div><div class="lbl">Em andamento</div></div></div>
-<div class="kpi"><div class="dot" style="background:var(--slate-500);">4</div><div><div class="num">4</div><div class="lbl">A iniciar</div></div></div>
-<div class="kpi"><div class="dot" style="background:var(--red-600);">—</div><div><div class="num">—</div><div class="lbl">Atrasado / crítico</div></div></div>
-</div>
-<div class="kpis cols-4" style="margin-top:10px;">
-<div class="kpi"><div class="dot" style="background:#dc2626;">3/8</div><div><div class="num">03/08</div><div class="lbl">Go Live</div></div></div>
-<div class="kpi"><div class="dot" style="background:#dc2626;">87%</div><div><div class="num">87%</div><div class="lbl">% Avanço do Projeto</div></div></div>
-<div class="kpi"><div class="dot" style="background:#16352b;">+2pp</div><div><div class="num">85%→87%</div><div class="lbl">Evolução (29/07→02/08)</div></div></div>
-<div class="kpi"><div class="dot" style="background:#16352b;">2</div><div><div class="num">17/18</div><div class="lbl">Itens restantes (Implantação)</div></div></div>
-</div>
-<div class="cb-callout">
-🎯 <b>Destaque — Reta final:</b> praticamente todo o cronograma concluído (bases, treinamentos, documentação, suprimentos e frota). Restam apenas os marcos finais de <b>Integração</b> e <b>Implantação</b>, previstos para 03/08 — mesma data do Go Live. <b>Ponto de atenção remanescente:</b> envio dos medidores ao estoque da Meireles.
-</div>
-<div class="two-col" style="margin-bottom:18px;">
-<div class="card">
-<div class="card-head">Bases da Operação</div>
-<ul class="list">
-<li><span class="ico" style="background:#2E7D32;">S</span><b>Base Sul — Itabuna/BA:</b>&nbsp;Rodovia BR 415, 4521 · Bairro Centro Industrial · CEP 45.613-000</li>
-<li><span class="ico" style="background:#0284c7;">C</span><b>Base Centro Sul — Santo Antônio de Jesus/BA:</b>&nbsp;Rua Ruy Barbosa, 266 · Bairro Centro · CEP 44.430-198</li>
-</ul>
-</div>
-<div class="card">
-<div class="card-head">Força de Trabalho <span class="sub">20 equipes · 3 supervisores · 60 eletricistas · 2 bases · 27 veículos 4x2</span></div>
-<div class="table-scroll">
-<table>
-<thead><tr><th>Cidade</th><th>Jun</th><th>Jul</th><th>Total</th></tr></thead>
-<tbody>
-<tr><td class="name">Ilhéus</td><td>4</td><td>1</td><td class="pct">5</td></tr>
-<tr><td class="name">Ipiaú</td><td>10</td><td>2</td><td class="pct">12</td></tr>
-<tr><td class="name">Itabuna</td><td>18</td><td>2</td><td class="pct">20</td></tr>
-<tr><td class="name">Porto Seguro</td><td>7</td><td>1</td><td class="pct">8</td></tr>
-<tr><td class="name">Santo Antônio de Jesus</td><td>9</td><td class="muted">—</td><td class="pct">9</td></tr>
-<tr><td class="name">Valença</td><td>5</td><td>1</td><td class="pct">6</td></tr>
-<tr style="background:#f4f2fb;font-weight:800;"><td class="name">Total Geral</td><td>53</td><td>7</td><td class="pct">60</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-head">Cronograma por Marco <span class="sub">Itens, status e prazos</span></div>
-<div class="table-scroll">
-<table style="min-width:980px;">
-<thead><tr>
-<th style="width:50px;">ID</th><th>Item</th><th>Status</th><th>% Avanço</th><th>Start</th><th>Go Live</th><th>Deadline</th>
-</tr></thead>
-<tbody id="coelba-body"></tbody>
-</table>
-</div>
-</div>
-<div class="card">
-<div class="card-head">⚠️ Principais Riscos da Semana</div>
-<div class="table-scroll">
-<table>
-<thead><tr><th>Risco</th><th>Status</th><th>Tratativa</th></tr></thead>
-<tbody id="coelba-risk-body"></tbody>
-</table>
-</div>
-</div>
-<div class="card">
-<div class="card-head">Documentação — SESMT x Cadastro SEYSES</div>
-<div class="table-scroll">
-<table>
-<thead><tr><th>Tipo de Documento</th><th>Responsável</th><th>Status</th><th>Cadastro SEYSES</th></tr></thead>
-<tbody id="coelba-doc-body"></tbody>
-</table>
-</div>
-</div>
-<div class="card">
-<div class="card-head">Report de Suprimentos — Backlog <span class="sub">Última atualização 29/07/2026</span></div>
-<div class="kpis cols-5" style="margin:0 22px 18px;width:auto;">
-<div class="kpi"><div class="dot" style="background:#0284c7;">414</div><div><div class="num">414</div><div class="lbl">Total de pedidos</div></div></div>
-<div class="kpi"><div class="dot" style="background:var(--green-600);">63%</div><div><div class="num">63,04%</div><div class="lbl">% Avanço geral</div></div></div>
-<div class="kpi"><div class="dot" style="background:var(--green-600);">261</div><div><div class="num">261/414</div><div class="lbl">Solicitados x Entregues</div></div></div>
-<div class="kpi"><div class="dot" style="background:var(--amber-600);">32</div><div><div class="num">32 dias</div><div class="lbl">Tempo médio de entrega</div></div></div>
-<div class="kpi"><div class="dot" style="background:var(--red-600);">18</div><div><div class="num">18</div><div class="lbl">Pedidos em atraso</div></div></div>
-</div>
-<div class="two-col" style="padding:0 22px 22px;">
-<div>
-<div style="font-weight:800;font-size:12.5px;margin-bottom:8px;">Status por Base</div>
-<table>
-<thead><tr><th>Base</th><th>Entregue</th><th>Aguard. Receb.</th><th>Em Cotação</th></tr></thead>
-<tbody>
-<tr><td class="name">SAJ (128 pedidos)</td><td>43</td><td>51</td><td>34</td></tr>
-<tr><td class="name">Itabuna (77 pedidos)</td><td>40</td><td>1</td><td>36</td></tr>
-</tbody>
-</table>
-</div>
-<div>
-<div style="font-weight:800;font-size:12.5px;margin-bottom:8px;">Status Geral das Requisições</div>
-<ul class="list" style="border:1px solid var(--border);border-radius:12px;">
-<li>Concluídas <b style="margin-left:auto;">261</b></li>
-<li>Em Cotação <b style="margin-left:auto;">72</b></li>
-<li>Aguardando Recebimento <b style="margin-left:auto;">60</b></li>
-<li>Compra Efetuada <b style="margin-left:auto;">71</b></li>
-<li>Entrega Parcial / Em Troca <b style="margin-left:auto;">11</b></li>
-<li>Requisições Canceladas <b style="margin-left:auto;">7</b></li>
-<li>Aguardando Validação <b style="margin-left:auto;">1</b></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="footnote"><b>Fonte:</b> aba "Status Report Coelba" da planilha de gestão de projetos (PMO_JULHO_2026), atualizada em 02/08/2026 16:24, e Report de Suprimentos | Backlog Coelba (alimentado pelo time de Suprimentos, última atualização 29/07/2026 — sem alterações reportadas desde então). <b>Observação:</b> os totais do cabeçalho (97 Concluído / 11 Em Andamento / 4 A Iniciar / 0 Atrasado-Crítico, 87% de avanço) referem-se a uma contagem-resumo da própria planilha e podem não somar exatamente os itens individuais listados no cronograma detalhado abaixo — mantivemos os dois níveis (resumo e detalhe) tal como estão na origem, sem forçar reconciliação. Restam apenas os itens 17 e 18 (Integração e Implantação) como "A Iniciar", ambos previstos para 03/08 — mesma data do Go Live.</div>
+<div class="footnote" style="margin-top:16px;"><b>Fonte:</b> aba "ROADMAP" (linha-resumo por operação) e aba "BD" (linhas de cronograma do programa Âncora Maranhão) da planilha PMO_AGOSTO_V2_2026. <b>Coelba</b> aparece com 88% de avanço (98 itens concluídos / 14 em andamento), conforme a linha-resumo atual da aba ROADMAP — mesmo com Go Live já registrado em 03/08. <b>Âncora Maranhão:</b> 4 operações (Atendimento Presencial, Leitura/Fat./Cobrança, Serviços Técnicos, Poda e Limpeza de Faixa), todas em 0% / "A Iniciar", sem linha-resumo própria na aba ROADMAP — badges e Go Live calculados a partir do detalhamento de tarefas na aba BD. <b>Atenção:</b> as datas de cronograma dessas 4 operações estão gravadas na aba BD com o ano 100 anos a menos (ex.: "25/02/1927"); corrigimos a exibição somando 100 anos, mas vale corrigir na origem. Os detalhamentos linha a linha completos (WBS/cronograma de cada operação) não foram replicados aqui.</div>
 </section>
 
 </div>
@@ -860,182 +497,136 @@ document.getElementById(id).classList.add('active');
 document.getElementById('tab-'+id).classList.add('active');
 }
 
-const politicas = [
-["Privacidade","Paulo Everton","Concluído","Em Andamento","Em Andamento","Em Andamento","Concluído","ok"],
-["Segurança da Informação","Paulo Everton","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Gestão de Acessos e Identidades","Paulo Everton","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Alçadas","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Gestão de Frotas","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Viagens","Sylvia Domingos","Concluído","Concluído","Concluído","Em Andamento","Em Andamento","warn"],
-["Fundo Fixo","João Paulo","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Recrutamento e Seleção","Elis Prata","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Eventos (Mkt e Endo)","Elis Prata","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Compras","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Deslocamento","João Paulo","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Gestão de Contratos","Sylvia Domingos","Concluído","Concluído","Concluído","Concluído","Concluído","ok"],
-["Cessão de Equip. e Rec. Tecnológicos","Sylvia Domingos","Concluído","Em Andamento","Em Andamento","Em Andamento","Em Andamento","warn"],
-["Política do Ciclo Financeiro","João Paulo","Concluído","Concluído","Concluído","Concluído","Em Andamento","warn"],
-];
-function stepPill(v){
+function pill(v){
 if(v==="Concluído") return '<span class="pill ok"><span class="pip"></span>Concluído</span>';
 if(v==="Em Andamento") return '<span class="pill warn"><span class="pip"></span>Em Andamento</span>';
+if(v==="A Iniciar") return '<span class="pill na"><span class="pip"></span>A Iniciar</span>';
+if(v==="Pendente") return '<span class="pill na"><span class="pip"></span>Pendente</span>';
+if(v==="Controlado") return '<span class="pill ok"><span class="pip"></span>Controlado</span>';
+if(v==="—"||v==null) return '<span class="muted">—</span>';
 return '<span class="pill na"><span class="pip"></span>'+v+'</span>';
 }
+
+/* ===== PRODUTOS ===== */
+const produtos = [
+[1,"Coelba","18/05/26","25/05/26","03/08/26","Concluído",60,27,"BA","Ampliação","55.400","1.108.000"],
+[2,"TIM | PAS","08/06/26","22/06/26","08/07/26","Concluído",76,"NA","CE","Ampliação","10.074","382.804"],
+[3,"Enel - 2ª onda | ND","18/05/26","20/05/26","01/07/26","Concluído",10,10,"SP","Ampliação","21.000","210.000"],
+[4,"Enel - 2ª Eletrotecnico|SP","18/05/26","21/05/26","01/07/26","Concluído",4,4,"SP","Ampliação","25.000","100.000"],
+[5,"Equatorial Uruaçu","01/05/26","29/04/26","01/07/26","Concluído",14,9,"GO","Ampliação","43.002","301.014"],
+[6,"Neoenergia Eletricista","06/04/26","13/05/26","12/06/26","Concluído",14,0,"SP","Ampliação","19.000","266.000"],
+[7,"Neoenergia Ag. Com.","06/04/26","06/04/26","12/06/26","Concluído",2,0,"SP","Ampliação","14.000","28.000"],
+[8,"Enel - 1ª onda | ND","17/04/26","14/04/26","02/06/26","Concluído",10,10,"SP","Ampliação","21.000","210.000"],
+[9,"Hiperformance","20/12/25","20/12/25","28/02/26","Concluído",3,"NA","CE","Ampliação","28.013","84.040"],
+[10,"Sabesp","20/01/26","20/12/25","06/05/26","Concluído",4,"NA","CE","Ampliação","7.600","30.400"],
+[11,"Enel - Eletrotecnico|CE","13/04/26","14/04/26","02/05/26","Concluído",3,3,"CE","Ampliação","25.000","75.000"],
+[12,"Enel - Eletrotecnico|SP","13/04/26","14/04/26","18/05/26","Concluído",1,1,"SP","Ampliação","25.000","25.000"],
+];
+document.getElementById('produtos-body').innerHTML = produtos.map(r=>`
+<tr>
+<td class="muted">${r[0]}</td>
+<td class="name">${r[1]}</td>
+<td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td>
+<td>${pill(r[5])}</td>
+<td>${r[6]}</td><td>${r[7]}</td><td>${r[8]}</td><td>${r[9]}</td>
+<td class="name">R$ ${r[10]}</td><td class="name">R$ ${r[11]}</td>
+</tr>`).join('');
+
+/* ===== PROJ_AUTOM ===== */
+const autom = [
+[1,"Automação - Consultas e Procedures","VW_FT_CP_EM_ABERTO","Lucas Gomes","Controladoria","29/04/26","Glaudencio","Concluído","A Iniciar","Em Andamento","Em processo de validação"],
+[2,"Automação - Consultas e Procedures","VW_FT_CR_EM_ABERTO","Lucas Gomes","Controladoria","04/05/26","Glaudencio","Concluído","A Iniciar","Em Andamento","Em processo de validação"],
+[3,"Automação - Consultas e Procedures","VW_FORTES_CADASTRO_DE_RECEITAS_E_DESPESAS","Lucas Gomes","Controladoria","13/05/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[4,"Automação - Consultas e Procedures","VW_FT_CR_EMITIDOS","Lucas Gomes","Controladoria","16/04/26","Glaudencio","Concluído","A Iniciar","Em Andamento","Em processo de validação"],
+[5,"Automação - Consultas e Procedures","VW_FT_Rateio_Receitas","Lucas Gomes","Controladoria","16/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[6,"Automação - Consultas e Procedures","VW_FT_NF","Lucas Gomes","Controladoria","13/05/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[7,"Automação - Consultas e Procedures","VW_FORTES_SUPRIMENTOS_PEDIDOS","Lucas Gomes","Controladoria","18/05/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[8,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_SALDO","Lucas Gomes","Suprimentos","22/05/26","Brigida","Concluído","Concluído","Concluído","Validado pelo time de Suprimentos"],
+[9,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_CENTRAL_MOVIMENTACOES","Lucas Gomes","Suprimentos","27/05/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[10,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_ACOMPANHAMENTO_COMPRA","Lucas Gomes","Suprimentos","02/06/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[11,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_CATALOGO_MATERIAIS","Lucas Gomes","Suprimentos","10/06/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[12,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_INVENTARIO","Lucas Gomes","Suprimentos","17/06/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[13,"Automação - Consultas e Procedures","VW_FORTES_DP_PONTO","Mateus Freitas","Controladoria/MIS","—","Glaudencio","A Iniciar","A Iniciar","A Iniciar","Prazo extendido devido a problemas com API da Sankhya"],
+[14,"Automação - Consultas e Procedures","VW_FT_COLABORADORES","Lucas Gomes","Controladoria / MIS","24/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Validado"],
+[15,"Automação - Consultas e Procedures","dbo.GET_DATA_FOLHA_DE_PAGAMENTO","Lucas Gomes","Controladoria","—","Glaudencio","Concluído","Concluído","Concluído","Validado pelo time de Controladoria"],
+[16,"Automação - Consultas e Procedures","dbo.GET_DATA_LISTAGEM_DE_CONFERENCIA","Lucas Gomes","Controladoria","10/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[17,"Automação - Consultas e Procedures","dbo.SP_FT_ABSENTEISMO_JUSTIFICADO","Mateus Freitas","Controladoria / MIS","22/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[18,"Automação - Consultas e Procedures","dbo.SP_FT_ABSENTEISMO_INJUSTIFICADO","Mateus Freitas","Controladoria / MIS","24/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[19,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_SALDO_ENTRADAS_SAIDAS","—","Suprimentos","—","Brigida","A Iniciar","A Iniciar","A Iniciar","—"],
+[20,"Automação - Consultas e Procedures","VW_CRE_LANCAMENTOS","—","Controladoria","—","Glaudencio","A Iniciar","A Iniciar","A Iniciar","—"],
+[21,"Montagem de Relatórios Internos - Sankhya","ADIANTAMENTO EM ABERTO","Mateus Freitas","Financeiro","17/06/26","Liandra","Concluído","Concluído","Concluído","Validado"],
+[22,"Automação - Consultas e Procedures","AUTOMAÇÃO RELATÓRIO DE ABS - R27 E R09","Jorge Luis","RH / Gestão","—","—","A Iniciar","—","—","—"],
+];
+document.getElementById('autom-body').innerHTML = autom.map(r=>`
+<tr>
+<td class="muted">${r[0]}</td>
+<td>${r[1]}</td>
+<td class="name" style="font-size:12px;">${r[2]}</td>
+<td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td>
+<td>${pill(r[7])}</td><td>${pill(r[8])}</td><td>${pill(r[9])}</td>
+<td class="muted">${r[10]}</td>
+</tr>`).join('');
+
+/* ===== POLITICAS ===== */
+const politicas = [
+[1,"Política de Privacidade","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[2,"Política de Alçadas","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[3,"Política de Frotas","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[4,"Política de Viagens","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[5,"Política de Fundo Fixo","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[6,"Recrutamento e Seleção","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[7,"Eventos (Endomarketing)","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[8,"Política de Gestão de Contratos","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[9,"Política de Compras","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[10,"Política de S. Informação","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[11,"Política de Acessos e Identidades","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[12,"Política de Deslocamentos","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Em Andamento"],
+[13,"Política do Ciclo Financeiro","Concluído","Concluído","Concluído","Concluído","Concluído","Em Andamento","Em Andamento"],
+[14,"Cessão de Equip. e Rec. Tec.","Concluído","Concluído","Concluído","Concluído","Concluído","Em Andamento","Em Andamento"],
+];
 document.getElementById('pol-body').innerHTML = politicas.map(r=>`
 <tr>
-<td class="name">${r[0]}</td>
-<td>${r[1]}</td>
-<td>${stepPill(r[2])}</td>
-<td>${stepPill(r[3])}</td>
-<td>${stepPill(r[4])}</td>
-<td>${stepPill(r[5])}</td>
-<td>${stepPill(r[6])}</td>
-<td>${r[7]==='ok' ? '<span class="pill ok"><span class="pip"></span>Implantada</span>' : '<span class="pill warn"><span class="pip"></span>Em andamento</span>'}</td>
+<td class="muted">${r[0]}</td>
+<td class="name">${r[1]}</td>
+<td>${pill(r[2])}</td>
+<td>${pill(r[3])}</td>
+<td>${pill(r[4])}</td>
+<td>${pill(r[5])}</td>
+<td>${pill(r[6])}</td>
+<td>${pill(r[7])}</td>
+<td>${pill(r[8])}</td>
+<td>${r[8]==='Concluído' ? '<span class="pill ok"><span class="pip"></span>Implantada</span>' : '<span class="pill warn"><span class="pip"></span>Em andamento</span>'}</td>
 </tr>`).join('');
 
-const sankhya = [
-["Gestão Acessos","Paulo Everton","Controlado","86%","100%","100%"],
-["Vendas","Rafaela Silva","Controlado","100%","100%","100%"],
-["Suprimentos","Sylvia Domingos","Controlado","94%","1%","61%"],
-["Estoque","Sylvia Domingos","Controlado","97%","100%","61%"],
-["Patrimonial","Sylvia Domingos","Controlado","91%","100%","100%"],
-["Contrato","Sylvia Domingos","Controlado","100%","100%","100%"],
-["Orçamento","Sylvia Domingos","Controlado","92%","2%","100%"],
-["Conciliação Contábil","Phillipe Vascon.","Controlado","92%","70%","70%"],
-["Fiscal","Phillipe Vascon.","Controlado","100%","—","70%"],
-["Financeiro - Pagamentos","João Paulo","Controlado","100%","14%","71%"],
-["Financeiro - Recebimentos","João Paulo","Controlado","100%","14%","71%"],
-["Financeiro - Fat. Contrato","João Paulo","Controlado","100%","14%","71%"],
-["Folha de Pagamento","Iara Leite","Controlado","90%","10%","87%"],
-["GPD","Luiz Santos","Iniciação","—","—","—"],
-["Sankhya Flow","Luiz Santos","Controlado","100%","100%","100%"],
+/* ===== ERP ===== */
+const erp = [
+[1,"Gestão Acessos","Controlado","86%","Em Andamento","Concluído","100%","Paulo Everton"],
+[2,"Vendas","Controlado","100%","Concluído","—","100%","Rafaela Silva"],
+[3,"Suprimentos","Controlado","100%","Concluído","Concluído","61%","Sylvia Domingos"],
+[4,"Estoque","Controlado","97%","Em Andamento","—","61%","Sylvia Domingos"],
+[5,"Patrimonial","Controlado","91%","Em Andamento","—","100%","Sylvia Domingos"],
+[6,"Contrato","Controlado","100%","Concluído","—","100%","Sylvia Domingos"],
+[7,"Orçamento e Meta","Controlado","92%","Em Andamento","Concluído","100%","Sylvia Domingos"],
+[8,"Conciliação Contabil","Controlado","92%","Concluído","—","70%","Phillipe Vascon."],
+[9,"Fiscal","Em Andamento","92%","Em Andamento","—","70%","Phillipe Vascon."],
+[10,"Contas a pagar","Controlado","100%","Concluído","Concluído","71%","Joao Paulo"],
+[11,"Caixas e Bancos","Controlado","100%","Concluído","Concluído","71%","Joao Paulo"],
+[12,"Contas a receber","Controlado","100%","Concluído","Concluído","71%","Joao Paulo"],
+[13,"Folha de Pagamento","Controlado","90%","Em Andamento","—","87%","Iara Leite"],
+[14,"Sankhya Flow","Controlado","100%","Concluído","—","100%","Luiz Santos"],
+[15,"GPD","Em Andamento","15%","Em Andamento","—","15%","Luiz Santos"],
+[16,"Personalizar Allstrategy","Em Andamento","15%","Em Andamento","—","15%","Sylvia Domingos"],
 ];
-function statusPill(s){
-if(s==="Controlado") return '<span class="pill ok"><span class="pip"></span>Controlado</span>';
-if(s==="Iniciação") return '<span class="pill na"><span class="pip"></span>Iniciação</span>';
-return '<span class="pill warn"><span class="pip"></span>'+s+'</span>';
-}
-document.getElementById('sank-body').innerHTML = sankhya.map(r=>`
+document.getElementById('erp-body').innerHTML = erp.map(r=>`
 <tr>
-<td class="name">${r[0]}</td>
-<td>${r[1]}</td>
-<td>${statusPill(r[2])}</td>
-<td>${r[3]==='—' ? '<span class="muted">—</span>' : '<div class="pct">'+r[3]+'</div>'}</td>
-<td>${r[4]==='—' ? '<span class="muted">—</span>' : r[4]}</td>
-<td>${r[5]==='—' ? '<span class="muted">—</span>' : r[5]}</td>
-</tr>`).join('');
-
-/* ===== STATUS REPORT COELBA (atualizado 29/07/2026) ===== */
-const coelba = [
-{marco:"MARCO 0 · COMERCIAL / PROJETOS", items:[
-  [1,"Assinatura do contrato","Concluído","100%","27/04/26","18/05/26","21"],
-  [2,"Realizar reunião de kickoff","Concluído","100%","27/04/26","25/05/26","28"],
-]},
-{marco:"MARCO 1 · PESSOAL", items:[
-  [3,"Atração / Seleção","Concluído","100%","18/05/26","15/07/26","58"],
-  [4,"Exames médicos","Concluído","100%","08/06/26","12/06/26","4"],
-  [5,"Admissão","Concluído","100%","16/06/26","24/06/26","8"],
-  [6,"Carteira digital","Concluído","100%","27/06/26","27/06/26","-"],
-  [7,"Confecção de crachás","Concluído","100%","24/06/26","15/07/26","21"],
-]},
-{marco:"MARCO 2 · TREINAMENTO", items:[
-  [8,"Treinamento SESMT","Concluído","100%","22/07/26","31/07/26","9"],
-  [8,"Treinamento Rastreamento + GPM","Concluído","100%","06/07/26","21/07/26","15"],
-]},
-{marco:"MARCO 3 · SESMT / DOCUMENTAÇÃO", items:[
-  [9,"Organizar documentação","Concluído","100%","30/06/26","24/07/26","24"],
-  [10,"Upload Sistema","Concluído","100%","22/07/26","22/07/26","-"],
-  [10,"Aprovação","Concluído","100%","23/07/26","24/07/26","1"],
-]},
-{marco:"MARCO 4 · SUPRIMENTOS / FROTA / FACILITIES", items:[
-  [11,"Viabilização da base de Itabuna","Concluído","100%","06/07/26","24/07/26","18"],
-  [12,"Viabilização da base de Santo Antônio de Jesus","Concluído","-","08/06/26","24/07/26","46"],
-  [12,"Talabarte — substituição","Concluído","100%","18/05/26","31/07/26","74"],
-  [13,"Veículos","Concluído","-","15/06/26","19/07/26","34"],
-  [13,"EPIs + EPCs","Concluído","100%","18/05/26","31/07/26","74"],
-  [14,"Equipamentos e ferramentas","Concluído","100%","08/06/26","31/07/26","53"],
-  [14,"Fardamento","Concluído","-","08/06/26","29/06/26","21"],
-  [15,"Notebook, celulares, chips, câmeras","Concluído","100%","08/06/26","24/07/26","46"],
-]},
-{marco:"MARCO 5 · IMPLANTAÇÃO", items:[
-  [16,"Integração equipe modelo","Concluído","-","28/07/26","28/07/26","-"],
-  [17,"Integração","A Iniciar","-","03/08/26","03/08/26","-"],
-  [18,"Implantação","A Iniciar","-","03/08/26","03/08/26","-"],
-]},
-];
-
-function coelbaPill(s){
-if(s==="Concluído") return '<span class="pill ok"><span class="pip"></span>Concluído</span>';
-if(s==="Em Andamento") return '<span class="pill warn"><span class="pip"></span>Em Andamento</span>';
-if(s==="A Iniciar") return '<span class="pill na"><span class="pip"></span>A Iniciar</span>';
-if(s==="Atenção") return '<span class="pill warn"><span class="pip"></span>Atenção</span>';
-if(s==="Atrasado") return '<span class="pill risk"><span class="pip"></span>Atrasado</span>';
-if(s==="Crítico") return '<span class="pill risk"><span class="pip"></span>Crítico</span>';
-return '<span class="pill na"><span class="pip"></span>'+s+'</span>';
-}
-function dashOr(v){ return (v==="-"||v==="") ? '<span class="muted">—</span>' : v; }
-
-let coelbaRows = "";
-coelba.forEach(group=>{
-  coelbaRows += `<tr class="marco-row"><td colspan="7">${group.marco}</td></tr>`;
-  group.items.forEach(it=>{
-    const [id,item,status,pct,start,golive,deadline] = it;
-    coelbaRows += `<tr>
-      <td class="cb-id">${id}</td>
-      <td class="name">${item}</td>
-      <td>${coelbaPill(status)}</td>
-      <td>${pct==="-" ? '<span class="muted">—</span>' : '<div class="pct">'+pct+'</div>'}</td>
-      <td>${dashOr(start)}</td>
-      <td>${dashOr(golive)}</td>
-      <td>${dashOr(deadline)}</td>
-    </tr>`;
-  });
-});
-document.getElementById('coelba-body').innerHTML = coelbaRows;
-
-const coelbaRiscos = [
-["Substituição dos talabartes","Concluído","Reposição concluída (cronograma 100%)"],
-["Aprovação da Base de Apoio","Concluído","Checklist de auditoria aprovado"],
-["Envio dos medidores","Atenção","Definir data de envio ao estoque da Meireles"],
-["Validação da documentação contratual","Concluído","Documentos confirmados e aprovados"],
-];
-document.getElementById('coelba-risk-body').innerHTML = coelbaRiscos.map(r=>`
-<tr>
-<td class="name">${r[0]}</td>
-<td>${coelbaPill(r[1])}</td>
-<td>${r[2]}</td>
-</tr>`).join('');
-
-const coelbaDocs = [
-["Regras de Segurança e Política de Alojamento","SESMT","Concluído","Concluído"],
-["Inventário de Máquinas e Equipamentos + Plano de Manutenção","SESMT","Concluído","Concluído"],
-["Procedimentos de Ações Disciplinares","Gente e Cultura","Concluído","Concluído"],
-["PCA – Programa de Conservação Auditiva","—","Não se aplica","Não se aplica"],
-["PPR – Programa de Proteção Respiratória","SESMT","Concluído","Concluído"],
-["Ficha de Máquina Coelba (interligada ao plano de manutenção)","—","Não se aplica","Não se aplica"],
-["Cartão CNPJ","Contabilidade","Concluído","Concluído"],
-["AVCB – Auto de Vistoria do Corpo de Bombeiros","SESMT","Concluído","Concluído"],
-["BR – Política de Saúde e Segurança da Contratada","SESMT","Concluído","Concluído"],
-["PAE – Plano de Abandono de Emergência","SESMT","Concluído","Concluído"],
-["Análise Ergonômica do Trabalho (AET)","SESMT","Concluído","Concluído"],
-["Programa de Proteção das Mãos","SESMT","Concluído","Concluído"],
-["PGR – Programa de Gerenciamento de Riscos","SESMT","Concluído","Concluído"],
-["NR 07 – PCMSO","SESMT","Concluído","Concluído"],
-["LTCAT – Laudo Técnico das Condições do Ambiente","SESMT","Concluído","Concluído"],
-["Política de Gestão por Consequência","Gente e Cultura","Concluído","Concluído"],
-["Programa de Capacitação Continuada da Força de Trabalho","Gente e Cultura","Concluído","Concluído"],
-["Procedimentos Operacionais da Contratada","Operação","Concluído","Concluído"],
-];
-function docPill(v){
-  if(v==="Não se aplica") return '<span class="pill na"><span class="pip"></span>Não se aplica</span>';
-  return '<span class="pill ok"><span class="pip"></span>Concluído</span>';
-}
-document.getElementById('coelba-doc-body').innerHTML = coelbaDocs.map(r=>`
-<tr>
-<td class="name">${r[0]}</td>
-<td>${r[1]}</td>
-<td>${docPill(r[2])}</td>
-<td>${docPill(r[3])}</td>
+<td class="muted">${r[0]}</td>
+<td class="name">${r[1]}</td>
+<td>${pill(r[2])}</td>
+<td><div class="pct">${r[3]}</div></td>
+<td>${pill(r[4])}</td>
+<td>${r[5]==='—' ? '<span class="muted">—</span>' : pill(r[5])}</td>
+<td>${r[6]}</td>
+<td>${r[7]}</td>
 </tr>`).join('');
 </script>
 </body>
