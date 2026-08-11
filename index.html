@@ -29,12 +29,13 @@ display:flex;align-items:center;gap:8px;transition:all .15s ease;
 .tab-btn:hover{color:var(--ink-950);}
 .tab-btn.active{color:#fff;border-color:transparent;box-shadow:0 10px 24px -14px rgba(0,0,0,0.4);}
 .tab-btn .dotc{width:8px;height:8px;border-radius:50%;}
-#tab-geral.active{background:linear-gradient(120deg,#0f2e26,#1f5b47);}
+#tab-produtos.active{background:linear-gradient(120deg,#0f2e26,#1f5b47);}
+#tab-indicadores.active{background:linear-gradient(120deg,#3b0764,#9333ea);}
+#tab-projetos.active{background:linear-gradient(120deg,#2b1065,#7c3aed);}
+#tab-projautom.active{background:linear-gradient(120deg,#211a5e,#4338ca);}
 #tab-politicas.active{background:linear-gradient(120deg,#0f5c53,#14b8a6);}
-#tab-sankhya.active{background:linear-gradient(120deg,#7c2d12,#ea580c);}
-#tab-inovacao.active{background:linear-gradient(120deg,#2b1065,#7c3aed);}
+#tab-erp.active{background:linear-gradient(120deg,#7c2d12,#ea580c);}
 #tab-roadmap.active{background:linear-gradient(120deg,#0c4a6e,#0284c7);}
-#tab-coelba.active{background:linear-gradient(120deg,#7f1d1d,#dc2626);}
 /* ===== PANORAMA (I.S) specific styles ===== */
 .pz-top{
 background:#16352b;border-radius:12px;padding:18px 26px;display:flex;align-items:center;gap:18px;color:#fff;
@@ -153,6 +154,9 @@ tbody tr:hover{background:#faf9ff;}
 .list li .ico{width:20px;height:20px;border-radius:6px;background:var(--acc);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;margin-top:1px;}
 .footnote{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;font-size:12px;color:var(--slate-500);line-height:1.6;}
 .footnote b{color:var(--ink-950);}
+.fin-lbl{font-size:10.5px;color:var(--slate-500);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px;}
+.fin-val{font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;color:var(--ink-950);}
+td.fin-hl{background:#eafaf0;font-weight:800;color:#15803d;}
 .id-badge{display:inline-block;padding:4px 9px;border-radius:7px;font-weight:800;font-size:11px;color:#fff;}
 @media (max-width:1000px){
 .kpis.cols-4,.kpis.cols-5{grid-template-columns:repeat(2,1fr);}
@@ -200,6 +204,7 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <div class="wrap">
 <div class="tabs">
 <button class="tab-btn active" id="tab-produtos" onclick="showPanel('produtos')"><span class="dotc" style="background:#2f5233;"></span>Produtos</button>
+<button class="tab-btn" id="tab-indicadores" onclick="showPanel('indicadores')"><span class="dotc" style="background:#9333ea;"></span>Indicadores</button>
 <button class="tab-btn" id="tab-projetos" onclick="showPanel('projetos')"><span class="dotc" style="background:#7c3aed;"></span>Projetos</button>
 <button class="tab-btn" id="tab-projautom" onclick="showPanel('projautom')"><span class="dotc" style="background:#4338ca;"></span>Proj_Autom</button>
 <button class="tab-btn" id="tab-politicas" onclick="showPanel('politicas')"><span class="dotc" style="background:#14b8a6;"></span>Políticas</button>
@@ -221,8 +226,32 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <div class="kpi"><div class="dot" style="background:var(--green-600);">12</div><div><div class="num">12</div><div class="lbl">Iniciativas ativas</div></div></div>
 <div class="kpi"><div class="dot" style="background:var(--green-600);">12</div><div><div class="num">12</div><div class="lbl">Concluídas</div></div></div>
 <div class="kpi"><div class="dot" style="background:var(--green-600);">100%</div><div><div class="num">100%</div><div class="lbl">Avanço do pipeline</div></div></div>
-<div class="kpi"><div class="dot" style="background:#0f2e26;">R$</div><div><div class="num">R$ 24.189</div><div class="lbl">Faturamento unitário médio</div></div></div>
+<div class="kpi"><div class="dot" style="background:#0f2e26;">R$</div><div><div class="num">R$ 24.507</div><div class="lbl">Faturamento unitário médio</div></div></div>
 <div class="kpi"><div class="dot" style="background:#0f2e26;">Σ</div><div><div class="num">R$ 2.820.258</div><div class="lbl">Faturamento total</div></div></div>
+</div>
+<div class="card" style="border:1px solid #bfe0c4;background:linear-gradient(135deg,#f3fbf4,#eafaf0);">
+<div class="card-head" style="border-bottom:1px solid #bfe0c4;">📈 Indicadores Financeiros <span class="sub">Únicos 2 contratos com lucro apurado na fonte</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px 22px;">
+<div style="background:#fff;border:1px solid #bfe0c4;border-radius:14px;padding:16px 18px;">
+<div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;color:var(--ink-950);margin-bottom:10px;">🏆 Coelba</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<div><div class="fin-lbl">Margem Bruta</div><div class="fin-val" style="color:#15803d;">14,8%</div></div>
+<div><div class="fin-lbl">Margem Líquida</div><div class="fin-val" style="color:#15803d;">9,7%</div></div>
+<div><div class="fin-lbl">Lucro Bruto Mensal</div><div class="fin-val">R$ 163.625</div></div>
+<div><div class="fin-lbl">Lucro Líquido Mensal</div><div class="fin-val">R$ 107.992</div></div>
+</div>
+</div>
+<div style="background:#fff;border:1px solid #bfe0c4;border-radius:14px;padding:16px 18px;">
+<div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;color:var(--ink-950);margin-bottom:10px;">⚡ Equatorial Uruaçu</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+<div><div class="fin-lbl">Margem Bruta</div><div class="fin-val" style="color:#15803d;">15,6%</div></div>
+<div><div class="fin-lbl">Margem Líquida</div><div class="fin-val" style="color:#15803d;">10,3%</div></div>
+<div><div class="fin-lbl">Lucro Bruto Mensal</div><div class="fin-val">R$ 46.826</div></div>
+<div><div class="fin-lbl">Lucro Líquido Mensal</div><div class="fin-val">R$ 30.905</div></div>
+</div>
+</div>
+</div>
+<div style="padding:0 22px 16px;font-size:11.5px;color:var(--slate-500);">Os demais 10 contratos do portfólio não têm margem/lucro apurados na aba PRODUTOS (células em branco na fonte).</div>
 </div>
 <div class="card">
 <div class="card-head">Portfólio de Clientes <span class="sub">12 contratos &middot; 116 equipes &middot; 201 HC &middot; 64 veículos</span></div>
@@ -231,14 +260,47 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <thead><tr>
 <th>Nome Operação</th><th>Equipes que Faturam</th><th>Faturamento Unitário</th><th>Receita Mensal</th>
 <th>HC</th><th>Veículos</th><th>UF</th><th>Tipo</th><th>Assinatura Contrato</th><th>Kickoff e TAP</th>
-<th>Go Live</th><th>Deadline</th><th>Receita Bruta Mensal (R$)</th><th>Receita 12 Meses (R$)</th>
-<th>Lucro Bruto Mensal (R$)</th><th>Lucro Líquido Mensal (R$)</th><th>5.6 Margem Líquida (%)</th><th>Status</th>
+<th>Go Live</th><th>Deadline</th><th style="background:#15803d;">Receita Bruta Mensal (R$)</th><th style="background:#15803d;">Margem de Contribuição</th>
+<th style="background:#15803d;">Margem Bruta (%)</th><th style="background:#15803d;">Lucro Líquido Mensal (R$)</th><th style="background:#15803d;">5.6 Margem Líquida (%)</th><th>Status</th>
 </tr></thead>
 <tbody id="produtos-body"></tbody>
 </table>
 </div>
 </div>
-<div class="footnote"><b>Fonte:</b> aba "PRODUTOS" da planilha PMO_AGOSTO_V2_2026 (print de 08/08/2026 8:53, substitui a antiga "Panorama 2026"), atualizada em 06/08/2026. Todos os 12 contratos do portfólio estão com status <b>Concluído</b> (incluindo Coelba, com Go Live realizado em 03/08/2026). <b>Atualização:</b> faturamento unitário médio corrigido para R$ 24.189 (era R$ 24.507); a coluna "Tipo" agora mostra <b>"Ampliação" para todos os 12 contratos</b> na fonte, incluindo Coelba, Equatorial Uruaçu e Hiperformance — que antes apareciam como "Novo Negócio". Mantivemos o dado tal como está na planilha, sem corrigir. Acrescentadas as colunas Receita Bruta Mensal, Receita 12 Meses, Lucro Bruto Mensal, Lucro Líquido Mensal e Margem Líquida (%) a pedido do usuário — só Coelba e Equatorial Uruaçu têm lucro apurado; os demais contratos aparecem com essas células em branco (0,00% de margem) na fonte. <b>Correção (12/08):</b> os valores de Lucro Bruto/Líquido Mensal e Margem Líquida de Coelba e Equatorial Uruaçu foram recalculados a partir da DRE completa da "Análise Financeira — Uruaçu e Coelba" (ref. 10/08/2026) — os números anteriores (ex.: "Lucro Líquido Mensal" de R$ 1.169.682,00 para Coelba, maior que a própria receita mensal) vieram de uma captura de tela parcialmente cortada e estavam incorretos. Valores atuais: Coelba — Lucro Bruto R$ 163.624,67, Lucro Líquido R$ 107.992,28, Margem Líquida 9,75%; Equatorial Uruaçu — Lucro Bruto R$ 46.826,48, Lucro Líquido R$ 30.905,48, Margem Líquida 10,27%. <b>Observação:</b> a aba de origem reserva mais 6 posições vazias no pipeline (IDs 13–18, "A Iniciar", sem nome de cliente definido) que não foram contabilizadas nos KPIs acima nem replicadas na tabela.</div>
+<div class="footnote"><b>Fonte:</b> aba "PRODUTOS" da planilha PMO_AGOSTO_V2_2026, verificada diretamente em 12/08/2026 (última atualização registrada na aba: 10/08/2026 23:53). Todos os 12 contratos do portfólio estão com status <b>Concluído</b> e classificados como <b>"Ampliação"</b> na fonte (incluindo Coelba, com Go Live realizado em 03/08/2026). Faturamento unitário médio: R$ 24.507. Acrescentadas as colunas Receita Bruta Mensal, Margem de Contribuição, Margem Bruta (%), Lucro Líquido Mensal e Margem Líquida (%) a pedido do usuário — <b>apenas Coelba e Equatorial Uruaçu têm essas células preenchidas na fonte</b>; os demais 10 contratos aparecem em branco (—), incluindo o Tim Pas. Margem Bruta/Líquida: <b>14,8%/9,7% para a Coelba</b> e <b>15,6%/10,3% para a Equatorial Uruaçu</b> — valores agora reconciliados com a DRE completa da aba "INDICADORES" (ver aba própria no menu). <b>Observação:</b> a aba de origem reserva mais 6 posições vazias no pipeline (IDs 13–18, "A Iniciar", sem nome de cliente definido) que não foram contabilizadas nos KPIs acima nem replicadas na tabela.</div>
+</section>
+
+<!-- ===================== INDICADORES ===================== -->
+<section id="indicadores" class="panel" style="--h1:#3b0764;--h2:#9333ea;--acc:#9333ea;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div>
+<div>
+<h1>Indicadores</h1>
+<p>DRE resumida mensal e indicadores 5.1 a 5.8 &middot; Uruaçu x Coelba</p>
+</div>
+<div class="ref">Data referência<b>10/08/2026</b></div>
+</div>
+<div class="two-col" style="margin-top:16px;">
+<div class="card">
+<div class="card-head">DRE Resumida Mensal</div>
+<div class="table-scroll">
+<table>
+<thead><tr><th>DRE Resumida Mensal</th><th>Uruaçu</th><th>Coelba</th></tr></thead>
+<tbody id="ind-dre-body"></tbody>
+</table>
+</div>
+</div>
+<div class="card">
+<div class="card-head">Indicadores 5.1 a 5.8</div>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Indicador</th><th>Uruaçu</th><th>Coelba</th></tr></thead>
+<tbody id="ind-kpi-body"></tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "INDICADORES" da planilha PMO_AGOSTO_V2_2026 (nova aba, posicionada entre PRODUTOS e PROJETOS), verificada em 12/08/2026. Reproduz a DRE Resumida Mensal e os indicadores 5.1 a 5.8 (investimento, retorno, ROI, payback, receita) para os dois contratos com custo detalhado disponível: Uruaçu (Equatorial Goiás) e Coelba (Neoenergia). <b>Observação:</b> o ROI aparece na fonte em formato percentual (805,6% para Uruaçu, 177,4% para Coelba) — equivalente a 8,06x e 1,77x. Uruaçu: ROI muito sensível à premissa de CAPEX (R$ 138.100, valor carregado de fase anterior, não re-derivado nesta rodada). Coelba: EPI/equipamentos de campo tratados como CAPEX (ver Investimento Total), por isso a linha "Custo com EPI/Equipamentos" aparece zerada na DRE.</div>
 </section>
 
 <!-- ===================== PROJETOS (Inovação) ===================== -->
@@ -464,13 +526,13 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <h1>Roadmap de Implantações</h1>
 <p>Painel de controle por operação &middot; inclui o programa Âncora Maranhão</p>
 </div>
-<div class="ref">Data referência<b>06/08/2026</b></div>
+<div class="ref">Data referência<b>10/08/2026</b></div>
 </div>
 <div class="rm-summary" style="margin-top:16px;">
 <div class="rm-sum-card ok"><div class="n">7</div><div class="l">Operações concluídas</div></div>
 <div class="rm-sum-card warn"><div class="n">1</div><div class="l">Em andamento</div></div>
-<div class="rm-sum-card total" style="color:#6b6580;"><div class="n">5</div><div class="l">A iniciar</div></div>
-<div class="rm-sum-card total"><div class="n">13</div><div class="l">Total de operações</div></div>
+<div class="rm-sum-card total" style="color:#6b6580;"><div class="n">6</div><div class="l">A iniciar</div></div>
+<div class="rm-sum-card total"><div class="n">14</div><div class="l">Total de operações</div></div>
 </div>
 <div class="rm-grid">
 <div class="rm-card">
@@ -540,6 +602,13 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <div class="rm-foot"><span>Go Live</span><b>18/09</b></div>
 </div>
 <div class="rm-card" style="border-color:#d8d3e8;">
+<h3>Neoenergia <span class="muted" style="font-size:11px;font-weight:600;">Troca de Medidores</span></h3>
+<div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 62</span></div>
+<div class="rm-foot"><span>Go Live</span><b>a definir</b></div>
+</div>
+<div class="rm-card" style="border-color:#d8d3e8;">
 <h3>Âncora Maranhão 1 <span class="muted" style="font-size:11px;font-weight:600;">Atendimento Presencial</span></h3>
 <div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
 <div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
@@ -568,7 +637,7 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <div class="rm-foot"><span>Go Live</span><b>04/02/27</b></div>
 </div>
 </div>
-<div class="footnote" style="margin-top:16px;"><b>Fonte:</b> aba "ROADMAP" da planilha PMO_AGOSTO_V2_2026, com as 4 operações do programa <b>Âncora Maranhão</b> trazidas da aba auxiliar "BD" (sem linha-resumo própria na aba ROADMAP). <b>Atenção:</b> a Coelba aparece aqui com <b>88% de avanço</b> (98 itens concluídos / 14 em andamento), conforme a linha-resumo atual da aba ROADMAP desta planilha — um número diferente do "100%/Concluído" que consta na aba PRODUTOS e no Status Report específico da operação. Mantivemos o dado desta fonte tal como está, sem forçar reconciliação entre as abas. As datas de cronograma das 4 operações Âncora Maranhão vieram gravadas na aba BD com o ano 100 anos a menos (ex.: "25/02/1927"); corrigimos a exibição somando 100 anos.</div>
+<div class="footnote" style="margin-top:16px;"><b>Fonte:</b> aba "ROADMAP" da planilha PMO_AGOSTO_V2_2026 (verificada em 10/08/2026, preenchida até a linha 431), com as 4 operações do programa <b>Âncora Maranhão</b> e a nova operação <b>Neoenergia — Troca de Medidores</b> trazidas da aba auxiliar "BD" (preenchida até a linha 751), sem linha-resumo própria na aba ROADMAP. <b>Nova operação:</b> Neoenergia — Troca de Medidores, 62 itens, todos "A Iniciar" (0% de avanço), Go Live ainda não definido na fonte. <b>Atenção:</b> a Coelba aparece aqui com <b>88% de avanço</b> (98 itens concluídos / 14 em andamento), conforme a linha-resumo atual da aba ROADMAP desta planilha — um número diferente do "100%/Concluído" que consta na aba PRODUTOS e no Status Report específico da operação. Mantivemos o dado desta fonte tal como está, sem forçar reconciliação entre as abas. As datas de cronograma das 4 operações Âncora Maranhão vieram gravadas na aba BD com o ano 100 anos a menos (ex.: "25/02/1927"); corrigimos a exibição somando 100 anos.</div>
 </section>
 
 </div>
@@ -580,29 +649,66 @@ document.getElementById(id).classList.add('active');
 document.getElementById('tab-'+id).classList.add('active');
 }
 
+/* ===== INDICADORES ===== */
+const indDre = [
+["Receita Bruta Mensal","R$ 301.002,45","R$ 1.108.000,00",0],
+["(-) Deduções / Tributos s/ Faturamento","-R$ 25.434,71","-R$ 115.786,00",0],
+["(=) Receita Líquida","R$ 275.567,74","R$ 992.214,00",1],
+["(-) Custo com Pessoal","-R$ 154.630,32","-R$ 406.318,00",0],
+["(-) Custo com Veículos / Frota","-R$ 57.409,60","-R$ 258.557,90",0],
+["(-) Custo com EPI / Equipamentos","-R$ 10.950,00","—",0],
+["(-) Custo Fixo / Infraestrutura","-R$ 5.751,34","-R$ 163.713,43",0],
+["(=) LUCRO BRUTO (Margem de Contribuição)","R$ 46.826,48","R$ 163.624,67",1],
+["Margem Bruta (%)","15,6%","14,8%",1],
+["(-) Provisão IR + IR Adicional + CSLL","-R$ 15.921,00","-R$ 55.632,39",0],
+["(=) LUCRO LÍQUIDO MENSAL","R$ 30.905,48","R$ 107.992,28",1],
+["Margem Líquida (%)","10,3%","9,7%",1],
+];
+document.getElementById('ind-dre-body').innerHTML = indDre.map(r=>`
+<tr style="${r[3] ? 'background:#f3e8fb;font-weight:800;color:#3b0764;' : ''}">
+<td class="name">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td>
+</tr>`).join('');
+
+const indKpi = [
+["5.1 Investimento Total Previsto (CAPEX)","R$ 138.100,00","R$ 730.560,00"],
+["5.2 Retorno Projetado (Lucro Líq. Total do Contrato)","R$ 1.112.597,24","R$ 1.295.907,39"],
+["5.3 ROI Projetado","805,6%","177,4%"],
+["5.4 Payback Projetado (meses)","4,5 meses","6,8 meses"],
+["5.5 Receita Total do Contrato","R$ 10.836.088,20","R$ 13.296.000,00"],
+["5.6 Margem Bruta / Líquida","15,6% / 10,3%","14,8% / 9,7%"],
+["5.7 Lucro Bruto Mensal / Total do Contrato","R$ 46.826,48 / R$ 1.685.753,39","R$ 163.624,67 / R$ 1.963.496,04"],
+["5.8 Lucro Líquido Mensal / Total do Contrato","R$ 30.905,48 / R$ 1.112.597,24","R$ 107.992,28 / R$ 1.295.907,39"],
+];
+document.getElementById('ind-kpi-body').innerHTML = indKpi.map(r=>`
+<tr><td class="name">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+
 /* ===== PRODUTOS ===== */
 const produtos = [
-["Coelba",20,"R$ 55.400","R$ 1.108.000",60,27,"BA","Ampliação","18/mai","25/mai","03/ago","75","R$ 1.108.000,00","R$ 13.296.000,00","R$ 163.624,67","R$ 107.992,28","9,75%"],
-["TIM | PAS",38,"R$ 10.074","R$ 382.804",76,"NA","CE","Ampliação","8/jun","22/jun","8/jul","30","R$ 382.804,40","R$ 382.816,40","—","—","0,00%"],
-["Enel – 2ª onda | ND",10,"R$ 21.000","R$ 210.000",10,10,"SP","Ampliação","18/mai","20/mai","1/jul","43","R$ 210.000,00","R$ 210.012,00","—","—","0,00%"],
-["Enel – 2ª Eletrotécnico | SP",4,"R$ 25.000","R$ 100.000",4,4,"SP","Ampliação","18/mai","21/mai","1/jul","43","R$ 100.000,00","R$ 100.012,00","—","—","0,00%"],
-["Equatorial Uruaçu",7,"R$ 43.002","R$ 301.014",14,9,"GO","Ampliação","1/mai","29/abr","1/jul","60","R$ 301.002,45","R$ 10.836.088,20","R$ 46.826,48","R$ 30.905,48","10,27%"],
-["Neoenergia Eletricista",14,"R$ 19.000","R$ 266.000",14,0,"SP","Ampliação","6/abr","13/mai","12/jun","66","R$ 266.000,00","R$ 266.012,00","—","—","0,00%"],
-["Neoenergia Ag. Com.",2,"R$ 14.000","R$ 28.000",2,0,"SP","Ampliação","6/abr","6/abr","12/jun","66","R$ 28.000,00","R$ 28.012,00","—","—","0,00%"],
-["Enel – 1ª onda | ND",10,"R$ 21.000","R$ 210.000",10,10,"SP","Ampliação","17/abr","14/abr","2/jun","45","R$ 210.000,00","R$ 210.012,00","—","—","0,00%"],
-["Hiperformance",3,"R$ 28.013","R$ 84.040",3,"NA","CE","Ampliação","20/dez","20/dez","28/fev","68","R$ 84.039,84","R$ 84.051,84","—","—","0,00%"],
-["Sabesp",4,"R$ 7.600","R$ 30.400",4,"NA","CE","Ampliação","20/jan","20/dez","6/mai","106","R$ 30.400,00","R$ 30.412,00","—","—","0,00%"],
-["Enel – Eletrotécnico | CE",3,"R$ 25.000","R$ 75.000",3,3,"CE","Ampliação","13/abr","14/abr","2/mai","19","R$ 75.000,00","R$ 75.012,00","—","—","0,00%"],
-["Enel – Eletrotécnico | SP",1,"R$ 25.000","R$ 25.000",1,1,"SP","Ampliação","13/abr","14/abr","18/mai","35","R$ 25.000,00","R$ 25.012,00","—","—","0,00%"],
+["Coelba",20,"R$ 55.400","R$ 1.108.000",60,27,"BA","Ampliação","18/mai","25/mai","03/ago","75","R$ 1.108.000,00","R$ 163.625","14,8%","R$ 107.992","9,7%"],
+["Tim Pas",38,"R$ 10.074","R$ 382.804",76,"NA","CE","Ampliação","8/jun","22/jun","8/jul","30","R$ 382.804,00","—","—","—","—"],
+["Enel – 2ª onda | ND",10,"R$ 21.000","R$ 210.000",10,10,"SP","Ampliação","18/mai","20/mai","1/jul","43","R$ 210.000,00","—","—","—","—"],
+["Enel – 2ª Eletrotécnico | SP",4,"R$ 25.000","R$ 100.000",4,4,"SP","Ampliação","18/mai","21/mai","1/jul","43","R$ 100.000,00","—","—","—","—"],
+["Equatorial Uruaçu",7,"R$ 43.002","R$ 301.014",14,9,"GO","Ampliação","1/mai","29/abr","1/jul","60","R$ 301.014,00","R$ 46.826","15,6%","R$ 30.905","10,3%"],
+["Neoenergia Eletricista",14,"R$ 19.000","R$ 266.000",14,0,"SP","Ampliação","6/abr","13/mai","12/jun","66","R$ 266.000,00","—","—","—","—"],
+["Neoenergia Ag. Com.",2,"R$ 14.000","R$ 28.000",2,0,"SP","Ampliação","6/abr","6/abr","12/jun","66","R$ 28.000,00","—","—","—","—"],
+["Enel – 1ª onda | ND",10,"R$ 21.000","R$ 210.000",10,10,"SP","Ampliação","17/abr","14/abr","2/jun","45","R$ 210.000,00","—","—","—","—"],
+["Hiperformance",3,"R$ 28.013","R$ 84.040",3,"NA","CE","Ampliação","20/dez","20/dez","28/fev","68","R$ 84.040,00","—","—","—","—"],
+["Sabesp",4,"R$ 7.600","R$ 30.400",4,"NA","CE","Ampliação","20/jan","20/dez","6/mai","106","R$ 30.400,00","—","—","—","—"],
+["Enel – Eletrotécnico | CE",3,"R$ 25.000","R$ 75.000",3,3,"CE","Ampliação","13/abr","14/abr","2/mai","19","R$ 75.000,00","—","—","—","—"],
+["Enel – Eletrotécnico | SP",1,"R$ 25.000","R$ 25.000",1,1,"SP","Ampliação","13/abr","14/abr","18/mai","35","R$ 25.000,00","—","—","—","—"],
 ];
-document.getElementById('produtos-body').innerHTML = produtos.map(r=>`
+document.getElementById('produtos-body').innerHTML = produtos.map(r=>{
+const hasMargin = r[14] !== "—";
+const hlClass = hasMargin ? ' class="fin-hl"' : '';
+return `
 <tr>
 <td class="pz-op name">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td>
 <td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td><td>${r[7]}</td>
 <td>${r[8]}</td><td>${r[9]}</td><td>${r[10]}</td><td>${r[11]}</td>
-<td>${r[12]}</td><td>${r[13]}</td><td>${r[14]}</td><td>${r[15]}</td><td>${r[16]}</td>
+<td>${r[12]}</td><td${hlClass}>${r[13]}</td><td${hlClass}>${r[14]}</td><td${hlClass}>${r[15]}</td><td${hlClass}>${r[16]}</td>
 <td><span class="pill ok"><span class="pip"></span>Concluído</span></td>
-</tr>`).join('');
+</tr>`;
+}).join('');
 
 /* ===== POLITICAS ===== */
 const politicas = [
