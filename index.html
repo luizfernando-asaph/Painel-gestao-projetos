@@ -276,31 +276,26 @@ tr.marco-row td{background:#f4f2fb;font-family:'Manrope',sans-serif;font-weight:
 <div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div>
 <div>
 <h1>Indicadores</h1>
-<p>DRE resumida mensal e indicadores 5.1 a 5.8 &middot; Uruaçu x Coelba</p>
+<p>Análise de investimento &middot; Uruaçu x Coelba</p>
 </div>
-<div class="ref">Data referência<b>10/08/2026</b></div>
+<div class="ref">Data referência<b>11/08/2026</b></div>
 </div>
-<div class="two-col" style="margin-top:16px;">
-<div class="card">
-<div class="card-head">DRE Resumida Mensal</div>
-<div class="table-scroll">
-<table>
-<thead><tr><th>DRE Resumida Mensal</th><th>Uruaçu</th><th>Coelba</th></tr></thead>
-<tbody id="ind-dre-body"></tbody>
-</table>
-</div>
+<div class="kpis cols-4" style="margin-top:16px;">
+<div class="kpi"><div class="dot" style="background:#9333ea;">%</div><div><div class="num">22,7% / 54,0%</div><div class="lbl">ROI · Uruaçu / Coelba</div></div></div>
+<div class="kpi"><div class="dot" style="background:#9333ea;">%</div><div><div class="num">59,2% / 89,7%</div><div class="lbl">TIR a.a. · Uruaçu / Coelba</div></div></div>
+<div class="kpi"><div class="dot" style="background:#9333ea;">⏱</div><div><div class="num">20,9 / 11,2</div><div class="lbl">Payback (meses) · Uruaçu / Coelba</div></div></div>
+<div class="kpi"><div class="dot" style="background:#9333ea;">R$</div><div><div class="num">482.076 / 576.000</div><div class="lbl">VPL @ TMA 15% a.a.</div></div></div>
 </div>
 <div class="card">
-<div class="card-head">Indicadores 5.1 a 5.8</div>
+<div class="card-head">Indicadores de Investimento <span class="sub">Uruaçu (Equatorial Goiás) x Coelba (Neoenergia)</span></div>
 <div class="table-scroll">
 <table>
-<thead><tr><th>Indicador</th><th>Uruaçu</th><th>Coelba</th></tr></thead>
+<thead><tr><th>Indicador</th><th>Uruaçu</th><th>Coelba</th><th style="text-align:left;">Observação</th></tr></thead>
 <tbody id="ind-kpi-body"></tbody>
 </table>
 </div>
 </div>
-</div>
-<div class="footnote"><b>Fonte:</b> aba "INDICADORES" da planilha PMO_AGOSTO_V2_2026 (nova aba, posicionada entre PRODUTOS e PROJETOS), verificada em 12/08/2026 (última atualização registrada na aba: 11/08/2026). Reproduz a DRE Resumida Mensal e os indicadores 5.1 a 5.8 (investimento, retorno, ROI, payback, receita) para os dois contratos com custo detalhado disponível: Uruaçu (Equatorial Goiás) e Coelba (Neoenergia). <b>Atualização:</b> lucro bruto e líquido subiram para os dois contratos frente à rodada anterior — Coelba: Lucro Bruto R$ 180.777,59 (Margem Bruta 16,3%) e Lucro Líquido R$ 118.826,86 (Margem Líquida 10,7%); Uruaçu: Lucro Bruto R$ 47.999,25 (Margem Bruta 15,9%) e Lucro Líquido R$ 31.679,51 (Margem Líquida 10,5%) — refletindo ajuste no Custo com Pessoal (Uruaçu) e no Custo Fixo/Infraestrutura (Coelba). <b>Observação:</b> o ROI aparece na fonte em formato percentual (825,8% para Uruaçu, 195,2% para Coelba) — equivalente a 8,26x e 1,95x. Uruaçu: ROI muito sensível à premissa de CAPEX (R$ 138.100, valor carregado de fase anterior, não re-derivado nesta rodada). Coelba: EPI/equipamentos de campo tratados como CAPEX (ver Investimento Total), por isso a linha "Custo com EPI/Equipamentos" aparece zerada na DRE.</div>
+<div class="footnote"><b>Fonte:</b> aba "INDICADORES" da planilha PMO_AGOSTO_V2_2026 (posicionada entre PRODUTOS e PROJETOS), verificada em 12/08/2026 (última atualização registrada na aba: 11/08/2026). <b>Reestruturação:</b> a aba mudou de formato — antes trazia a DRE Resumida Mensal e indicadores 5.1 a 5.8; agora traz uma análise de investimento com Duração do Contrato, Investimento Inicial, Margem de Contribuição/EBITDA Mensal, Payback, ROI, TIR, VPL, Índice de Rentabilidade (IR) e Receita Bruta. <b>Atenção às premissas diferentes entre os dois contratos</b> (ver coluna Observação): Uruaçu trata 3 meses de custo orçado como mobilização e usa ROI anualizado sobre 45 meses de recuperação; Coelba soma investimento fixo (R$ 641.500) + capital de giro (R$ 811.436), com ROI de 12 meses considerando devolução do capital de giro — os números não são diretamente comparáveis sem essas ressalvas. O Índice de Rentabilidade de Coelba (1,40) foi calculado aqui (IR = 1 + VPL/Investimento) por não constar na fonte original. <b>Observação adicional:</b> a Margem de Contribuição/EBITDA Mensal da Uruaçu aqui (R$ 34.605,26) usa premissas diferentes da "Margem de Contribuição" exibida na aba Produtos (R$ 47.999) — mantivemos os dois números tal como constam em cada aba de origem, sem forçar reconciliação.</div>
 </section>
 
 <!-- ===================== PROJETOS (Inovação) ===================== -->
@@ -650,37 +645,20 @@ document.getElementById('tab-'+id).classList.add('active');
 }
 
 /* ===== INDICADORES ===== */
-const indDre = [
-["Receita Bruta Mensal","R$ 301.002,45","R$ 1.108.000,00",0],
-["(-) Deduções / Tributos s/ Faturamento","-R$ 25.434,71","-R$ 115.786,00",0],
-["(=) Receita Líquida","R$ 275.567,74","R$ 992.214,00",1],
-["(-) Custo com Pessoal","-R$ 153.457,55","-R$ 406.318,00",0],
-["(-) Custo com Veículos / Frota","-R$ 57.409,60","-R$ 258.557,91",0],
-["(-) Custo com EPI / Equipamentos","-R$ 10.950,00","—",0],
-["(-) Custo Fixo / Infraestrutura","-R$ 5.751,34","-R$ 146.560,50",0],
-["(=) LUCRO BRUTO (Margem de Contribuição)","R$ 47.999,25","R$ 180.777,59",1],
-["Margem Bruta (%)","15,9%","16,3%",1],
-["(-) Provisão IR + IR Adicional + CSLL","-R$ 16.319,75","-R$ 61.950,73",0],
-["(=) LUCRO LÍQUIDO MENSAL","R$ 31.679,51","R$ 118.826,86",1],
-["Margem Líquida (%)","10,5%","10,7%",1],
-];
-document.getElementById('ind-dre-body').innerHTML = indDre.map(r=>`
-<tr style="${r[3] ? 'background:#f3e8fb;font-weight:800;color:#3b0764;' : ''}">
-<td class="name">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td>
-</tr>`).join('');
-
 const indKpi = [
-["5.1 Investimento Total Previsto (CAPEX)","R$ 138.100,00","R$ 730.560,00"],
-["5.2 Retorno Projetado (Lucro Líq. Total do Contrato)","R$ 1.140.462,25","R$ 1.425.922,32"],
-["5.3 ROI Projetado","825,8%","195,2%"],
-["5.4 Payback Projetado (meses)","4,4 meses","6,1 meses"],
-["5.5 Receita Total do Contrato","R$ 10.836.088,20","R$ 13.296.000,00"],
-["5.6 Margem Bruta / Líquida","15,9% / 10,5%","16,3% / 10,7%"],
-["5.7 Lucro Bruto Mensal / Total do Contrato","R$ 47.999,25 / R$ 1.727.973,11","R$ 180.777,59 / R$ 2.169.331,08"],
-["5.8 Lucro Líquido Mensal / Total do Contrato","R$ 31.679,51 / R$ 1.140.462,25","R$ 118.826,86 / R$ 1.425.922,32"],
+["Duração do Contrato","48 meses","12 meses",""],
+["Investimento Inicial","R$ 722.887,44","R$ 1.452.936,00","Uruaçu: 3 meses de custo orçado tratados como mobilização. Coelba: fixo (R$ 641.500) + capital de giro (R$ 811.436)."],
+["Margem de Contribuição / EBITDA Mensal","R$ 34.605,26","R$ 180.777,60",""],
+["Payback","20,9 meses","11,2 meses","Coelba: payback do investimento total; o investimento fixo isolado se paga em 5,4 meses."],
+["ROI","22,70%","54,00%","Uruaçu: ROI anualizado sobre 45 meses de recuperação. Coelba: ROI de 12 meses com devolução do capital de giro."],
+["TIR (a.a.)","59,20%","89,70%","Ambos vs. TMA de referência de 15,0% a.a."],
+["VPL (@ TMA 15% a.a.)","R$ 482.076,45","R$ 576.000,00",""],
+["Índice de Rentabilidade (IR)","1,67","1,40","Uruaçu: informado na fonte. Coelba: não informado na fonte original — calculado aqui (IR = 1 + VPL/Investimento) apenas para comparabilidade."],
+["Receita Bruta Mensal","R$ 301.002,45","R$ 1.108.000,00",""],
+["Receita Bruta Total do Contrato","R$ 14.448.117,60","R$ 13.296.000,00","Uruaçu: total dos 48 meses do contrato. Coelba: total dos 12 meses do contrato."],
 ];
 document.getElementById('ind-kpi-body').innerHTML = indKpi.map(r=>`
-<tr><td class="name">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+<tr><td class="name">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="muted" style="text-align:left;font-size:11.5px;">${r[3]}</td></tr>`).join('');
 
 /* ===== PRODUTOS ===== */
 const produtos = [
