@@ -5,651 +5,729 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel de Gestão de Projetos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#132224;
-  --ink-soft:#3d5457;
-  --bg:#f2f5f3;
-  --panel:#ffffff;
-  --line:#dbe4e0;
-  --teal:#1f6f5c;
-  --teal-deep:#0f4c40;
-  --amber:#c9822a;
-  --amber-bg:#fbead2;
-  --green:#2f7d4f;
-  --green-bg:#e2f1e6;
-  --red:#b8433a;
-  --red-bg:#f9e2df;
-  --gray:#7c8b8a;
-  --gray-bg:#e8ece9;
-  --accent:#d4772f;
-  --grid-line:#c6d6d0;
-  --radius:10px;
-  --shadow:0 1px 2px rgba(19,34,36,.06), 0 6px 20px rgba(19,34,36,.05);
+--ink-950:#160933; --ink-900:#1e0f47;
+--slate-500:#6b6580; --slate-300:#d8d3e8;
+--card:#ffffff; --border:#e9e4f6; --bg:#f7f5fd;
+--green-600:#15803d; --green-50:#eefbf1;
+--amber-600:#c2660a; --amber-50:#fff6e8;
+--red-600:#b91c1c; --red-50:#fdecec;
 }
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Inter',system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size:64px 64px;
-  background-attachment:fixed;
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink-950);padding:26px 20px 60px;}
+.wrap{max-width:1440px;margin:0 auto;}
+/* NAV */
+.tabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+.tab-btn{
+font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;
+padding:12px 22px;border-radius:12px;border:1px solid var(--border);
+background:#fff;color:var(--slate-500);cursor:pointer;
+display:flex;align-items:center;gap:8px;transition:all .15s ease;
 }
-.wrap{max-width:1180px;margin:0 auto;padding:28px 24px 80px;}
-
-/* header */
-header.top{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  gap:20px;flex-wrap:wrap;
-  padding-bottom:20px;margin-bottom:22px;
-  border-bottom:2px solid var(--ink);
+.tab-btn:hover{color:var(--ink-950);}
+.tab-btn.active{color:#fff;border-color:transparent;box-shadow:0 10px 24px -14px rgba(0,0,0,0.4);}
+.tab-btn .dotc{width:8px;height:8px;border-radius:50%;}
+#tab-produtos.active{background:linear-gradient(120deg,#0f2e26,#1f5b47);}
+#tab-indicadores.active{background:linear-gradient(120deg,#831843,#db2777);}
+#tab-projetos.active{background:linear-gradient(120deg,#2b1065,#7c3aed);}
+#tab-proj_autom.active{background:linear-gradient(120deg,#0c4a4a,#0891b2);}
+#tab-politicas.active{background:linear-gradient(120deg,#0f5c53,#14b8a6);}
+#tab-erp.active{background:linear-gradient(120deg,#7c2d12,#ea580c);}
+#tab-roadmap.active{background:linear-gradient(120deg,#0c4a6e,#0284c7);}
+.panel{display:none;}
+.panel.active{display:block;animation:fade .25s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+/* HEADER (theme-aware via CSS vars set per section) */
+.header{
+border-radius:20px;padding:30px 38px;display:flex;align-items:center;gap:20px;color:#fff;
+box-shadow:0 20px 40px -18px rgba(0,0,0,0.35);position:relative;overflow:hidden;
+background:linear-gradient(120deg,var(--h1) 0%,var(--h2) 100%);
 }
-.brand{display:flex;align-items:center;gap:14px;}
-.brand .mark{
-  width:40px;height:40px;border-radius:8px;
-  background:linear-gradient(135deg,var(--teal),var(--teal-deep));
-  position:relative;flex:none;
-  box-shadow:var(--shadow);
-}
-.brand .mark::before,.brand .mark::after{
-  content:"";position:absolute;background:rgba(255,255,255,.85);
-}
-.brand .mark::before{left:9px;top:8px;width:3px;height:24px;border-radius:2px;}
-.brand .mark::after{left:17px;top:14px;width:14px;height:3px;border-radius:2px;
-  box-shadow:0 7px 0 rgba(255,255,255,.85);}
-.brand h1{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em;}
-.brand p{margin:2px 0 0;font-size:12.5px;color:var(--ink-soft);}
-.top-meta{text-align:right;font-size:12px;color:var(--ink-soft);}
-.top-meta b{display:block;color:var(--ink);font-size:13px;font-family:'IBM Plex Mono',monospace;}
-
-/* tabs */
-nav.tabs{
-  display:flex;gap:6px;flex-wrap:wrap;margin-bottom:26px;
-}
-nav.tabs button{
-  font-family:'Sora',sans-serif;font-weight:600;font-size:13px;
-  border:1px solid var(--line);background:var(--panel);color:var(--ink-soft);
-  padding:9px 16px;border-radius:999px;cursor:pointer;transition:.15s;
-}
-nav.tabs button:hover{border-color:var(--teal);color:var(--teal-deep);}
-nav.tabs button.active{
-  background:var(--ink);color:#fff;border-color:var(--ink);
-}
-
-section.tab{display:none;}
-section.tab.active{display:block;animation:fade .25s ease;}
-@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-
-.tab-head{margin-bottom:18px;}
-.tab-head h2{font-family:'Sora',sans-serif;font-size:26px;margin:0 0 4px;letter-spacing:-.01em;}
-.tab-head .sub{color:var(--ink-soft);font-size:13.5px;}
-.tab-head .ref{
-  display:inline-block;margin-top:8px;font-family:'IBM Plex Mono',monospace;
-  font-size:11.5px;background:var(--gray-bg);color:var(--ink-soft);
-  padding:3px 9px;border-radius:6px;
-}
-
-/* kpi grid */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px;}
-.kpi{
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:16px 16px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden;
-}
-.kpi .val{font-family:'Sora',sans-serif;font-size:26px;font-weight:700;line-height:1.1;}
-.kpi .lbl{font-size:11.5px;color:var(--ink-soft);margin-top:5px;text-transform:uppercase;letter-spacing:.03em;}
-.kpi.accent-teal .val{color:var(--teal-deep);}
-.kpi.accent-amber .val{color:var(--amber);}
-.kpi.accent-green .val{color:var(--green);}
-.kpi.accent-red .val{color:var(--red);}
-.kpi .tick{position:absolute;right:12px;top:12px;width:8px;height:8px;border-radius:50%;}
-.kpi.accent-teal .tick{background:var(--teal);}
-.kpi.accent-amber .tick{background:var(--amber);}
-.kpi.accent-green .tick{background:var(--green);}
-.kpi.accent-red .tick{background:var(--red);}
-
-/* panels/cards */
-.panel{
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:18px 20px;margin-bottom:18px;
-}
-.panel h3{font-family:'Sora',sans-serif;font-size:15px;margin:0 0 12px;display:flex;align-items:center;gap:8px;}
-.panel h3 .n{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;background:var(--ink);
-  padding:2px 7px;border-radius:5px;
-}
-
-table{width:100%;border-collapse:collapse;font-size:12.6px;}
-table caption{text-align:left;font-size:11px;color:var(--ink-soft);margin-bottom:6px;}
-thead th{
-  text-align:left;font-family:'Sora',sans-serif;font-weight:600;font-size:11px;
-  text-transform:uppercase;letter-spacing:.02em;color:var(--ink-soft);
-  padding:8px 10px;border-bottom:2px solid var(--ink);white-space:nowrap;
-}
-tbody td{padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
-tbody tr:hover{background:#f7faf8;}
-.tbl-wrap{overflow-x:auto;}
-
-.badge{
-  display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;
-  white-space:nowrap;
-}
-.badge.done{background:var(--green-bg);color:var(--green);}
-.badge.wip{background:var(--amber-bg);color:var(--amber);}
-.badge.todo{background:var(--gray-bg);color:var(--gray);}
-.badge.late{background:var(--red-bg);color:var(--red);}
-
-/* roadmap cards */
-.rm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:20px;}
-.rm-card{
-  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  padding:14px 16px;box-shadow:var(--shadow);position:relative;
-}
-.rm-card.is-new{border-color:var(--amber);}
-.rm-card.is-new::after{
-  content:"ATUALIZADO";position:absolute;top:-8px;right:10px;
-  background:var(--amber);color:#fff;font-size:9px;font-weight:700;
-  padding:2px 7px;border-radius:5px;letter-spacing:.03em;
-}
-.rm-card h4{font-family:'Sora',sans-serif;font-size:13.5px;margin:0 0 10px;line-height:1.25;}
-.rm-bar{height:6px;border-radius:4px;background:var(--gray-bg);overflow:hidden;margin-bottom:8px;}
-.rm-bar > i{display:block;height:100%;background:var(--teal);}
-.rm-card .pct{font-family:'Sora',sans-serif;font-weight:700;font-size:18px;}
-.rm-card .meta{font-size:11px;color:var(--ink-soft);margin-top:6px;display:flex;justify-content:space-between;}
-.rm-card .meta b{color:var(--ink);font-family:'IBM Plex Mono',monospace;font-weight:600;}
-
-.foot-note{
-  font-size:11.8px;line-height:1.6;color:var(--ink-soft);
-  background:#fbf9f2;border:1px solid #ecdfc0;border-radius:var(--radius);
-  padding:14px 16px;margin-top:6px;
-}
-.foot-note b{color:var(--ink);}
-.foot-note .warn{color:var(--amber);font-weight:600;}
-
+.header::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);}
+.header-icon{width:54px;height:54px;border-radius:15px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.header-icon svg{width:28px;height:28px;}
+.header h1{font-family:'Manrope',sans-serif;font-size:25px;font-weight:800;margin:0 0 4px;text-transform:uppercase;letter-spacing:.3px;}
+.header p{margin:0;font-size:13px;font-weight:600;color:rgba(255,255,255,0.75);letter-spacing:.4px;text-transform:uppercase;}
+.header .ref{margin-left:auto;text-align:right;font-size:12px;color:rgba(255,255,255,0.8);}
+.header .ref b{display:block;font-family:'Manrope',sans-serif;font-size:15px;color:#fff;}
+/* KPI GRID */
+.kpis{display:grid;gap:14px;margin:20px 0;}
+.kpis.cols-4{grid-template-columns:repeat(4,1fr);}
+.kpis.cols-5{grid-template-columns:repeat(5,1fr);}
+.kpis.cols-6{grid-template-columns:repeat(6,1fr);}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:14px;}
+.kpi .dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;background:var(--acc);}
+.kpi .num{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;line-height:1.1;}
+.kpi .lbl{font-size:10.5px;font-weight:600;color:var(--slate-500);text-transform:uppercase;letter-spacing:.3px;margin-top:3px;}
+/* CARD / TABLE */
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 12px 28px -20px rgba(0,0,0,0.25);margin-bottom:18px;}
+.card-head{padding:16px 22px;border-bottom:1px solid var(--border);font-family:'Manrope',sans-serif;font-weight:800;font-size:14.5px;display:flex;align-items:center;justify-content:space-between;}
+.card-head span.sub{font-family:'Inter',sans-serif;font-weight:500;font-size:11.5px;color:var(--slate-500);text-transform:none;}
+.table-scroll{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;min-width:760px;}
+thead th{background:var(--ink-900);color:#fff;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:12px 14px;text-align:left;white-space:nowrap;}
+tbody td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top;white-space:nowrap;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:#faf9ff;}
+.name{font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;}
+.muted{color:var(--slate-500);font-size:12px;}
+.bar-wrap{width:90px;height:7px;border-radius:8px;background:#eae6f7;overflow:hidden;margin-top:5px;}
+.bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#22c55e,#15803d);}
+.pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:8px;font-size:11.5px;font-weight:700;white-space:nowrap;}
+.pill .pip{width:6px;height:6px;border-radius:50%;}
+.pill.ok{background:var(--green-50);color:var(--green-600);}
+.pill.ok .pip{background:var(--green-600);}
+.pill.warn{background:var(--amber-50);color:var(--amber-600);}
+.pill.warn .pip{background:var(--amber-600);}
+.pill.risk{background:var(--red-50);color:var(--red-600);}
+.pill.risk .pip{background:var(--red-600);}
+.pill.na{background:#f1eefb;color:var(--slate-500);}
+.pill.na .pip{background:var(--slate-500);}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media (max-width:760px){.two-col{grid-template-columns:1fr;}}
-
-.mini-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-soft);margin-bottom:14px;}
-.mini-legend span{display:inline-flex;align-items:center;gap:5px;}
-.mini-legend i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.list{margin:0;padding:0;list-style:none;}
+.list li{padding:12px 22px;border-bottom:1px solid var(--border);font-size:13px;display:flex;gap:10px;align-items:flex-start;}
+.list li:last-child{border-bottom:none;}
+.list li .ico{width:20px;height:20px;border-radius:6px;background:var(--acc);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;margin-top:1px;}
+.footnote{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;font-size:12px;color:var(--slate-500);line-height:1.6;}
+.footnote b{color:var(--ink-950);}
+.id-badge{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 6px;border-radius:6px;color:#fff;font-family:'Manrope',sans-serif;font-weight:800;font-size:11px;}
+@media (max-width:1000px){
+.kpis.cols-4,.kpis.cols-5,.kpis.cols-6{grid-template-columns:repeat(2,1fr);}
+.two-col{grid-template-columns:1fr;}
+.header{flex-direction:column;text-align:center;}
+.header .ref{margin-left:0;text-align:center;}
+}
+/* ===== ROADMAP specific styles ===== */
+.rm-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px;}
+.rm-sum-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;text-align:center;}
+.rm-sum-card .n{font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;}
+.rm-sum-card .l{font-size:11px;font-weight:700;color:var(--slate-500);text-transform:uppercase;letter-spacing:.3px;margin-top:4px;}
+.rm-sum-card.ok .n{color:#15803d;}
+.rm-sum-card.warn .n{color:#c2660a;}
+.rm-sum-card.risk .n{color:#b91c1c;}
+.rm-sum-card.na .n{color:var(--slate-500);}
+.rm-sum-card.total .n{color:#0284c7;}
+.rm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rm-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:0 10px 24px -18px rgba(2,132,199,0.25);}
+.rm-card h3{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;margin:0 0 10px;color:var(--ink-950);}
+.rm-card .rm-pct-row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+.rm-card .rm-pct{font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;}
+.rm-card .rm-pct.ok{color:#15803d;}
+.rm-card .rm-pct.warn{color:#c2660a;}
+.rm-card .rm-bar{height:8px;border-radius:8px;background:#eee;overflow:hidden;margin-bottom:14px;}
+.rm-card .rm-bar .fill{height:100%;border-radius:8px;}
+.rm-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.rm-badge{font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:7px;}
+.rm-badge.c{background:#eefbf1;color:#15803d;}
+.rm-badge.e{background:#fff6e8;color:#c2660a;}
+.rm-badge.a{background:#f1eefb;color:var(--slate-500);}
+.rm-badge.r{background:#fdecec;color:#b91c1c;}
+.rm-foot{display:flex;justify-content:space-between;font-size:11px;color:var(--slate-500);border-top:1px solid var(--border);padding-top:10px;}
+.rm-foot b{color:var(--ink-950);}
+@media (max-width:900px){
+.rm-summary{grid-template-columns:repeat(2,1fr);}
+.rm-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
+<div class="tabs">
+<button class="tab-btn active" id="tab-produtos" onclick="showPanel('produtos')"><span class="dotc" style="background:#2f5233;"></span>Produtos</button>
+<button class="tab-btn" id="tab-indicadores" onclick="showPanel('indicadores')"><span class="dotc" style="background:#db2777;"></span>Indicadores</button>
+<button class="tab-btn" id="tab-projetos" onclick="showPanel('projetos')"><span class="dotc" style="background:#7c3aed;"></span>Projetos</button>
+<button class="tab-btn" id="tab-proj_autom" onclick="showPanel('proj_autom')"><span class="dotc" style="background:#0891b2;"></span>Proj. Automação</button>
+<button class="tab-btn" id="tab-politicas" onclick="showPanel('politicas')"><span class="dotc" style="background:#14b8a6;"></span>Políticas</button>
+<button class="tab-btn" id="tab-erp" onclick="showPanel('erp')"><span class="dotc" style="background:#ea580c;"></span>ERP</button>
+<button class="tab-btn" id="tab-roadmap" onclick="showPanel('roadmap')"><span class="dotc" style="background:#0284c7;"></span>Roadmap</button>
+</div>
 
-  <header class="top">
-    <div class="brand">
-      <div class="mark"></div>
-      <div>
-        <h1>Painel de Gestão de Projetos</h1>
-        <p>Mobilização, sustentação e roadmap de implantações · dados da planilha PMO_AGOSTO_V2_2026</p>
-      </div>
-    </div>
-    <div class="top-meta">
-      Última sincronização com a planilha
-      <b>14/08/2026 · 08:27</b>
-    </div>
-  </header>
+<!-- ===================== PRODUTOS ===================== -->
+<section id="produtos" class="panel active" style="--h1:#0f2e26;--h2:#1f5b47;--acc:#1f5b47;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 8l10 6 10-6-10-6ZM2 16l10 6 10-6M2 12l10 6 10-6"/></svg></div>
+<div>
+<h1>Produtos Sob Medida</h1>
+<p>Painel de produtos &middot; iniciativas, prazos e faturamento</p>
+</div>
+<div class="ref">Data referência<b>14/08/2026</b></div>
+</div>
+<div class="kpis cols-6" style="margin-top:16px;">
+<div class="kpi"><div class="dot">15</div><div><div class="num">15</div><div class="lbl">Iniciativas ativas</div></div></div>
+<div class="kpi"><div class="dot">12</div><div><div class="num">12</div><div class="lbl">Concluído</div></div></div>
+<div class="kpi"><div class="dot" style="background:#c2660a;">3</div><div><div class="num">3</div><div class="lbl">Em andamento</div></div></div>
+<div class="kpi"><div class="dot">80%</div><div><div class="num">80%</div><div class="lbl">% Avanço do pipeline</div></div></div>
+<div class="kpi"><div class="dot">R$</div><div><div class="num">R$ 24.507</div><div class="lbl">Média fat. unitário</div></div></div>
+<div class="kpi"><div class="dot">R$</div><div><div class="num">R$ 2.960.886</div><div class="lbl">Faturamento total</div></div></div>
+</div>
+<div class="card">
+<div class="card-head">Produtos <span class="sub">Prazos, investimento e retorno</span></div>
+<div class="table-scroll">
+<table style="min-width:1300px;">
+<thead><tr>
+<th>ID</th><th>Nome do Projeto</th><th>Assinatura Contrato</th><th>Kick Off</th><th>Prazo Final</th>
+<th>Status</th><th>HC</th><th>Veículos</th><th>UF</th><th>Tipo de Negócio</th><th>Faturamento Unitário</th><th>Lucro</th>
+</tr></thead>
+<tbody id="produtos-body"></tbody>
+</table>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "PRODUTOS" da planilha PMO_AGOSTO_V2_2026, atualizada em 14/08/2026. <b>Atualização desta rodada:</b> 3 linhas novas — <b>CPFL - Humano</b> (duas frentes, HC 12 e HC 6) e <b>Neoenergia - Troca Medidores</b> (HC 13), todas em Em Andamento. Portfólio passa de 12 para <b>15 iniciativas ativas</b> (12 concluídas / 3 em andamento, 80% de avanço do pipeline); faturamento bruto mensal acumulado sobe de R$ 2.820.258 para <b>R$ 2.960.886</b>. A linha "Neoenergia - Troca Medidores" não trouxe faturamento unitário/receita na fonte (células em branco).</div>
+</section>
 
-  <nav class="tabs" id="tabNav"></nav>
+<!-- ===================== INDICADORES ===================== -->
+<section id="indicadores" class="panel" style="--h1:#831843;--h2:#db2777;--acc:#db2777;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg></div>
+<div>
+<h1>Indicadores</h1>
+<p>DRE resumida e indicadores de investimento &middot; Uruaçu &times; Coelba</p>
+</div>
+<div class="ref">Data referência<b>11/08/2026</b></div>
+</div>
+<div class="two-col" style="margin-top:16px;">
+<div class="card">
+<div class="card-head">DRE Resumida Mensal <span class="sub">Uruaçu vs. Coelba</span></div>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Indicador</th><th>Uruaçu</th><th>Coelba</th></tr></thead>
+<tbody id="dre-body"></tbody>
+</table>
+</div>
+</div>
+<div class="card">
+<div class="card-head">Indicadores 5.1 a 5.5 <span class="sub">métricas válidas na fonte</span></div>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Indicador</th><th>Uruaçu</th><th>Coelba</th></tr></thead>
+<tbody id="ind-body"></tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-head">Custos Reais — Sankhya <span class="sub">posição em 10/08/2026 · Contas a Pagar</span></div>
+<div class="table-scroll">
+<table>
+<thead><tr><th>Indicador</th><th>Uruaçu</th><th>Coelba</th></tr></thead>
+<tbody id="sank-body"></tbody>
+</table>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "INDICADORES" da planilha PMO_AGOSTO_V2_2026. <b>Sobre esta aba:</b> nesta atualização a INDICADORES voltou ao formato de <b>DRE Resumida Mensal + indicadores 5.1 a 5.8</b> (o mesmo modelo usado em rodadas anteriores) — diferente de um formato de ROI/TIR/VPL que chegou a estar em uso em 11/08. Reproduzimos aqui apenas os indicadores 5.1 a 5.5, que são consistentes na fonte. <b>Atenção:</b> os indicadores 5.6, 5.7 e 5.8 da planilha vieram com fórmulas quebradas (percentuais fora de escala, ex. 3.090.547,9%, e erros #VALUE!) e não foram reproduzidos por não serem confiáveis — recomendamos revisar essas fórmulas na origem. A seção "Comparativo com o Investimento (CAPEX) Projetado" veio em branco na fonte e não foi incluída. Margem Bruta/Líquida de referência: <b>15,6% / 10,3%</b> (Uruaçu) e <b>14,8% / 9,7%</b> (Coelba).</div>
+</section>
 
-  <div id="tabHost"></div>
+<!-- ===================== PROJETOS (Inovação e Melhoria Contínua) ===================== -->
+<section id="projetos" class="panel" style="--h1:#2b1065;--h2:#7c3aed;--acc:#7c3aed;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></div>
+<div>
+<h1>Inovação e Melhoria Contínua</h1>
+<p>Painel financeiro de projetos &middot; iniciativas e maturidade</p>
+</div>
+<div class="ref">Data referência<b>24/07/2026</b></div>
+</div>
+<div class="kpis cols-4" style="margin-top:16px;">
+<div class="kpi"><div class="dot">5</div><div><div class="num">5</div><div class="lbl">Iniciativas ativas</div></div></div>
+<div class="kpi"><div class="dot">3</div><div><div class="num">3</div><div class="lbl">Em execução</div></div></div>
+<div class="kpi"><div class="dot">1</div><div><div class="num">1</div><div class="lbl">Em MVP</div></div></div>
+<div class="kpi"><div class="dot">R$</div><div><div class="num">~R$ 1,03M</div><div class="lbl">Invest. inicial mapeado</div></div></div>
+</div>
+<div class="card">
+<div class="card-head">Projetos de Inovação <span class="sub">Prazos, investimento e retorno</span></div>
+<div class="table-scroll">
+<table style="min-width:1700px;">
+<thead><tr>
+<th>ID</th><th>Nome do Projeto</th><th>Prazo Início</th><th>Prazo Final</th><th>Deadline</th>
+<th>Investimento Inicial</th><th>PayBack</th><th>PayBack Ajustado</th><th>Taxa Interna de Retorno</th>
+<th>Fase do Projeto</th><th>% de Avanço</th><th>Detalhes</th><th>Prazo</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><span class="id-badge" style="background:#7c3aed;">3.1</span></td>
+<td class="name">MIRA<div class="muted" style="font-size:11px;">Monitoramento Inteligente e Roteirização Automatizada</div></td>
+<td>Mar/2026</td>
+<td>Abr/2027</td>
+<td>14 meses</td>
+<td class="name">R$ 142.194</td>
+<td>1 ano e 1 mês</td>
+<td>1 ano e 3 meses</td>
+<td style="color:var(--green-600);font-weight:800;">79,7%</td>
+<td><span class="pill na"><span class="pip"></span>Iniciado</span></td>
+<td><div class="pct">0%</div><div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#d8d3e8;"></div></div></td>
+<td class="muted">Estruturação do projeto e definição de escopo.</td>
+<td class="muted">–</td>
+</tr>
+<tr>
+<td><span class="id-badge" style="background:#7c3aed;">3.2</span></td>
+<td class="name">PRECIFICAÇÃO POR IA</td>
+<td>28/02/2026</td>
+<td>30/06/2026</td>
+<td>31/07/2026</td>
+<td class="name">R$ 272.171</td>
+<td>2 anos e 9 meses</td>
+<td>2 anos e 7 meses</td>
+<td style="color:var(--green-600);font-weight:800;">38,78%</td>
+<td><span class="pill ok"><span class="pip"></span>Execução</span></td>
+<td><div class="pct">75%</div><div class="bar-wrap"><div class="bar-fill" style="width:75%;"></div></div></td>
+<td class="muted">75% de avanço.</td>
+<td>31/07/2026</td>
+</tr>
+<tr>
+<td><span class="id-badge" style="background:#7c3aed;">3.3</span></td>
+<td class="name">IA COB<div class="muted" style="font-size:11px;">Cenário White Label (MVP)</div></td>
+<td>28/02/2026</td>
+<td>04/07/2026</td>
+<td>~3 meses (MVP)</td>
+<td class="name">R$ 97.522<div class="muted" style="font-size:11px;">pendente de aprovação</div></td>
+<td class="muted">Não apurado</td>
+<td class="muted">Não apurado</td>
+<td class="muted" style="font-size:11.5px;">ROI 12m: -61,6%<br>ROI 24m: 19,2%<br>ROI 36m: 46,2%</td>
+<td><span class="pill warn"><span class="pip"></span>MVP</span></td>
+<td><div class="muted">Pendente de aprovação</div></td>
+<td class="muted">Pendente de aprovação.</td>
+<td class="muted">–</td>
+</tr>
+<tr>
+<td><span class="id-badge" style="background:#7c3aed;">3.4</span></td>
+<td class="name">DATA LAKE<div class="muted" style="font-size:11px;">DATALAKE MEF</div></td>
+<td>28/02/2026</td>
+<td>28/02/2027</td>
+<td>12 meses</td>
+<td class="name">R$ 515.908</td>
+<td>2 anos e 3 meses</td>
+<td>2 anos e 6 meses</td>
+<td style="color:var(--green-600);font-weight:800;">51,32%</td>
+<td><span class="pill ok"><span class="pip"></span>Execução</span></td>
+<td><div class="pct">15%</div><div class="bar-wrap"><div class="bar-fill" style="width:15%;"></div></div></td>
+<td class="muted">Em desenvolvimento.</td>
+<td>28/02/2027</td>
+</tr>
+<tr>
+<td><span class="id-badge" style="background:#7c3aed;">3.5</span></td>
+<td class="name">AUTOMAÇÃO PROC. VENDAS<div class="muted" style="font-size:11px;">Estruturação de Vendas</div></td>
+<td>15/05/2026</td>
+<td>31/07/2026</td>
+<td>1 mês</td>
+<td class="muted">Não disponível</td>
+<td class="muted">—</td>
+<td class="muted">—</td>
+<td class="muted">—</td>
+<td><span class="pill ok"><span class="pip"></span>Execução</span></td>
+<td><div class="pct">35%</div><div class="bar-wrap"><div class="bar-fill" style="width:35%;"></div></div></td>
+<td class="muted">Em execução.</td>
+<td>31/07/2026</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "PROJETOS" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026.</div>
+</section>
+
+<!-- ===================== PROJ_AUTOM (Automação de Processos) ===================== -->
+<section id="proj_autom" class="panel" style="--h1:#0c4a4a;--h2:#0891b2;--acc:#0891b2;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div>
+<div>
+<h1>Automação de Processos</h1>
+<p>Projetos em andamento &middot; consultas, views e relatórios</p>
+</div>
+<div class="ref">Data referência<b>24/07/2026</b></div>
+</div>
+<div class="kpis cols-5" style="margin-top:16px;">
+<div class="kpi"><div class="dot">22</div><div><div class="num">22</div><div class="lbl">Iniciativas ativas</div></div></div>
+<div class="kpi"><div class="dot">18</div><div><div class="num">18</div><div class="lbl">Concluídos</div></div></div>
+<div class="kpi"><div class="dot">4</div><div><div class="num">4</div><div class="lbl">Em andamento</div></div></div>
+<div class="kpi"><div class="dot">82%</div><div><div class="num">82%</div><div class="lbl">% Avanço</div></div></div>
+<div class="kpi"><div class="dot">19</div><div><div class="num">19</div><div class="lbl">Em fluxo de validação</div></div></div>
+</div>
+<div class="card">
+<div class="card-head">Projetos de Automação <span class="sub">Consultas, views, procedures e relatórios internos</span></div>
+<div class="table-scroll">
+<table style="min-width:1500px;">
+<thead><tr>
+<th>ID</th><th>Tipo</th><th>Consulta / View</th><th>Especialista</th><th>Demandante</th><th>Prazo</th>
+<th>Validador</th><th>Status Entrega</th><th>Validação</th><th>Status Atual</th><th>Observação</th>
+</tr></thead>
+<tbody id="autom-body"></tbody>
+</table>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "PROJ_AUTOM" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026. <b>Observação:</b> o KPI "Em fluxo de validação" (19) corresponde ao número de itens com alguma observação/tratativa registrada na coluna "Observação" da aba de origem; os demais totais (Iniciativas ativas, Concluídos, Em andamento, % Avanço) reproduzem os indicadores-resumo da própria planilha.</div>
+</section>
+
+<!-- ===================== POLÍTICAS ===================== -->
+<section id="politicas" class="panel" style="--h1:#0b3d38;--h2:#14b8a6;--acc:#0f766e;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4Z"/></svg></div>
+<div>
+<h1>Sustentação — Políticas</h1>
+<p>Governança e padronização de processos</p>
+</div>
+<div class="ref">Data referência<b>24/07/2026</b></div>
+</div>
+<div class="kpis cols-4">
+<div class="kpi"><div class="dot">79%</div><div><div class="num">79%</div><div class="lbl">% de avanço</div></div></div>
+<div class="kpi"><div class="dot">11</div><div><div class="num">11</div><div class="lbl">Políticas concluídas</div></div></div>
+<div class="kpi"><div class="dot">3</div><div><div class="num">3</div><div class="lbl">Em andamento</div></div></div>
+<div class="kpi"><div class="dot">14</div><div><div class="num">14</div><div class="lbl">Pipeline de políticas</div></div></div>
+</div>
+<div class="card">
+<div class="card-head">Políticas <span class="sub">Etapas do fluxo de padronização</span></div>
+<div class="table-scroll">
+<table style="min-width:1300px;">
+<thead><tr>
+<th>ID</th><th>Nome do Projeto</th><th>Padronização</th><th>Escrita Inicial</th><th>Grupo Técnico</th>
+<th>Ajustes GT</th><th>Aprovação Executiva</th><th>Comitê de Gestão</th><th>Card / Guardião / Treinamento / Divulgação</th><th>Status</th>
+</tr></thead>
+<tbody id="pol-body"></tbody>
+</table>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "POLITICAS" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026. <b>Status final</b> considera a última etapa do fluxo (Divulgação). As colunas "Card", "Guardião", "Treinamento Área" e "Divulgação" foram agrupadas em uma única coluna por terem sempre o mesmo valor entre si em cada linha da fonte.</div>
+</section>
+
+<!-- ===================== ERP (Sankhya) ===================== -->
+<section id="erp" class="panel" style="--h1:#5c1d09;--h2:#ea580c;--acc:#ea580c;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+<div>
+<h1>Sustentação — ERP Sankhya</h1>
+<p>Módulos, risco e treinamento</p>
+</div>
+<div class="ref">Data referência<b>24/07/2026</b></div>
+</div>
+<div class="kpis cols-5">
+<div class="kpi"><div class="dot">16</div><div><div class="num">16</div><div class="lbl">Pipeline Sankhya</div></div></div>
+<div class="kpi"><div class="dot">13</div><div><div class="num">13 de 16</div><div class="lbl">Risco sob controle</div></div></div>
+<div class="kpi"><div class="dot">81%</div><div><div class="num">81%</div><div class="lbl">% módulos baixo risco</div></div></div>
+<div class="kpi"><div class="dot">86%</div><div><div class="num">86%</div><div class="lbl">% de avanço médio</div></div></div>
+<div class="kpi"><div class="dot">14%</div><div><div class="num">14%</div><div class="lbl">Em andamento (restante)</div></div></div>
+</div>
+<div class="card">
+<div class="card-head">Status por módulo</div>
+<div class="table-scroll">
+<table>
+<thead><tr><th>ID</th><th>Módulo</th><th>Risco</th><th>% de Avanço</th><th>Status</th><th>Relatórios</th><th>Treinamento</th><th>Líder</th></tr></thead>
+<tbody id="erp-body"></tbody>
+</table>
+</div>
+</div>
+<div class="footnote"><b>Fonte:</b> aba "ERP" da planilha PMO_AGOSTO_V2_2026, data de referência 24/07/2026.</div>
+</section>
+
+<!-- ===================== ROADMAP ===================== -->
+<section id="roadmap" class="panel" style="--h1:#0c4a6e;--h2:#0284c7;--acc:#0284c7;">
+<div class="header">
+<div class="header-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13 6-3m-6 3V7m6 10 5.447 2.724A1 1 0 0 0 21 18.83V8.065a1 1 0 0 0-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div>
+<div>
+<h1>Roadmap de Implantações</h1>
+<p>Painel de controle por operação &middot; go-live e % de avanço</p>
+</div>
+<div class="ref">Data referência<b>14/08/2026</b></div>
+</div>
+<div class="rm-summary" style="margin-top:16px;">
+<div class="rm-sum-card ok"><div class="n">7</div><div class="l">Operações concluídas</div></div>
+<div class="rm-sum-card warn"><div class="n">2</div><div class="l">Em andamento</div></div>
+<div class="rm-sum-card na"><div class="n">6</div><div class="l">A iniciar</div></div>
+<div class="rm-sum-card risk"><div class="n">0</div><div class="l">Atrasadas</div></div>
+<div class="rm-sum-card total"><div class="n">15</div><div class="l">Total de operações</div></div>
+</div>
+<div class="rm-grid">
+<div class="rm-card">
+<h3>EletroTecnico — 1ª Onda</h3>
+<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 56</span></div>
+<div class="rm-foot"><span>Go Live</span><b>18/05</b></div>
+</div>
+<div class="rm-card">
+<h3>EletroTecnico — 2ª Onda</h3>
+<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 26</span></div>
+<div class="rm-foot"><span>Go Live</span><b>19/06</b></div>
+</div>
+<div class="rm-card">
+<h3>Neoenergia</h3>
+<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 83</span></div>
+<div class="rm-foot"><span>Go Live</span><b>12/06</b></div>
+</div>
+<div class="rm-card">
+<h3>Enel — 1ª Onda</h3>
+<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 48</span></div>
+<div class="rm-foot"><span>Go Live</span><b>02/06</b></div>
+</div>
+<div class="rm-card">
+<h3>Enel — 2ª Onda</h3>
+<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 45</span></div>
+<div class="rm-foot"><span>Go Live</span><b>01/07</b></div>
+</div>
+<div class="rm-card">
+<h3>Equatorial — Uruaçu</h3>
+<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 84</span></div>
+<div class="rm-foot"><span>Go Live</span><b>30/06</b></div>
+</div>
+<div class="rm-card">
+<h3>TIM</h3>
+<div class="rm-pct-row"><span class="rm-pct ok">100%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#15803d);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 49</span></div>
+<div class="rm-foot"><span>Go Live</span><b>08/07</b></div>
+</div>
+<div class="rm-card" style="border-color:#fde68a;">
+<h3>Coelba</h3>
+<div class="rm-pct-row"><span class="rm-pct warn">88%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:88%;background:linear-gradient(90deg,#f9d71c,#c2660a);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 98</span><span class="rm-badge e">Em Andamento: 14</span></div>
+<div class="rm-foot"><span>Go Live</span><b>03/08</b></div>
+</div>
+<div class="rm-card" style="border-color:#d8d3e8;">
+<h3>Light — RJ</h3>
+<div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 72</span></div>
+<div class="rm-foot"><span>Go Live</span><b>18/09</b></div>
+</div>
+<div class="rm-card" style="border-color:#fde68a;">
+<h3>Neoenergia — Troca de Medidores</h3>
+<div class="rm-pct-row"><span class="rm-pct warn">8%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:8%;background:linear-gradient(90deg,#f9d71c,#c2660a);"></div></div>
+<div class="rm-badges"><span class="rm-badge c">Concluído: 5</span><span class="rm-badge e">Em Andamento: 1</span><span class="rm-badge a">A Iniciar: 53</span></div>
+<div class="rm-foot"><span>Go Live</span><b>08/10</b></div>
+</div>
+<div class="rm-card" style="border-color:#d8d3e8;">
+<h3>CPFL</h3>
+<div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 37</span></div>
+<div class="rm-foot"><span>Go Live</span><b>15/09</b></div>
+</div>
+<div class="rm-card" style="border-color:#d8d3e8;">
+<h3>Âncora Maranhão 1 — Atendimento Presencial</h3>
+<div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 19</span></div>
+<div class="rm-foot"><span>Go Live</span><b>10/02/27</b></div>
+</div>
+<div class="rm-card" style="border-color:#d8d3e8;">
+<h3>Âncora Maranhão 2 — Leitura, Fat. e Cobrança</h3>
+<div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 22</span></div>
+<div class="rm-foot"><span>Go Live</span><b>08/02/27</b></div>
+</div>
+<div class="rm-card" style="border-color:#d8d3e8;">
+<h3>Âncora Maranhão 3 — Serviços Técnicos</h3>
+<div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 21</span></div>
+<div class="rm-foot"><span>Go Live</span><b>25/02/27</b></div>
+</div>
+<div class="rm-card" style="border-color:#d8d3e8;">
+<h3>Âncora Maranhão 4 — Poda e Limpeza de Faixa</h3>
+<div class="rm-pct-row"><span class="rm-pct" style="color:var(--slate-500);">0%</span><span class="muted">avanço do projeto</span></div>
+<div class="rm-bar"><div class="fill" style="width:0%;background:#d8d3e8;"></div></div>
+<div class="rm-badges"><span class="rm-badge a">A Iniciar: 20</span></div>
+<div class="rm-foot"><span>Go Live</span><b>04/02/27</b></div>
+</div>
+</div>
+<div class="footnote" style="margin-top:16px;"><b>Fonte:</b> aba "ROADMAP" (linha-resumo por operação) e aba "BD" (linhas de cronograma do programa Âncora Maranhão e da operação Neoenergia — Troca de Medidores) da planilha PMO_AGOSTO_V2_2026, atualizada em 14/08/2026. <b>Atualização desta rodada:</b> nova operação <b>CPFL</b> (0% / A Iniciar, 37 itens, Go Live 15/09); <b>Neoenergia — Troca de Medidores</b> saiu de "0% / A Iniciar" para <b>8% / Em Andamento</b> (5 concluídos, 1 em andamento, 53 a iniciar). Roadmap passa de 13 para <b>15 operações</b>: 7 concluídas, 2 em andamento (Coelba 88%, Neoenergia — Troca de Medidores 8%) e 6 a iniciar (Light-RJ, CPFL e as 4 do Âncora Maranhão). <b>Coelba</b> continua com 88% de avanço (98 itens concluídos / 14 em andamento) conforme a linha-resumo atual da aba ROADMAP — divergente do "100%/Concluído" da aba PRODUTOS; mantido tal como está na fonte, sem forçar reconciliação. <b>Âncora Maranhão:</b> 4 operações, todas em 0% / "A Iniciar", sem linha-resumo própria na aba ROADMAP — contagens (19/22/21/20 itens) e Go Live vindos do detalhamento de tarefas na aba BD. <b>Atenção:</b> as datas de cronograma dessas 4 operações estão gravadas na aba BD com o ano 100 anos a menos (ex.: "25/02/1927"); corrigimos a exibição somando 100 anos, mas vale corrigir na origem. Os detalhamentos linha a linha completos (WBS/cronograma de cada operação) não foram replicados aqui.</div>
+</section>
 
 </div>
 
 <script>
-/* =========================================================
-   DADOS — extraídos da planilha PMO_AGOSTO_V2_2026 (Google Drive)
-   Abas atualizadas nesta rodada (14/08/2026): PRODUTOS, INDICADORES, ROADMAP, BD
-   Abas sem alteração na fonte: PROJETOS, PROJ_AUTOM, POLITICAS, ERP
-   ========================================================= */
-
-const fmtBR = n => 'R$ ' + Number(n).toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
-
-const STATUS_BADGE = {
-  'Concluído':'done','Concluido':'done','Concluída':'done',
-  'Em Andamento':'wip','Em andamento':'wip','Pendente':'wip',
-  'A Iniciar':'todo','A iniciar':'todo',
-  'Atrasado':'late','Em Atenção':'wip'
-};
-function badge(s){
-  if(!s) return '<span class="badge todo">—</span>';
-  const cls = STATUS_BADGE[s] || 'todo';
-  return `<span class="badge ${cls}">${s}</span>`;
+function showPanel(id){
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.getElementById('tab-'+id).classList.add('active');
 }
 
-/* ---------- PRODUTOS ---------- */
-const produtos = {
-  ref:'14/08/2026',
-  kpis:[
-    {val:'15', lbl:'Iniciativas ativas', a:'teal'},
-    {val:'12', lbl:'Concluídas', a:'green'},
-    {val:'3', lbl:'Em andamento', a:'amber'},
-    {val:'80%', lbl:'Avanço do pipeline', a:'teal'},
-    {val:fmtBR(2960886), lbl:'Receita acumulada', a:'green'},
-    {val:fmtBR(140628), lbl:'Receita em andamento', a:'amber'},
-  ],
-  rows:[
-    [1,'Hiperformance','20/12/25','20/12/25','28/02/26','1º SEM.','Concluído',3,'NA','CE','Novo Negócio','R$ 28.013,28','R$ 84.039,84'],
-    [2,'Enel — Eletrotécnico | CE','13/04/26','14/04/26','02/05/26','1º SEM.','Concluído',3,3,'CE','Novo Negócio','R$ 25.000,00','R$ 75.000,00'],
-    [3,'Sabesp','20/01/26','20/12/25','06/05/26','1º SEM.','Concluído',4,'NA','CE','Ampliação','R$ 7.600,00','R$ 30.400,00'],
-    [4,'Enel — Eletrotécnico | SP','13/04/26','14/04/26','18/05/26','1º SEM.','Concluído',1,1,'SP','Ampliação','R$ 25.000,00','R$ 25.000,00'],
-    [5,'Enel — 1ª onda | ND','17/04/26','14/04/26','02/06/26','1º SEM.','Concluído',10,10,'SP','Ampliação','R$ 21.000,00','R$ 210.000,00'],
-    [6,'Neoenergia Eletricista','30/12/25','13/05/26','12/06/26','1º SEM.','Concluído',14,0,'SP','Ampliação','R$ 19.000,00','R$ 266.000,00'],
-    [7,'Neoenergia Ag. Com.','30/12/25','06/04/26','12/06/26','1º SEM.','Concluído',2,0,'SP','Ampliação','R$ 14.000,00','R$ 28.000,00'],
-    [8,'Enel — 2ª onda | ND','18/05/26','20/05/26','01/07/26','1º SEM.','Concluído',10,10,'SP','Ampliação','R$ 21.000,00','R$ 210.000,00'],
-    [9,'Enel — 2ª Eletrotécnico | SP','18/05/26','21/05/26','01/07/26','1º SEM.','Concluído',4,4,'SP','Novo Negócio','R$ 25.000,00','R$ 100.000,00'],
-    [10,'Equatorial Uruaçu','01/05/26','29/04/26','01/07/26','1º SEM.','Concluído',14,9,'GO','Novo Negócio','R$ 43.001,96','R$ 301.013,72'],
-    [11,'Tim Pas','08/06/26','22/06/26','08/07/26','1º SEM.','Concluído',76,'NA','CE','Ampliação','R$ 10.073,80','R$ 382.804,40'],
-    [12,'Coelba','18/05/26','25/05/26','03/08/26','2º SEM.','Concluído',60,27,'BA','Novo Negócio','R$ 55.400,00','R$ 1.108.000,00'],
-    [13,'CPFL — Humano','10/08/26','13/08/26','15/09/26','2º SEM.','Em Andamento',12,'NA','CE','Novo Negócio','R$ 10.244,00','R$ 122.928,00'],
-    [14,'CPFL — Humano','10/08/26','13/08/26','15/09/26','2º SEM.','Em Andamento',6,'NA','CE','Novo Negócio','R$ 2.950,00','R$ 17.700,00'],
-    [15,'Neoenergia — Troca Medidores','30/12/25','13/08/26','08/10/26','2º SEM.','Em Andamento',13,7,'SP','Ampliação','—','—'],
-  ]
-};
-
-/* ---------- INDICADORES ---------- */
-const indicadores = {
-  ref:'11/08/2026 (custos Sankhya extraídos em 10/08/2026)',
-  dre:[
-    ['Receita Bruta Mensal','301.002,45','1.108.000,00'],
-    ['(-) Deduções / Tributos s/ Faturamento','(25.434,71)','(115.786,00)'],
-    ['(=) Receita Líquida','275.567,74','992.214,00'],
-    ['(-) Custo com Pessoal','(154.630,32)','(406.318,00)'],
-    ['(-) Custo com Veículos / Frota','(57.409,60)','(258.557,90)'],
-    ['(-) Custo com EPI / Equipamentos','(10.950,00)','—'],
-    ['(-) Custo Fixo / Infraestrutura','(5.751,34)','(163.713,43)'],
-    ['(=) LUCRO BRUTO (Margem de Contribuição)','46.826,48','163.624,67'],
-    ['Margem Bruta (%)','15,6%','14,8%'],
-    ['(-) Provisão IR + Adicional + CSLL (34%)','(15.921,00)','(55.632,39)'],
-    ['(=) LUCRO LÍQUIDO MENSAL','30.905,48','107.992,28'],
-    ['Margem Líquida (%)','10,3%','9,7%'],
-  ],
-  ind:[
-    ['5.1 Investimento Total Previsto (CAPEX)','301.002,45','1.108.000,00'],
-    ['5.2 Retorno Projetado (Lucro Líq. Total do Contrato)','10.836.088,20','13.296.000,00'],
-    ['5.3 ROI Projetado','15,6%','14,8%'],
-    ['5.4 Payback Projetado (meses)','0,1','0,1'],
-    ['5.5 Receita Total do Contrato','1.685.753,39','1.963.496,04'],
-  ],
-  sankhya:[
-    ['Despesas Realizadas (Total)','1.026.814,82','2.492.188,71'],
-    ['— Pagas','889.244,37','1.341.548,78'],
-    ['— A Pagar','136.670,43','1.148.644,46'],
-    ['Despesas Provisionadas (obrigação a pagar)','1.234.071,66','1.688.358,59'],
-  ]
-};
-
-/* ---------- PROJETOS (sem alteração na fonte) ---------- */
-const projetos = {
-  ref:'24/07/2026 — sem mudanças desde a última verificação',
-  kpis:[
-    {val:'5', lbl:'Iniciativas ativas', a:'teal'},
-    {val:'3', lbl:'Em execução', a:'amber'},
-    {val:'1', lbl:'Em MVP', a:'gray'},
-    {val:fmtBR(930273), lbl:'Invest. inicial mapeado', a:'teal'},
-  ],
-  rows:[
-    ['3.1','MIRA — Monitoramento Inteligente e Roteirização Automatizada','Mar/2026','Abr/2027','14 meses','R$ 142.194','1 ano e 1 mês','79,70%','Iniciado','0%'],
-    ['3.2','Precificação por IA','28/02/2026','30/06/2026','31/07/2026','R$ 272.171','2 anos e 9 meses','38,78%','Execução','75%'],
-    ['3.3','IA COB — Cenário White Label (MVP)','28/02/2026','04/07/2026','~3 meses (MVP)','Em revisão de escopo','Não apurado','ROI 12m: -61,6%','MVP','0%'],
-    ['3.4','Data Lake — DATALAKE MEF','28/02/2026','28/02/2027','12 meses','R$ 515.908','2 anos e 3 meses','51,32%','Execução','15%'],
-    ['3.5','Automação Proc. Vendas — Estruturação de Vendas','15/05/2026','31/07/2026','1 mês','Não disponível','—','—','Execução','35%'],
-  ]
-};
-
-/* ---------- PROJ_AUTOM (sem alteração na fonte) ---------- */
-const projAutom = {
-  ref:'24/07/2026',
-  kpis:[
-    {val:'22', lbl:'Iniciativas ativas', a:'teal'},
-    {val:'18', lbl:'Concluídas', a:'green'},
-    {val:'4', lbl:'Em andamento', a:'amber'},
-    {val:'82%', lbl:'Avanço', a:'teal'},
-    {val:'19', lbl:'Em fluxo de validação', a:'amber'},
-  ],
-  rows:[
-    [1,'VW_FT_CP_EM_ABERTO','Lucas Gomes','Controladoria','Glaudencio','Concluído','A Iniciar','Em processo de validação'],
-    [2,'VW_FT_CR_EM_ABERTO','Lucas Gomes','Controladoria','Glaudencio','Concluído','A Iniciar','Em processo de validação'],
-    [3,'VW_FORTES_CADASTRO_DE_RECEITAS_E_DESPESAS','Lucas Gomes','Controladoria','Glaudencio','Concluído','Em Andamento','Em processo de validação'],
-    [4,'VW_FT_CR_EMITIDOS','Lucas Gomes','Controladoria','Glaudencio','Concluído','A Iniciar','Em processo de validação'],
-    [5,'VW_FT_Rateio_Receitas','Lucas Gomes','Controladoria','Glaudencio','Concluído','Em Andamento','Em processo de validação'],
-    [6,'VW_FT_NF','Lucas Gomes','Controladoria','Glaudencio','Concluído','Em Andamento','Em processo de validação'],
-    [7,'VW_FORTES_SUPRIMENTOS_PEDIDOS','Lucas Gomes','Controladoria','Glaudencio','Concluído','Em Andamento','Em processo de validação'],
-    [8,'VW_SUPRIMENTOS_SALDO','Lucas Gomes','Suprimentos','Brigida','Concluído','Concluído','Validado pelo time de Suprimentos'],
-    [9,'VW_SUPRIMENTOS_CENTRAL_MOVIMENTACOES','Lucas Gomes','Suprimentos','Brigida','Concluído','Em Andamento','Em processo de validação'],
-    [10,'VW_SUPRIMENTOS_ACOMPANHAMENTO_COMPRA','Lucas Gomes','Suprimentos','Brigida','Concluído','Em Andamento','Em processo de validação'],
-    [11,'VW_SUPRIMENTOS_CATALOGO_MATERIAIS','Lucas Gomes','Suprimentos','Brigida','Concluído','Em Andamento','Em processo de validação'],
-    [12,'VW_SUPRIMENTOS_INVENTARIO','Lucas Gomes','Suprimentos','Brigida','Concluído','Em Andamento','Em processo de validação'],
-    [13,'VW_FORTES_DP_PONTO','Mateus Freitas','Controladoria/MIS','Glaudencio','A Iniciar','A Iniciar','Prazo estendido — API Sankhya'],
-    [14,'VW_FT_COLABORADORES','Lucas Gomes','Controladoria / MIS','Glaudencio','Concluído','Em Andamento','Validado'],
-    [15,'dbo.GET_DATA_FOLHA_DE_PAGAMENTO','Lucas Gomes','Controladoria','Glaudencio','Concluído','Concluído','Validado pelo time de Controladoria'],
-    [16,'dbo.GET_DATA_LISTAGEM_DE_CONFERENCIA','Lucas Gomes','Controladoria','Glaudencio','Concluído','Em Andamento','Em processo de validação'],
-    [17,'dbo.SP_FT_ABSENTEISMO_JUSTIFICADO','Mateus Freitas','Controladoria / MIS','Glaudencio','Concluído','Em Andamento','Em processo de validação'],
-    [18,'dbo.SP_FT_ABSENTEISMO_INJUSTIFICADO','Mateus Freitas','Controladoria / MIS','Glaudencio','Concluído','Em Andamento','Em processo de validação'],
-    [19,'VW_SUPRIMENTOS_SALDO_ENTRADAS_SAIDAS','—','Suprimentos','Brigida','A Iniciar','A Iniciar','—'],
-    [20,'VW_CRE_LANCAMENTOS','—','Controladoria','Glaudencio','A Iniciar','A Iniciar','—'],
-    [21,'ADIANTAMENTO EM ABERTO','Mateus Freitas','Financeiro','Liandra','Concluído','Concluído','Validado'],
-    [22,'AUTOMAÇÃO RELATÓRIO DE ABS — R27 E R09','Jorge Luis','RH / Gestão','—','A Iniciar','—','—'],
-  ]
-};
-
-/* ---------- POLITICAS (sem alteração na fonte) ---------- */
-const politicas = {
-  ref:'24/07/2026',
-  kpis:[
-    {val:'14', lbl:'Total de políticas', a:'teal'},
-    {val:'11', lbl:'Concluídas', a:'green'},
-    {val:'3', lbl:'Em andamento', a:'amber'},
-    {val:'79%', lbl:'Avanço geral', a:'teal'},
-  ],
-  rows:[
-    [1,'Política de Privacidade','Concluído','MARÇO'],
-    [2,'Política de Alçadas','Concluído','JANEIRO'],
-    [3,'Política de Frotas','Concluído','MARÇO'],
-    [4,'Política de Viagens','Concluído','MAIO'],
-    [5,'Política de Fundo Fixo','Concluído','MARÇO'],
-    [6,'Recrutamento e Seleção','Concluído','MARÇO'],
-    [7,'Eventos (Endomarketing)','Concluído','MARÇO'],
-    [8,'Política de Gestão de Contratos','Concluído','MARÇO'],
-    [9,'Política de Compras','Concluído','MARÇO'],
-    [10,'Política de S. Informação','Concluído','ABRIL'],
-    [11,'Política de Acessos e Identidades','Concluído','ABRIL'],
-    [12,'Política de Deslocamentos','Em Andamento','—'],
-    [13,'Política do Ciclo Financeiro','Em Andamento','—'],
-    [14,'Cessão de Equip. e Rec. Tec.','Em Andamento','—'],
-  ]
-};
-
-/* ---------- ERP (sem alteração na fonte) ---------- */
-const erp = {
-  ref:'08/08/2026',
-  kpis:[
-    {val:'16', lbl:'Módulos', a:'teal'},
-    {val:'13/16', lbl:'Risco controlado', a:'green'},
-    {val:'86%', lbl:'Avanço médio', a:'teal'},
-    {val:fmtBR(2248486), lbl:'Investimento total', a:'amber'},
-  ],
-  rows:[
-    [1,'Gestão Acessos','Controlado','86%','Em Andamento','Paulo Everton'],
-    [2,'Vendas','Controlado','100%','Concluído','Rafaela Silva'],
-    [3,'Suprimentos','Controlado','100%','Concluído','Sylvia Domingos'],
-    [4,'Estoque','Controlado','97%','Em Andamento','Sylvia Domingos'],
-    [5,'Patrimonial','Controlado','91%','Em Andamento','Sylvia Domingos'],
-    [6,'Contrato','Controlado','100%','Concluído','Sylvia Domingos'],
-    [7,'Orçamento e Meta','Controlado','92%','Em Andamento','Sylvia Domingos'],
-    [8,'Conciliação Contábil','Controlado','92%','Concluído','Phillipe Vascon.'],
-    [9,'Fiscal','Em Andamento','92%','Em Andamento','Phillipe Vascon.'],
-    [10,'Contas a Pagar','Controlado','100%','Concluído','João Paulo'],
-    [11,'Caixas e Bancos','Controlado','100%','Concluído','João Paulo'],
-    [12,'Contas a Receber','Controlado','100%','Concluído','João Paulo'],
-    [13,'Folha de Pagamento','Controlado','90%','Em Andamento','Iara Leite'],
-    [14,'Sankhya Flow','Controlado','100%','Concluído','Luiz Santos'],
-    [15,'GPD','Em Andamento','15%','Em Andamento','Luiz Santos'],
-    [16,'Personalizar Allstrategy','Em Andamento','15%','Em Andamento','Sylvia Domingos'],
-  ]
-};
-
-/* ---------- ROADMAP ---------- */
-const roadmap = {
-  ref:'14/08/2026 — inclui itens novos da aba BD',
-  kpis:[
-    {val:'15', lbl:'Operações no roadmap', a:'teal'},
-    {val:'7', lbl:'Concluídas', a:'green'},
-    {val:'2', lbl:'Em andamento', a:'amber'},
-    {val:'6', lbl:'A iniciar', a:'gray'},
-  ],
-  ops:[
-    {n:'EletroTécnico — 1ª Onda', pct:100, done:56, wip:0, todo:0, late:0, go:'18/05', status:'done'},
-    {n:'EletroTécnico — 2ª Onda', pct:100, done:26, wip:0, todo:0, late:0, go:'19/06', status:'done'},
-    {n:'Neoenergia', pct:100, done:83, wip:0, todo:0, late:0, go:'12/06', status:'done'},
-    {n:'Enel — 1ª Onda', pct:100, done:48, wip:0, todo:0, late:0, go:'02/06', status:'done'},
-    {n:'Enel — 2ª Onda', pct:100, done:45, wip:0, todo:0, late:0, go:'01/07', status:'done'},
-    {n:'Coelba', pct:88, done:98, wip:14, todo:0, late:0, go:'03/08', status:'wip'},
-    {n:'Equatorial — Uruaçu', pct:100, done:84, wip:0, todo:0, late:0, go:'30/06', status:'done'},
-    {n:'TIM', pct:100, done:49, wip:0, todo:0, late:0, go:'08/07', status:'done'},
-    {n:'Light — RJ', pct:0, done:0, wip:0, todo:72, late:0, go:'18/09', status:'todo'},
-    {n:'Neoenergia — Troca de Medidores', pct:8, done:5, wip:1, todo:53, late:0, go:'08/10', status:'wip', novo:true},
-    {n:'CPFL', pct:0, done:0, wip:0, todo:37, late:0, go:'15/09', status:'todo', novo:true},
-    {n:'Âncora Maranhão 1 — Atendimento Presencial', pct:0, done:0, wip:0, todo:19, late:0, go:'10/02/27', status:'todo'},
-    {n:'Âncora Maranhão 2 — Leitura, Fat. e Cobrança', pct:0, done:0, wip:0, todo:22, late:0, go:'08/02/27', status:'todo'},
-    {n:'Âncora Maranhão 3 — Serviços Técnicos', pct:0, done:0, wip:0, todo:21, late:0, go:'25/02/27', status:'todo'},
-    {n:'Âncora Maranhão 4 — Poda e Limpeza de Faixa', pct:0, done:0, wip:0, todo:20, late:0, go:'04/02/27', status:'todo'},
-  ]
-};
-
-/* =========================================================
-   RENDER
-   ========================================================= */
-
-function kpiRow(list){
-  return `<div class="kpis">${list.map(k=>`
-    <div class="kpi accent-${k.a}"><span class="tick"></span>
-      <div class="val">${k.val}</div><div class="lbl">${k.lbl}</div>
-    </div>`).join('')}</div>`;
+function pill(v){
+if(v==="Concluído") return '<span class="pill ok"><span class="pip"></span>Concluído</span>';
+if(v==="Em Andamento") return '<span class="pill warn"><span class="pip"></span>Em Andamento</span>';
+if(v==="A Iniciar") return '<span class="pill na"><span class="pip"></span>A Iniciar</span>';
+if(v==="Pendente") return '<span class="pill na"><span class="pip"></span>Pendente</span>';
+if(v==="Controlado") return '<span class="pill ok"><span class="pip"></span>Controlado</span>';
+if(v==="—"||v==null) return '<span class="muted">—</span>';
+return '<span class="pill na"><span class="pip"></span>'+v+'</span>';
 }
 
-function refTag(txt){ return `<span class="ref">Fonte: PMO_AGOSTO_V2_2026 · ${txt}</span>`; }
+/* ===== PRODUTOS ===== */
+const produtos = [
+[1,"Coelba","18/05/26","25/05/26","03/08/26","Concluído",60,27,"BA","Novo Negócio","55.400","1.108.000"],
+[2,"TIM | PAS","08/06/26","22/06/26","08/07/26","Concluído",76,"NA","CE","Ampliação","10.074","382.804"],
+[3,"Enel - 2ª onda | ND","18/05/26","20/05/26","01/07/26","Concluído",10,10,"SP","Ampliação","21.000","210.000"],
+[4,"Enel - 2ª Eletrotecnico|SP","18/05/26","21/05/26","01/07/26","Concluído",4,4,"SP","Novo Negócio","25.000","100.000"],
+[5,"Equatorial Uruaçu","01/05/26","29/04/26","01/07/26","Concluído",14,9,"GO","Novo Negócio","43.002","301.014"],
+[6,"Neoenergia Eletricista","06/04/26","13/05/26","12/06/26","Concluído",14,0,"SP","Ampliação","19.000","266.000"],
+[7,"Neoenergia Ag. Com.","06/04/26","06/04/26","12/06/26","Concluído",2,0,"SP","Ampliação","14.000","28.000"],
+[8,"Enel - 1ª onda | ND","17/04/26","14/04/26","02/06/26","Concluído",10,10,"SP","Ampliação","21.000","210.000"],
+[9,"Hiperformance","20/12/25","20/12/25","28/02/26","Concluído",3,"NA","CE","Novo Negócio","28.013","84.040"],
+[10,"Sabesp","20/01/26","20/12/25","06/05/26","Concluído",4,"NA","CE","Ampliação","7.600","30.400"],
+[11,"Enel - Eletrotecnico|CE","13/04/26","14/04/26","02/05/26","Concluído",3,3,"CE","Novo Negócio","25.000","75.000"],
+[12,"Enel - Eletrotecnico|SP","13/04/26","14/04/26","18/05/26","Concluído",1,1,"SP","Ampliação","25.000","25.000"],
+[13,"CPFL - Humano","10/08/26","13/08/26","15/09/26","Em Andamento",12,"NA","CE","Novo Negócio","10.244","122.928"],
+[14,"CPFL - Humano","10/08/26","13/08/26","15/09/26","Em Andamento",6,"NA","CE","Novo Negócio","2.950","17.700"],
+[15,"Neoenergia - Troca Medidores","30/12/25","13/08/26","08/10/26","Em Andamento",13,7,"SP","Ampliação","—","—"],
+];
+document.getElementById('produtos-body').innerHTML = produtos.map(r=>`
+<tr>
+<td class="muted">${r[0]}</td>
+<td class="name">${r[1]}</td>
+<td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td>
+<td>${pill(r[5])}</td>
+<td>${r[6]}</td><td>${r[7]}</td><td>${r[8]}</td><td>${r[9]}</td>
+<td class="name">${r[10]==='—' ? '<span class="muted">—</span>' : 'R$ '+r[10]}</td><td class="name">${r[11]==='—' ? '<span class="muted">—</span>' : 'R$ '+r[11]}</td>
+</tr>`).join('');
 
-function tableHTML(headers, rows, badgeCols=[]){
-  return `<div class="tbl-wrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
-  <tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td>${badgeCols.includes(i)?badge(c):c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-}
+/* ===== INDICADORES ===== */
+const dre = [
+["Receita Bruta Mensal","301.002,45","1.108.000,00"],
+["(-) Deduções / Tributos s/ Faturamento","(25.434,71)","(115.786,00)"],
+["(=) Receita Líquida","275.567,74","992.214,00"],
+["(-) Custo com Pessoal","(154.630,32)","(406.318,00)"],
+["(-) Custo com Veículos / Frota","(57.409,60)","(258.557,90)"],
+["(-) Custo com EPI / Equipamentos","(10.950,00)","—"],
+["(-) Custo Fixo / Infraestrutura","(5.751,34)","(163.713,43)"],
+["(=) LUCRO BRUTO (Margem de Contribuição)","46.826,48","163.624,67"],
+["Margem Bruta (%)","15,6%","14,8%"],
+["(-) Provisão IR + Adicional + CSLL (34%)","(15.921,00)","(55.632,39)"],
+["(=) LUCRO LÍQUIDO MENSAL","30.905,48","107.992,28"],
+["Margem Líquida (%)","10,3%","9,7%"],
+];
+document.getElementById('dre-body').innerHTML = dre.map(r=>`
+<tr><td class="name" style="font-size:12.5px;">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
 
-const tabs = {};
+const indDetalhe = [
+["5.1 Investimento Total Previsto (CAPEX)","301.002,45","1.108.000,00"],
+["5.2 Retorno Projetado (Lucro Líq. Total do Contrato)","10.836.088,20","13.296.000,00"],
+["5.3 ROI Projetado","15,6%","14,8%"],
+["5.4 Payback Projetado (meses)","0,1","0,1"],
+["5.5 Receita Total do Contrato","1.685.753,39","1.963.496,04"],
+];
+document.getElementById('ind-body').innerHTML = indDetalhe.map(r=>`
+<tr><td class="name" style="font-size:12.5px;">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
 
-/* ---- PRODUTOS ---- */
-tabs.produtos = {
-  label:'Produtos',
-  render:()=>`
-    <div class="tab-head">
-      <h2>Produtos</h2>
-      <div class="sub">Portfólio de clientes · contratos ativos e implantados</div>
-      ${refTag('aba PRODUTOS, atualizada em 14/08/2026')}
-    </div>
-    ${kpiRow(produtos.kpis)}
-    <div class="panel">
-      <h3><span class="n">15</span> Portfólio de clientes</h3>
-      ${tableHTML(
-        ['ID','Operação','Assinatura','Kickoff','Go Live','Sem.','Status','HC','Veículos','UF','Tipo','Fat. Unitário','Receita Bruta Mensal'],
-        produtos.rows, [6]
-      )}
-    </div>
-    <div class="foot-note">
-      <b>Atualização desta rodada:</b> 3 novas linhas na aba PRODUTOS — <b>CPFL — Humano</b> (duas frentes, HC 12 e HC 6) e
-      <b>Neoenergia — Troca Medidores</b>, todas em <span class="warn">Em Andamento</span>. Portfólio passa de 12 para
-      <b>15 iniciativas ativas</b> (12 concluídas / 3 em andamento, 80% de avanço do pipeline). Receita bruta mensal acumulada
-      sobe de R$ 2.820.258 para <b>R$ 2.960.886</b> (R$ 140.628 correspondentes às 3 novas linhas em andamento).
-      A linha de Neoenergia — Troca Medidores não trouxe faturamento unitário/receita bruta na fonte (células em branco).
-    </div>
-  `
-};
+const sank = [
+["Despesas Realizadas (Total)","1.026.814,82","2.492.188,71"],
+["— Pagas","889.244,37","1.341.548,78"],
+["— A Pagar","136.670,43","1.148.644,46"],
+["Despesas Provisionadas (obrigação a pagar)","1.234.071,66","1.688.358,59"],
+];
+document.getElementById('sank-body').innerHTML = sank.map(r=>`
+<tr><td class="name" style="font-size:12.5px;">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
 
-/* ---- INDICADORES ---- */
-tabs.indicadores = {
-  label:'Indicadores',
-  render:()=>`
-    <div class="tab-head">
-      <h2>Indicadores</h2>
-      <div class="sub">DRE resumida e indicadores de investimento · Uruaçu × Coelba</div>
-      ${refTag('aba INDICADORES, reestruturada em 11/08/2026')}
-    </div>
-    <div class="two-col">
-      <div class="panel">
-        <h3>DRE Resumida Mensal</h3>
-        ${tableHTML(['Indicador','Uruaçu','Coelba'], indicadores.dre)}
-      </div>
-      <div class="panel">
-        <h3>Indicadores 5.1 a 5.5 (métricas válidas)</h3>
-        ${tableHTML(['Indicador','Uruaçu','Coelba'], indicadores.ind)}
-      </div>
-    </div>
-    <div class="panel">
-      <h3>Custos Reais — Sankhya (posição em 10/08/2026)</h3>
-      ${tableHTML(['Indicador','Uruaçu','Coelba'], indicadores.sankhya)}
-    </div>
-    <div class="foot-note">
-      <b>Sobre esta aba:</b> a INDICADORES voltou, nesta atualização, ao formato de <b>DRE Resumida Mensal + indicadores 5.1–5.8</b>
-      (o mesmo modelo usado nas rodadas de 04/08 e 06/08) — diferente do formato de ROI/TIR/VPL que estava em uso em 11/08.
-      Reproduzimos aqui apenas os indicadores 5.1 a 5.5, que são consistentes na fonte. <span class="warn">Atenção:</span> os
-      indicadores 5.6, 5.7 e 5.8 da planilha vieram com fórmulas quebradas (percentuais fora de escala, ex. 3.090.547,9%, e
-      erros <code>#VALUE!</code>) — não foram reproduzidos aqui por não serem confiáveis; recomendamos revisar essas fórmulas
-      na origem. A seção "Comparativo com o Investimento (CAPEX) Projetado" veio integralmente em branco na fonte e não foi
-      incluída. Margem Bruta/Líquida de referência: <b>15,6% / 10,3%</b> (Uruaçu) e <b>14,8% / 9,7%</b> (Coelba).
-    </div>
-  `
-};
+/* ===== PROJ_AUTOM ===== */
+const autom = [
+[1,"Automação - Consultas e Procedures","VW_FT_CP_EM_ABERTO","Lucas Gomes","Controladoria","29/04/26","Glaudencio","Concluído","A Iniciar","Em Andamento","Em processo de validação"],
+[2,"Automação - Consultas e Procedures","VW_FT_CR_EM_ABERTO","Lucas Gomes","Controladoria","04/05/26","Glaudencio","Concluído","A Iniciar","Em Andamento","Em processo de validação"],
+[3,"Automação - Consultas e Procedures","VW_FORTES_CADASTRO_DE_RECEITAS_E_DESPESAS","Lucas Gomes","Controladoria","13/05/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[4,"Automação - Consultas e Procedures","VW_FT_CR_EMITIDOS","Lucas Gomes","Controladoria","16/04/26","Glaudencio","Concluído","A Iniciar","Em Andamento","Em processo de validação"],
+[5,"Automação - Consultas e Procedures","VW_FT_Rateio_Receitas","Lucas Gomes","Controladoria","16/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[6,"Automação - Consultas e Procedures","VW_FT_NF","Lucas Gomes","Controladoria","13/05/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[7,"Automação - Consultas e Procedures","VW_FORTES_SUPRIMENTOS_PEDIDOS","Lucas Gomes","Controladoria","18/05/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[8,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_SALDO","Lucas Gomes","Suprimentos","22/05/26","Brigida","Concluído","Concluído","Concluído","Validado pelo time de Suprimentos"],
+[9,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_CENTRAL_MOVIMENTACOES","Lucas Gomes","Suprimentos","27/05/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[10,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_ACOMPANHAMENTO_COMPRA","Lucas Gomes","Suprimentos","02/06/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[11,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_CATALOGO_MATERIAIS","Lucas Gomes","Suprimentos","10/06/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[12,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_INVENTARIO","Lucas Gomes","Suprimentos","17/06/26","Brigida","Concluído","Em Andamento","Em Andamento","Em processo de validação"],
+[13,"Automação - Consultas e Procedures","VW_FORTES_DP_PONTO","Mateus Freitas","Controladoria/MIS","—","Glaudencio","A Iniciar","A Iniciar","A Iniciar","Prazo extendido devido a problemas com API da Sankhya"],
+[14,"Automação - Consultas e Procedures","VW_FT_COLABORADORES","Lucas Gomes","Controladoria / MIS","24/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Validado"],
+[15,"Automação - Consultas e Procedures","dbo.GET_DATA_FOLHA_DE_PAGAMENTO","Lucas Gomes","Controladoria","—","Glaudencio","Concluído","Concluído","Concluído","Validado pelo time de Controladoria"],
+[16,"Automação - Consultas e Procedures","dbo.GET_DATA_LISTAGEM_DE_CONFERENCIA","Lucas Gomes","Controladoria","10/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[17,"Automação - Consultas e Procedures","dbo.SP_FT_ABSENTEISMO_JUSTIFICADO","Mateus Freitas","Controladoria / MIS","22/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[18,"Automação - Consultas e Procedures","dbo.SP_FT_ABSENTEISMO_INJUSTIFICADO","Mateus Freitas","Controladoria / MIS","24/04/26","Glaudencio","Concluído","Em Andamento","Pendente","Em processo de validação"],
+[19,"Automação - Consultas e Procedures","VW_SUPRIMENTOS_SALDO_ENTRADAS_SAIDAS","—","Suprimentos","—","Brigida","A Iniciar","A Iniciar","A Iniciar","—"],
+[20,"Automação - Consultas e Procedures","VW_CRE_LANCAMENTOS","—","Controladoria","—","Glaudencio","A Iniciar","A Iniciar","A Iniciar","—"],
+[21,"Montagem de Relatórios Internos - Sankhya","ADIANTAMENTO EM ABERTO","Mateus Freitas","Financeiro","17/06/26","Liandra","Concluído","Concluído","Concluído","Validado"],
+[22,"Automação - Consultas e Procedures","AUTOMAÇÃO RELATÓRIO DE ABS - R27 E R09","Jorge Luis","RH / Gestão","—","—","A Iniciar","—","—","—"],
+];
+document.getElementById('autom-body').innerHTML = autom.map(r=>`
+<tr>
+<td class="muted">${r[0]}</td>
+<td>${r[1]}</td>
+<td class="name" style="font-size:12px;">${r[2]}</td>
+<td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td>${r[6]}</td>
+<td>${pill(r[7])}</td><td>${pill(r[8])}</td><td>${pill(r[9])}</td>
+<td class="muted">${r[10]}</td>
+</tr>`).join('');
 
-/* ---- PROJETOS ---- */
-tabs.projetos = {
-  label:'Projetos',
-  render:()=>`
-    <div class="tab-head">
-      <h2>Projetos</h2>
-      <div class="sub">Inovação e melhoria contínua · iniciativas estratégicas</div>
-      ${refTag('aba PROJETOS · ' + projetos.ref)}
-    </div>
-    ${kpiRow(projetos.kpis)}
-    <div class="panel">
-      <h3>Projetos de inovação</h3>
-      ${tableHTML(
-        ['ID','Projeto','Início','Final','Deadline','Invest. Inicial','Payback','TIR','Fase','% Avanço'],
-        projetos.rows
-      )}
-    </div>
-  `
-};
+/* ===== POLITICAS ===== */
+const politicas = [
+[1,"Política de Privacidade","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[2,"Política de Alçadas","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[3,"Política de Frotas","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[4,"Política de Viagens","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[5,"Política de Fundo Fixo","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[6,"Recrutamento e Seleção","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[7,"Eventos (Endomarketing)","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[8,"Política de Gestão de Contratos","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[9,"Política de Compras","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[10,"Política de S. Informação","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[11,"Política de Acessos e Identidades","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído"],
+[12,"Política de Deslocamentos","Concluído","Concluído","Concluído","Concluído","Concluído","Concluído","Em Andamento"],
+[13,"Política do Ciclo Financeiro","Concluído","Concluído","Concluído","Concluído","Concluído","Em Andamento","Em Andamento"],
+[14,"Cessão de Equip. e Rec. Tec.","Concluído","Concluído","Concluído","Concluído","Concluído","Em Andamento","Em Andamento"],
+];
+document.getElementById('pol-body').innerHTML = politicas.map(r=>`
+<tr>
+<td class="muted">${r[0]}</td>
+<td class="name">${r[1]}</td>
+<td>${pill(r[2])}</td>
+<td>${pill(r[3])}</td>
+<td>${pill(r[4])}</td>
+<td>${pill(r[5])}</td>
+<td>${pill(r[6])}</td>
+<td>${pill(r[7])}</td>
+<td>${pill(r[8])}</td>
+<td>${r[8]==='Concluído' ? '<span class="pill ok"><span class="pip"></span>Implantada</span>' : '<span class="pill warn"><span class="pip"></span>Em andamento</span>'}</td>
+</tr>`).join('');
 
-/* ---- PROJ_AUTOM ---- */
-tabs.projAutom = {
-  label:'Proj_Autom',
-  render:()=>`
-    <div class="tab-head">
-      <h2>Proj_Autom</h2>
-      <div class="sub">Automações Sankhya · consultas, views, procedures e relatórios</div>
-      ${refTag('aba PROJ_AUTOM · ' + projAutom.ref)}
-    </div>
-    ${kpiRow(projAutom.kpis)}
-    <div class="panel">
-      <h3>Itens de automação</h3>
-      ${tableHTML(
-        ['ID','Consulta / View','Especialista','Demandante','Validador','Entrega','Validação','Observação'],
-        projAutom.rows, [5,6]
-      )}
-    </div>
-  `
-};
-
-/* ---- POLITICAS ---- */
-tabs.politicas = {
-  label:'Políticas',
-  render:()=>`
-    <div class="tab-head">
-      <h2>Políticas</h2>
-      <div class="sub">Governança e padronização de processos</div>
-      ${refTag('aba POLITICAS · ' + politicas.ref)}
-    </div>
-    ${kpiRow(politicas.kpis)}
-    <div class="panel">
-      <h3>Status por política</h3>
-      ${tableHTML(['ID','Política','Status','Prazo'], politicas.rows, [2])}
-    </div>
-  `
-};
-
-/* ---- ERP ---- */
-tabs.erp = {
-  label:'ERP',
-  render:()=>`
-    <div class="tab-head">
-      <h2>ERP</h2>
-      <div class="sub">Implantação Sankhya · módulos, risco e treinamento</div>
-      ${refTag('aba ERP · ' + erp.ref)}
-    </div>
-    ${kpiRow(erp.kpis)}
-    <div class="panel">
-      <h3>Status por módulo</h3>
-      ${tableHTML(['ID','Módulo','Risco','% Avanço','Status','Líder'], erp.rows, [4])}
-    </div>
-  `
-};
-
-/* ---- ROADMAP ---- */
-tabs.roadmap = {
-  label:'Roadmap',
-  render:()=>{
-    const cards = roadmap.ops.map(o=>{
-      const color = o.status==='done'?'var(--green)':o.status==='wip'?'var(--amber)':'var(--gray)';
-      const items = [];
-      if(o.done) items.push(`Concluído: <b>${o.done}</b>`);
-      if(o.wip) items.push(`Em andamento: <b>${o.wip}</b>`);
-      if(o.todo) items.push(`A iniciar: <b>${o.todo}</b>`);
-      if(o.late) items.push(`Atrasado: <b>${o.late}</b>`);
-      return `<div class="rm-card ${o.novo?'is-new':''}">
-        <h4>${o.n}</h4>
-        <div class="pct" style="color:${color}">${o.pct}%</div>
-        <div class="rm-bar"><i style="width:${o.pct}%;background:${color}"></i></div>
-        <div class="meta"><span>${items.join(' · ')}</span></div>
-        <div class="meta"><span>Go Live</span><b>${o.go}</b></div>
-      </div>`;
-    }).join('');
-    return `
-    <div class="tab-head">
-      <h2>Roadmap de Implantações</h2>
-      <div class="sub">Painel de controle por operação · inclui o programa Âncora Maranhão</div>
-      ${refTag('aba ROADMAP + aba BD · ' + roadmap.ref)}
-    </div>
-    ${kpiRow(roadmap.kpis)}
-    <div class="mini-legend">
-      <span><i style="background:var(--green)"></i> Concluída</span>
-      <span><i style="background:var(--amber)"></i> Em andamento</span>
-      <span><i style="background:var(--gray)"></i> A iniciar</span>
-    </div>
-    <div class="rm-grid">${cards}</div>
-    <div class="foot-note">
-      <b>Atualização desta rodada:</b> a aba ROADMAP passou a ter <b>11 operações com linha-resumo própria</b> (as 9 anteriores +
-      <b>CPFL</b>, nova, 0% / A Iniciar, 37 itens, Go Live 15/09) e a operação <b>Neoenergia — Troca de Medidores</b> saiu de
-      "0% / A Iniciar" para <span class="warn">8% / Em Andamento</span> (5 itens concluídos, 1 em andamento, 53 a iniciar de um
-      total de 59 — o total de itens mudou de 62 para 59 em relação à leitura anterior). Somando as 4 operações do programa
-      <b>Âncora Maranhão</b> (trazidas da aba BD, sem linha-resumo própria na ROADMAP), o roadmap tem hoje
-      <b>15 operações no total</b>: 7 concluídas, 2 em andamento (Coelba 88%, Neoenergia — Troca de Medidores 8%) e 6 a iniciar
-      (Light-RJ, CPFL e as 4 do Âncora Maranhão). <b>Coelba</b> continua com 88% na linha-resumo da fonte (98 concluídos / 14 em
-      andamento) — divergente do "100%/Concluído" registrado na aba PRODUTOS; mantivemos o dado desta fonte tal como está, sem
-      forçar reconciliação. As datas das 4 operações do Âncora Maranhão continuam gravadas na aba BD com o ano 100 anos a menos
-      (ex. "25/02/1927"); a exibição acima já está corrigida somando 100 anos.
-    </div>
-  `;}
-};
-
-/* ---- mount ---- */
-const order = ['produtos','indicadores','projetos','projAutom','politicas','erp','roadmap'];
-const nav = document.getElementById('tabNav');
-const host = document.getElementById('tabHost');
-
-order.forEach((key,i)=>{
-  const btn = document.createElement('button');
-  btn.textContent = tabs[key].label;
-  btn.className = i===0 ? 'active' : '';
-  btn.onclick = ()=>selectTab(key);
-  btn.dataset.key = key;
-  nav.appendChild(btn);
-
-  const sec = document.createElement('section');
-  sec.className = 'tab' + (i===0?' active':'');
-  sec.id = 'tab-'+key;
-  sec.innerHTML = tabs[key].render();
-  host.appendChild(sec);
-});
-
-function selectTab(key){
-  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('active', b.dataset.key===key));
-  document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('active', s.id==='tab-'+key));
-}
+/* ===== ERP ===== */
+const erp = [
+[1,"Gestão Acessos","Controlado","86%","Em Andamento","Concluído","100%","Paulo Everton"],
+[2,"Vendas","Controlado","100%","Concluído","—","100%","Rafaela Silva"],
+[3,"Suprimentos","Controlado","100%","Concluído","Concluído","61%","Sylvia Domingos"],
+[4,"Estoque","Controlado","97%","Em Andamento","—","61%","Sylvia Domingos"],
+[5,"Patrimonial","Controlado","91%","Em Andamento","—","100%","Sylvia Domingos"],
+[6,"Contrato","Controlado","100%","Concluído","—","100%","Sylvia Domingos"],
+[7,"Orçamento e Meta","Controlado","92%","Em Andamento","Concluído","100%","Sylvia Domingos"],
+[8,"Conciliação Contabil","Controlado","92%","Concluído","—","70%","Phillipe Vascon."],
+[9,"Fiscal","Em Andamento","92%","Em Andamento","—","70%","Phillipe Vascon."],
+[10,"Contas a pagar","Controlado","100%","Concluído","Concluído","71%","Joao Paulo"],
+[11,"Caixas e Bancos","Controlado","100%","Concluído","Concluído","71%","Joao Paulo"],
+[12,"Contas a receber","Controlado","100%","Concluído","Concluído","71%","Joao Paulo"],
+[13,"Folha de Pagamento","Controlado","90%","Em Andamento","—","87%","Iara Leite"],
+[14,"Sankhya Flow","Controlado","100%","Concluído","—","100%","Luiz Santos"],
+[15,"GPD","Em Andamento","15%","Em Andamento","—","15%","Luiz Santos"],
+[16,"Personalizar Allstrategy","Em Andamento","15%","Em Andamento","—","15%","Sylvia Domingos"],
+];
+document.getElementById('erp-body').innerHTML = erp.map(r=>`
+<tr>
+<td class="muted">${r[0]}</td>
+<td class="name">${r[1]}</td>
+<td>${pill(r[2])}</td>
+<td><div class="pct">${r[3]}</div></td>
+<td>${pill(r[4])}</td>
+<td>${r[5]==='—' ? '<span class="muted">—</span>' : pill(r[5])}</td>
+<td>${r[6]}</td>
+<td>${r[7]}</td>
+</tr>`).join('');
 </script>
 </body>
 </html>
