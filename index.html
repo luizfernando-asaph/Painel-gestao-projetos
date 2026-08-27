@@ -203,6 +203,25 @@
   .rm-golive{font-size:12.5px;color:var(--ink-soft);padding-top:10px;border-top:1px solid var(--line);}
   .rm-golive strong{color:var(--ink);}
 
+  /* ---------- Resumo (Sumario) ---------- */
+  .sumario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:22px;}
+  .sumario-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px 18px;box-shadow:var(--shadow);cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .sumario-card:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(16,24,35,.06), 0 12px 28px -10px rgba(16,24,35,.18);}
+  .sumario-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .sumario-card-head h3{font-size:14.5px;font-weight:700;}
+  .sumario-link{font-size:11.5px;font-weight:600;color:var(--brand);white-space:nowrap;}
+  .sumario-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 8px;margin-bottom:10px;}
+  .sumario-kpis div{display:flex;flex-direction:column;min-width:0;}
+  .sumario-num{font-size:19px;font-weight:800;color:var(--ink);letter-spacing:-0.01em;line-height:1.15;}
+  .sumario-num.accent-brand{color:var(--brand-deep);}
+  .sumario-num.accent-teal{color:var(--teal);}
+  .sumario-lbl{font-size:10px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:.02em;}
+  .sumario-foot{font-size:12px;color:var(--ink-soft);padding-top:10px;border-top:1px solid var(--line);}
+
   footer.site-footer{
     text-align:center;padding:24px;color:#9aa4b2;font-size:12px;
   }
@@ -226,7 +245,8 @@
       <div class="topbar-meta">Atualizado em<br><strong>27/08/2026</strong></div>
     </div>
     <nav class="tabs" id="tabnav">
-      <button data-tab="produtos" class="active">Produtos</button>
+      <button data-tab="resumo" class="active">Resumo</button>
+      <button data-tab="produtos">Produtos</button>
       <button data-tab="indicadores">Indicadores</button>
       <button data-tab="projetos">Projetos</button>
       <button data-tab="projautom">Proj. Automação</button>
@@ -239,8 +259,84 @@
 
 <main>
 
+  <!-- ===================== RESUMO ===================== -->
+  <section class="panel active" id="panel-resumo">
+    <div class="panel-head">
+      <h2>Resumo Executivo</h2>
+      <p class="sub">Visão consolidada de todas as frentes do PMO</p>
+      <span class="ref-date"><span class="dot"></span>Atualizado em 27/08/2026</span>
+    </div>
+
+    <div class="sumario-grid">
+      <div class="sumario-card" data-goto="produtos">
+        <div class="sumario-card-head"><h3>Produtos</h3><span class="sumario-link">Ver detalhes →</span></div>
+        <div class="sumario-kpis">
+          <div><span class="sumario-num">16</span><span class="sumario-lbl">ativas</span></div>
+          <div><span class="sumario-num accent-teal">12</span><span class="sumario-lbl">concluídas</span></div>
+          <div><span class="sumario-num">3</span><span class="sumario-lbl">em andamento</span></div>
+          <div><span class="sumario-num accent-brand">75%</span><span class="sumario-lbl">avanço</span></div>
+        </div>
+        <div class="sumario-foot">Receita total R$ 3.202.926,69</div>
+      </div>
+
+      <div class="sumario-card" data-goto="projetos">
+        <div class="sumario-card-head"><h3>Inovação</h3><span class="sumario-link">Ver detalhes →</span></div>
+        <div class="sumario-kpis">
+          <div><span class="sumario-num">5</span><span class="sumario-lbl">ativas</span></div>
+          <div><span class="sumario-num accent-teal">3</span><span class="sumario-lbl">em execução</span></div>
+          <div><span class="sumario-num">0</span><span class="sumario-lbl">em MVP</span></div>
+          <div><span class="sumario-num accent-brand">R$ 930.273,00</span><span class="sumario-lbl">investido</span></div>
+        </div>
+      </div>
+
+      <div class="sumario-card" data-goto="projautom">
+        <div class="sumario-card-head"><h3>Automação</h3><span class="sumario-link">Ver detalhes →</span></div>
+        <div class="sumario-kpis">
+          <div><span class="sumario-num">39</span><span class="sumario-lbl">ativas</span></div>
+          <div><span class="sumario-num accent-teal">20</span><span class="sumario-lbl">concluídas</span></div>
+          <div><span class="sumario-num">4</span><span class="sumario-lbl">em andamento</span></div>
+          <div><span class="sumario-num accent-brand">51%</span><span class="sumario-lbl">avanço</span></div>
+        </div>
+      </div>
+
+      <div class="sumario-card" data-goto="politicas">
+        <div class="sumario-card-head"><h3>Políticas</h3><span class="sumario-link">Ver detalhes →</span></div>
+        <div class="sumario-kpis">
+          <div><span class="sumario-num">14</span><span class="sumario-lbl">pipeline</span></div>
+          <div><span class="sumario-num accent-teal">11</span><span class="sumario-lbl">concluídas</span></div>
+          <div><span class="sumario-num">3</span><span class="sumario-lbl">em andamento</span></div>
+          <div><span class="sumario-num accent-brand">79%</span><span class="sumario-lbl">avanço</span></div>
+        </div>
+      </div>
+
+      <div class="sumario-card" data-goto="erp">
+        <div class="sumario-card-head"><h3>ERP Sankhya</h3><span class="sumario-link">Ver detalhes →</span></div>
+        <div class="sumario-kpis">
+          <div><span class="sumario-num">16</span><span class="sumario-lbl">módulos</span></div>
+          <div><span class="sumario-num accent-teal">13</span><span class="sumario-lbl">baixo risco</span></div>
+          <div><span class="sumario-num">14%</span><span class="sumario-lbl">restante</span></div>
+          <div><span class="sumario-num accent-brand">86%</span><span class="sumario-lbl">avanço médio</span></div>
+        </div>
+      </div>
+
+      <div class="sumario-card" data-goto="roadmap">
+        <div class="sumario-card-head"><h3>Roadmap</h3><span class="sumario-link">Ver detalhes →</span></div>
+        <div class="sumario-kpis">
+          <div><span class="sumario-num">15</span><span class="sumario-lbl">operações</span></div>
+          <div><span class="sumario-num accent-teal">7</span><span class="sumario-lbl">concluídas</span></div>
+          <div><span class="sumario-num">4</span><span class="sumario-lbl">em andamento</span></div>
+          <div><span class="sumario-num">4</span><span class="sumario-lbl">a iniciar</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footnote">
+      <strong>Fonte:</strong> aba "SUMARIO" da planilha PMO_AGOSTO_V2_2026.xlsx (Google Drive), atualizada em 27/08/2026 — nova aba de visão consolidada adicionada nesta rodada, agregando os indicadores das abas PRODUTOS, PROJETOS, PROJ_AUTOM, POLITICAS e ERP. Clique em qualquer card para abrir a aba correspondente com o detalhamento completo.
+    </div>
+  </section>
+
   <!-- ===================== PRODUTOS ===================== -->
-  <section class="panel active" id="panel-produtos">
+  <section class="panel" id="panel-produtos">
     <div class="panel-head">
       <h2>Produtos Sob Medida</h2>
       <p class="sub">Painel de produtos · iniciativas, prazos e faturamento</p>
@@ -254,13 +350,13 @@
       <div class="kpi-card"><div class="kpi-value">1</div><div class="kpi-label">A iniciar</div></div>
       <div class="kpi-card accent-brand"><div class="kpi-value">75%</div><div class="kpi-label">% avanço do pipeline</div></div>
       <div class="kpi-card"><div class="kpi-value">R$ 21.948,79</div><div class="kpi-label">Faturamento unitário médio</div></div>
-      <div class="kpi-card accent-teal"><div class="kpi-value">R$ 3.199.099,44</div><div class="kpi-label">Receita bruta total</div></div>
+      <div class="kpi-card accent-teal"><div class="kpi-value">R$ 3.202.926,69</div><div class="kpi-label">Receita bruta total</div></div>
     </div>
 
     <div class="surface">
       <div class="surface-head">
         <h3>Produtos — Prazos, investimento e retorno</h3>
-        <span class="hint">Receita implantada R$ 2.820.246,69 · em andamento R$ 378.852,75 · 88,2% já implantado</span>
+        <span class="hint">Receita implantada R$ 2.820.246,69 · em andamento R$ 382.680,00 · 88,1% já implantado</span>
       </div>
       <div class="table-scroll">
         <table class="wide">
@@ -313,7 +409,7 @@
 <td class="num">R$ 30.400,00</td>
 </tr><tr>
 <td class="num">4</td>
-<td class="strong">Enel  - Eletrotecnico|SP</td>
+<td class="strong">Enel - Eletrotecnico|SP</td>
 <td>1º Semestre</td>
 <td>13/04/2026</td>
 <td>14/04/2026</td>
@@ -327,7 +423,7 @@
 <td class="num">R$ 25.000,00</td>
 </tr><tr>
 <td class="num">5</td>
-<td class="strong">Enel  - 1ª onda | ND</td>
+<td class="strong">Enel - 1ª onda | ND</td>
 <td>1º Semestre</td>
 <td>17/04/2026</td>
 <td>14/04/2026</td>
@@ -369,7 +465,7 @@
 <td class="num">R$ 28.000,00</td>
 </tr><tr>
 <td class="num">8</td>
-<td class="strong">Enel  - 2ª onda |  ND</td>
+<td class="strong">Enel - 2ª onda | ND</td>
 <td>1º Semestre</td>
 <td>18/05/2026</td>
 <td>20/05/2026</td>
@@ -383,7 +479,7 @@
 <td class="num">R$ 210.000,00</td>
 </tr><tr>
 <td class="num">9</td>
-<td class="strong">Enel  - 2ª Eletrotecnico|SP</td>
+<td class="strong">Enel - 2ª Eletrotecnico|SP</td>
 <td>1º Semestre</td>
 <td>18/05/2026</td>
 <td>21/05/2026</td>
@@ -478,7 +574,7 @@
 <td>SP</td>
 <td>Ampliação</td>
 <td class="num">—</td>
-<td class="num">R$ 226.572,75</td>
+<td class="num">R$ 230.400,00</td>
 </tr><tr>
 <td class="num">16</td>
 <td class="strong">Light</td>
@@ -492,7 +588,7 @@
 <td>RJ</td>
 <td>Novo Negocio</td>
 <td class="num">—</td>
-<td class="num">—</td>
+<td class="num">R$ 226.572,75</td>
 </tr></tbody>
         </table>
       </div>
@@ -501,7 +597,7 @@
     <div class="surface">
       <div class="surface-head">
         <h3>Retorno financeiro detalhado</h3>
-        <span class="hint">Apenas os projetos com detalhamento completo na fonte</span>
+        <span class="hint">Projetos com detalhamento completo na fonte</span>
       </div>
       <div class="table-scroll">
         <table class="wide">
@@ -541,6 +637,16 @@
 <td class="num">6 meses</td>
 </tr><tr>
 <td class="strong">Neoenergia - Troca Medidores</td>
+<td class="num">15 meses</td>
+<td class="num">R$ 3.456.000,00</td>
+<td class="num">R$ 430.066,00</td>
+<td class="num">12,44%</td>
+<td class="num">R$ 283.843,56</td>
+<td class="num">8,21%</td>
+<td class="num">1,27</td>
+<td class="num">12 meses</td>
+</tr><tr>
+<td class="strong">Light</td>
 <td class="num">36 meses</td>
 <td class="num">R$ 8.156.618,87</td>
 <td class="num">R$ 1.239.717,11</td>
@@ -556,8 +662,8 @@
 
     <div class="footnote">
       <strong>Fonte:</strong> aba "PRODUTOS" da planilha PMO_AGOSTO_V2_2026.xlsx (Google Drive), atualizada em 27/08/2026.
-      <strong>Nesta rodada:</strong> quatro colunas novas foram adicionadas na fonte — Vigência, Faturamento Global, MC Bruta/%, Lucro Líquido/%, ROI e Payback — preenchidas para os projetos <strong>Equatorial Uruaçu, Coelba, CPFL - Humano</strong> e <strong>Neoenergia - Troca Medidores</strong> (tabela "Retorno financeiro detalhado" acima). A linha "CPFL - Humano" (ID 14) da rodada anterior foi renomeada para <strong>"CPFL - Digital"</strong>.
-      <b class="warn">Atenção:</b> os totais do cabeçalho da própria planilha (Receita em Andamento, Receita Implantada e Receita Total) vieram <b class="warn">incorretos</b>, porque as fórmulas SOMASE da fonte ignoram células de receita gravadas como texto — e as receitas de Uruaçu, CPFL-Humano e Neoenergia-Troca de Medidores foram digitadas com o prefixo "R$" (texto), não como número. Recalculamos os totais linha a linha, convertendo esses valores: <strong>receita implantada R$ 2.820.246,69, em andamento R$ 378.852,75, total R$ 3.199.099,44</strong> (88,2% já implantado) — vale corrigir o formato dessas células na origem. O portfólio segue em <strong>16 iniciativas</strong> (12 concluídas, 3 em andamento — CPFL-Humano, CPFL-Digital e Neoenergia-Troca de Medidores —, 1 a iniciar — "Light").
+      Portfólio com <strong>16 iniciativas</strong> (12 concluídas, 3 em andamento — CPFL-Humano, CPFL-Digital e Neoenergia-Troca de Medidores —, 1 a iniciar — "Light"), <strong>75% de avanço do pipeline</strong>. Receita implantada R$ 2.820.246,69, em andamento R$ 382.680,00, total R$ 3.202.926,69 (88,1% já implantado).
+      <strong>Nesta rodada:</strong> a tabela "Retorno financeiro detalhado" ganhou um 5º projeto — <strong>Light</strong> agora também tem Vigência, Faturamento Global, MC Bruta, Lucro Líquido, ROI e Payback preenchidos na fonte, mesmo permanecendo com status "A Iniciar".
     </div>
   </section>
 
@@ -644,9 +750,8 @@
     </div>
 
     <div class="footnote">
-      <strong>Fonte:</strong> aba "INDICADORES" da planilha PMO_AGOSTO_V2_2026.xlsx, atualizada em 27/08/2026.
-      <strong>Nesta rodada</strong> a aba mudou de formato: saiu o comparativo Uruaçu × Coelba × Light (ROI/TIR/VPL/IR) e entrou uma <strong>tabela de 5 operações por cliente</strong> (Faturamento Mensal, Vigência, Faturamento Global, MC Bruta, Lucro Líquido, ROI e Payback) — a mesma estrutura de colunas que também foi adicionada à aba PRODUTOS para 4 projetos.
-      <b class="warn">Atenção:</b> a linha <strong>"LIGHT / RJ Moto Atendimento"</strong> desta tabela tem exatamente os mesmos valores (R$ 226.572,75/mês, R$ 8.156.618,87 global) do projeto <strong>"Neoenergia - Troca Medidores"</strong> na aba PRODUTOS — mas aparece aqui com um cliente e uma operação diferentes. Também não encontramos, na aba PRODUTOS, nenhum projeto correspondente à linha <strong>"NEOENERGIA / Ampliação Corte Religação"</strong> (R$ 230.400,00/mês). Reproduzimos os dados exatamente como estão na fonte, mas vale confirmar se houve troca de rótulo entre essas linhas antes da próxima atualização.
+      <strong>Fonte:</strong> aba "INDICADORES" da planilha PMO_AGOSTO_V2_2026.xlsx, atualizada em 27/08/2026. A aba agora vem transposta (cliente/operação nas colunas, indicadores nas linhas) com <strong>5 operações</strong>: Neoenergia/Coelba Emergencial, Equatorial/Uruaçu Perdas, Neoenergia/Ampliação Corte Religação, CPFL/Cobrança Humana e Dig., e Light/RJ Moto Atendimento — os mesmos 5 projetos que têm detalhamento financeiro completo na aba PRODUTOS.
+      <b class="warn">Atenção:</b> nove células desta tabela (colunas Uruaçu Perdas e Ampliação Corte Religação) vieram gravadas na planilha com <b class="warn">formato de data por engano</b> em vez de número. Recuperamos os valores reais decodificando o número de série do Excel por trás de cada data — e conferimos cada um contra o valor equivalente, não corrompido, na aba PRODUTOS — vale corrigir o formato dessas células na origem.
     </div>
   </section>
 
@@ -787,323 +892,505 @@
   <section class="panel" id="panel-projautom">
     <div class="panel-head">
       <h2>Automação de Processos</h2>
-      <p class="sub">Projetos em andamento · consultas, views e relatórios</p>
-      <span class="ref-date"><span class="dot"></span>Data referência 24/07/2026</span>
+      <p class="sub">Projetos em andamento · consultas, views, relatórios e iniciativas de dados</p>
+      <span class="ref-date"><span class="dot"></span>Data referência 27/08/2026</span>
     </div>
 
     <div class="kpi-grid">
-      <div class="kpi-card accent-brand"><div class="kpi-value">24</div><div class="kpi-label">Iniciativas ativas</div></div>
-      <div class="kpi-card accent-teal"><div class="kpi-value">19</div><div class="kpi-label">Concluídos</div></div>
-      <div class="kpi-card"><div class="kpi-value">1</div><div class="kpi-label">Em andamento</div></div>
-      <div class="kpi-card"><div class="kpi-value">4</div><div class="kpi-label">A iniciar</div></div>
-      <div class="kpi-card accent-brand"><div class="kpi-value">79%</div><div class="kpi-label">% avanço</div></div>
-      <div class="kpi-card"><div class="kpi-value">20</div><div class="kpi-label">Em fluxo de validação</div></div>
+      <div class="kpi-card accent-brand"><div class="kpi-value">39</div><div class="kpi-label">Iniciativas ativas</div></div>
+      <div class="kpi-card accent-teal"><div class="kpi-value">20</div><div class="kpi-label">Concluídas</div></div>
+      <div class="kpi-card"><div class="kpi-value">4</div><div class="kpi-label">Em andamento</div></div>
+      <div class="kpi-card"><div class="kpi-value">13</div><div class="kpi-label">A iniciar</div></div>
+      <div class="kpi-card accent-red"><div class="kpi-value">2</div><div class="kpi-label">Bloqueadas</div></div>
+      <div class="kpi-card accent-brand"><div class="kpi-value">51%</div><div class="kpi-label">% avanço</div></div>
     </div>
 
     <div class="surface">
-      <div class="surface-head"><h3>Projetos de Automação — Consultas, views, procedures e relatórios internos</h3></div>
+      <div class="surface-head"><h3>Projetos de Automação — Iniciativas de dados, automação e customizações Sankhya</h3></div>
       <div class="table-scroll">
         <table class="wide">
           <thead><tr>
-            <th>ID</th><th>Tipo</th><th>Consulta / View</th><th>Especialista</th><th>Demandante</th>
-            <th>Prazo</th><th>Validador</th><th>Status entrega</th><th>Validação</th><th>Status atual</th><th>Observação</th>
+            <th>ID</th><th>Projeto / Iniciativa</th><th>Tipo</th><th>Demanda / Entrega</th>
+            <th>Especialista</th><th>Demandante</th><th>Prazo</th><th>Status entrega</th>
+            <th>Status atual</th><th>Situação do prazo</th><th>Observações</th>
           </tr></thead>
           <tbody><tr>
 <td class="num">1</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FT_CP_EM_ABERTO</td>
+<td class="strong">Automação do Painel de Cotas e Padronização das Verticais do DP</td>
+<td>Engenharia de Dados — Ingestão</td>
+<td class="obs">Disponibilizar no Data Lake a base mensal de empregados da Matriz e Filial GO</td>
+<td>Bruno Lima</td>
+<td>Departamento Pessoal</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Carga por empresa, unidade e competência, preservando histórico.</td>
+</tr><tr>
+<td class="num">2</td>
+<td class="strong">Automação do Painel de Cotas e Padronização das Verticais do DP</td>
+<td>Governança de Dados — Padronização</td>
+<td class="obs">Padronizar o relacionamento entre departamentos e verticais de negócio</td>
+<td>Bruno Lima</td>
+<td>Departamento Pessoal</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Tratar departamentos duplicados, conflitantes ou sem vertical definida.</td>
+</tr><tr>
+<td class="num">3</td>
+<td class="strong">Automação do Painel de Cotas e Padronização das Verticais do DP</td>
+<td>Engenharia de Dados — Transformação e Modelagem</td>
+<td class="obs">Criar base curada de cotas de Aprendiz e PCD, incluindo Tipo, Cota, cota devida e diferença</td>
+<td>Bruno Lima</td>
+<td>Departamento Pessoal</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Validar exclusões, percentuais por faixa e regra de arredondamento.</td>
+</tr><tr>
+<td class="num">4</td>
+<td class="strong">Automação do Painel de Cotas e Padronização das Verticais do DP</td>
+<td>BI — Painéis e Indicadores</td>
+<td class="obs">Desenvolver o Painel de Indicadores de Cotas por empresa, unidade, vertical e competência</td>
+<td>Bruno Lima</td>
+<td>Departamento Pessoal</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Exibir quantidade atual, cota devida, déficit ou superávit e filtros gerenciais.</td>
+</tr><tr>
+<td class="num">5</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar consulta de contas a pagar em aberto</td>
 <td>Lucas Gomes</td>
 <td>Controladoria</td>
 <td>29/04/2026</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 1.</td>
 </tr><tr>
-<td class="num">2</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FT_CR_EM_ABERTO</td>
+<td class="num">6</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar consulta de contas a receber em aberto</td>
 <td>Lucas Gomes</td>
 <td>Controladoria</td>
 <td>04/05/2026</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td class="obs">Em processo de validação</td>
-</tr><tr>
-<td class="num">3</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FORTES_CADASTRO_DE_RECEITAS_E_DESPESAS</td>
-<td>Lucas Gomes</td>
-<td>Controladoria</td>
-<td>13/05/2026</td>
-<td>Glaudencio</td>
-<td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Em processo de validação</td>
-</tr><tr>
-<td class="num">4</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FT_CR_EMITIDOS</td>
-<td>Lucas Gomes</td>
-<td>Controladoria</td>
-<td>16/04/2026</td>
-<td>Glaudencio</td>
-<td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td class="obs">Em processo de validação</td>
-</tr><tr>
-<td class="num">5</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FT_Rateio_Receitas</td>
-<td>Lucas Gomes</td>
-<td>Controladoria</td>
-<td>16/04/2026</td>
-<td>Glaudencio</td>
-<td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Em processo de validação</td>
-</tr><tr>
-<td class="num">6</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FT_NF</td>
-<td>Lucas Gomes</td>
-<td>Controladoria</td>
-<td>13/05/2026</td>
-<td>Glaudencio</td>
-<td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 2.</td>
 </tr><tr>
 <td class="num">7</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FORTES_SUPRIMENTOS_PEDIDOS</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar cadastro de receitas e despesas do Fortes</td>
+<td>Lucas Gomes</td>
+<td>Controladoria</td>
+<td>13/05/2026</td>
+<td><span class="badge st-done">Concluído</span></td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 3.</td>
+</tr><tr>
+<td class="num">8</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar consulta de contas a receber emitidas</td>
+<td>Lucas Gomes</td>
+<td>Controladoria</td>
+<td>16/04/2026</td>
+<td><span class="badge st-done">Concluído</span></td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 4.</td>
+</tr><tr>
+<td class="num">9</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar rateio de receitas</td>
+<td>Lucas Gomes</td>
+<td>Controladoria</td>
+<td>16/04/2026</td>
+<td><span class="badge st-done">Concluído</span></td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 5.</td>
+</tr><tr>
+<td class="num">10</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar dados de notas fiscais</td>
+<td>Lucas Gomes</td>
+<td>Controladoria</td>
+<td>13/05/2026</td>
+<td><span class="badge st-done">Concluído</span></td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 6.</td>
+</tr><tr>
+<td class="num">11</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar pedidos de Suprimentos do Fortes</td>
 <td>Lucas Gomes</td>
 <td>Controladoria</td>
 <td>18/05/2026</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 7.</td>
 </tr><tr>
-<td class="num">8</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_SUPRIMENTOS_SALDO</td>
+<td class="num">12</td>
+<td class="strong">Automação de Dados — Suprimentos</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar saldo de Suprimentos</td>
 <td>Lucas Gomes</td>
 <td>Suprimentos</td>
 <td>22/05/2026</td>
-<td>Brigida</td>
 <td><span class="badge st-done">Concluído</span></td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-done">Concluído</span></td>
-<td class="obs">Validado pelo time de Suprimentos</td>
+<td>Concluído</td>
+<td class="obs">Validado pelo time de Suprimentos Origem: base anterior, ID 8.</td>
 </tr><tr>
-<td class="num">9</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_SUPRIMENTOS_CENTRAL_MOVIMENTACOES</td>
+<td class="num">13</td>
+<td class="strong">Automação de Dados — Suprimentos</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar movimentações da Central de Suprimentos</td>
 <td>Lucas Gomes</td>
 <td>Suprimentos</td>
 <td>27/05/2026</td>
-<td>Brigida</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 9.</td>
 </tr><tr>
-<td class="num">10</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_SUPRIMENTOS_ACOMPANHAMENTO_COMPRA</td>
+<td class="num">14</td>
+<td class="strong">Automação de Dados — Suprimentos</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar acompanhamento de compras</td>
 <td>Lucas Gomes</td>
 <td>Suprimentos</td>
 <td>02/06/2026</td>
-<td>Brigida</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 10.</td>
 </tr><tr>
-<td class="num">11</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_SUPRIMENTOS_CATALOGO_MATERIAIS</td>
+<td class="num">15</td>
+<td class="strong">Automação de Dados — Suprimentos</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar catálogo de materiais</td>
 <td>Lucas Gomes</td>
 <td>Suprimentos</td>
 <td>10/06/2026</td>
-<td>Brigida</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 11.</td>
 </tr><tr>
-<td class="num">12</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_SUPRIMENTOS_INVENTARIO</td>
+<td class="num">16</td>
+<td class="strong">Automação de Dados — Suprimentos</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar inventário de Suprimentos</td>
 <td>Lucas Gomes</td>
 <td>Suprimentos</td>
 <td>17/06/2026</td>
-<td>Brigida</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 12.</td>
 </tr><tr>
-<td class="num">13</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FORTES_DP_PONTO</td>
+<td class="num">17</td>
+<td class="strong">Automação de Dados — Departamento Pessoal</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Integrar dados de ponto do DP/Fortes</td>
 <td>Mateus Freitas</td>
-<td>Controladoria/MIS</td>
+<td>Controladoria / MIS</td>
 <td>—</td>
-<td>Glaudencio</td>
 <td><span class="badge st-todo">A Iniciar</span></td>
 <td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-todo">A Iniciar</span></td>
-<td class="obs">Prazo extendido devido a problemas com API da Sankhya</td>
+<td>Sem prazo</td>
+<td class="obs">Prazo estendido devido a problemas com a API da Sankhya Origem: base anterior, ID 13.</td>
 </tr><tr>
-<td class="num">14</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_FT_COLABORADORES</td>
+<td class="num">18</td>
+<td class="strong">Automação de Dados — Departamento Pessoal</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar dados de colaboradores</td>
 <td>Lucas Gomes</td>
 <td>Controladoria / MIS</td>
 <td>24/04/2026</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Validado</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Validado Origem: base anterior, ID 14.</td>
 </tr><tr>
-<td class="num">15</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">dbo.GET_DATA_FOLHA_DE_PAGAMENTO</td>
+<td class="num">19</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Automatizar obtenção da data da folha de pagamento</td>
 <td>Lucas Gomes</td>
 <td>Controladoria</td>
 <td>—</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-done">Concluído</span></td>
-<td class="obs">Validado pelo time de Controladoria</td>
+<td>Sem prazo</td>
+<td class="obs">Validado pelo time de Controladoria Origem: base anterior, ID 15.</td>
 </tr><tr>
-<td class="num">16</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">dbo.GET_DATA_LISTAGEM_DE_CONFERENCIA</td>
+<td class="num">20</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Automatizar obtenção da data da listagem de conferência</td>
 <td>Lucas Gomes</td>
 <td>Controladoria</td>
 <td>10/04/2026</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 16.</td>
 </tr><tr>
-<td class="num">17</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">dbo.SP_FT_ABSENTEISMO_JUSTIFICADO</td>
+<td class="num">21</td>
+<td class="strong">Automação de Dados — Departamento Pessoal</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Gerar base de absenteísmo justificado</td>
 <td>Mateus Freitas</td>
 <td>Controladoria / MIS</td>
 <td>22/04/2026</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 17.</td>
 </tr><tr>
-<td class="num">18</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">dbo.SP_FT_ABSENTEISMO_INJUSTIFICADO</td>
+<td class="num">22</td>
+<td class="strong">Automação de Dados — Departamento Pessoal</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Gerar base de absenteísmo injustificado</td>
 <td>Mateus Freitas</td>
 <td>Controladoria / MIS</td>
 <td>24/04/2026</td>
-<td>Glaudencio</td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-progress">Em Andamento</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Em processo de validação</td>
+<td><span class="badge st-neutral">Em validação</span></td>
+<td>Atrasado</td>
+<td class="obs">Em processo de validação Origem: base anterior, ID 18.</td>
 </tr><tr>
-<td class="num">19</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_SUPRIMENTOS_SALDO_ENTRADAS_SAIDAS</td>
-<td>—</td>
+<td class="num">23</td>
+<td class="strong">Automação de Dados — Suprimentos</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar saldo de entradas e saídas de Suprimentos</td>
+<td>Lucas Gomes</td>
 <td>Suprimentos</td>
 <td>—</td>
-<td>Brigida</td>
 <td><span class="badge st-todo">A Iniciar</span></td>
 <td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-todo">A Iniciar</span></td>
-<td class="obs">—</td>
+<td>Sem prazo</td>
+<td class="obs">Origem: base anterior, ID 19.</td>
 </tr><tr>
-<td class="num">20</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">VW_CRE_LANCAMENTOS</td>
-<td>—</td>
+<td class="num">24</td>
+<td class="strong">Automação de Dados — Controladoria</td>
+<td>Automação — Consultas e Procedures</td>
+<td class="obs">Disponibilizar lançamentos do CRE</td>
+<td>Bruno Lima</td>
 <td>Controladoria</td>
 <td>—</td>
-<td>Glaudencio</td>
 <td><span class="badge st-todo">A Iniciar</span></td>
 <td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-todo">A Iniciar</span></td>
-<td class="obs">—</td>
+<td>Sem prazo</td>
+<td class="obs">Origem: base anterior, ID 20.</td>
 </tr><tr>
-<td class="num">21</td>
-<td>Montagem de Relatórios Internos - Sankhya</td>
-<td class="strong">ADIANTAMENTO EM ABERTO</td>
+<td class="num">25</td>
+<td class="strong">Relatórios Internos — Financeiro</td>
+<td>Relatórios Internos</td>
+<td class="obs">Montar relatório de adiantamentos em aberto</td>
 <td>Mateus Freitas</td>
 <td>Financeiro</td>
 <td>17/06/2026</td>
-<td>Liandra</td>
 <td><span class="badge st-done">Concluído</span></td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-done">Concluído</span></td>
-<td class="obs">Validado</td>
+<td>Concluído</td>
+<td class="obs">Validado Origem: base anterior, ID 21.</td>
 </tr><tr>
-<td class="num">22</td>
-<td>Automação - Consultas e Procedures</td>
-<td class="strong">AUTOMAÇÃO RELATÓRIO DE ABS - R27 E R09</td>
-<td>Jorge Luis</td>
+<td class="num">26</td>
+<td class="strong">Automação de Relatórios — RH</td>
+<td>Automação — Processos</td>
+<td class="obs">Automatizar relatório de absenteísmo R27 e R09</td>
+<td>Bruno Lima</td>
 <td>RH / Gestão</td>
 <td>—</td>
-<td>—</td>
 <td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-neutral">—</span></td>
-<td><span class="badge st-neutral">—</span></td>
-<td class="obs">—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: base anterior, ID 22.</td>
 </tr><tr>
-<td class="num">23</td>
+<td class="num">27</td>
+<td class="strong">Customizações Sankhya</td>
 <td>Customização Sankhya</td>
-<td class="strong">ALTERAÇÃO DE DASHBOARD SANKHYA PEDIDO DE VENDAS</td>
+<td class="obs">Alterar dashboard de pedido de vendas no Sankhya</td>
 <td>Bruno Lima</td>
 <td>Financeiro</td>
 <td>26/08/2026</td>
-<td>Liandra</td>
 <td><span class="badge st-done">Concluído</span></td>
 <td><span class="badge st-done">Concluído</span></td>
-<td><span class="badge st-done">Concluído</span></td>
-<td class="obs">—</td>
+<td>Concluído</td>
+<td class="obs">Origem: base anterior, ID 23.</td>
 </tr><tr>
-<td class="num">24</td>
+<td class="num">28</td>
+<td class="strong">Customizações Sankhya</td>
 <td>Customização Sankhya</td>
-<td class="strong">Criação de trigger de bloqueio de notas fora do prazo</td>
+<td class="obs">Criar trigger para bloquear notas fora do prazo</td>
 <td>Bruno Lima</td>
 <td>Contabilidade</td>
 <td>28/08/2026</td>
-<td>Philipe</td>
 <td><span class="badge st-progress">Em Andamento</span></td>
+<td><span class="badge st-progress">Em Andamento</span></td>
+<td>Vence em até 7 dias</td>
+<td class="obs">Pendente acesso ao usuário sup para criação das procedures. Origem: base anterior, ID 24.</td>
+</tr><tr>
+<td class="num">29</td>
+<td class="strong">Dados e Inovação</td>
+<td>Customização Sankhya</td>
+<td class="obs">[Financeiro] Automatização de pedido de vendas no ERP</td>
+<td>Mateus Freitas</td>
+<td>Mateus Freitas</td>
+<td>—</td>
+<td><span class="badge st-progress">Em Andamento</span></td>
+<td><span class="badge st-progress">Em Andamento</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-3. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-3" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-3</a></td>
+</tr><tr>
+<td class="num">30</td>
+<td class="strong">Dados e Inovação</td>
+<td>Engenharia de Dados — Ingestão</td>
+<td class="obs">[Comitê de Inovação] MF Datalake - Observabilidade Empresarial</td>
+<td>Bruno Lima</td>
+<td>Mateus Freitas</td>
+<td>—</td>
+<td><span class="badge st-progress">Em Andamento</span></td>
+<td><span class="badge st-progress">Em Andamento</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-385. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-385" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-385</a></td>
+</tr><tr>
+<td class="num">31</td>
+<td class="strong">Dados e Inovação</td>
+<td>Customização Sankhya</td>
+<td class="obs">[Comitê de Inovação] Sankhya - Relatórios e Dashboards no sistema</td>
+<td>Mateus Freitas</td>
+<td>Mateus Freitas</td>
+<td>—</td>
+<td><span class="badge st-done">Concluído</span></td>
+<td><span class="badge st-done">Concluído</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-2. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-2" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-2</a></td>
+</tr><tr>
+<td class="num">32</td>
+<td class="strong">Dados e Inovação</td>
+<td>Automação — Processos</td>
+<td class="obs">[Comitê de Inovação] MF Precificação com IA</td>
+<td>Mateus Freitas</td>
+<td>Mateus Freitas</td>
+<td>—</td>
+<td><span class="badge st-late">Bloqueado</span></td>
+<td><span class="badge st-late">Bloqueado</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-707. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-707" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-707</a></td>
+</tr><tr>
+<td class="num">33</td>
+<td class="strong">Dados e Inovação</td>
+<td>Automação — Processos</td>
+<td class="obs">[Produtos MF] MF IACOB - Omnichannel + IA</td>
+<td>Bruno Lima</td>
+<td>Mateus Freitas</td>
+<td>—</td>
+<td><span class="badge st-late">Bloqueado</span></td>
+<td><span class="badge st-late">Bloqueado</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-785. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-785" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-785</a></td>
+</tr><tr>
+<td class="num">34</td>
+<td class="strong">Dados e Inovação</td>
+<td>Automação — Processos</td>
+<td class="obs">[DP] MF Alô DP - Chatbot interno de comunicação com departamento pessoal</td>
+<td>Mateus Freitas</td>
+<td>Mateus Freitas</td>
+<td>—</td>
+<td><span class="badge st-progress">Em Andamento</span></td>
+<td><span class="badge st-progress">Em Andamento</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-947. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-947" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-947</a></td>
+</tr><tr>
+<td class="num">35</td>
+<td class="strong">Dados e Inovação</td>
+<td>Customização Sankhya</td>
+<td class="obs">[Controladoria] Alertas de SLA para gestores aprovadores no Sankhya</td>
+<td>Mateus Freitas</td>
+<td>Mateus Freitas</td>
+<td>—</td>
 <td><span class="badge st-todo">A Iniciar</span></td>
-<td><span class="badge st-neutral">Pendente</span></td>
-<td class="obs">Pendente acesso ao usuário sup para criação das procedures.</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-951. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-951" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-951</a></td>
+</tr><tr>
+<td class="num">36</td>
+<td class="strong">Dados e Inovação</td>
+<td>Engenharia de Dados — Ingestão</td>
+<td class="obs">[Projeto Interno] Reestruturação, Padronização e CI/CD do Airflow</td>
+<td>Bruno Lima</td>
+<td>Bruno Lima</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-976. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-976" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-976</a></td>
+</tr><tr>
+<td class="num">37</td>
+<td class="strong">Dados e Inovação</td>
+<td>Engenharia de Dados — Ingestão</td>
+<td class="obs">[Projeto Interno] Reestruturação dos projetos SSIS</td>
+<td>Mateus Freitas</td>
+<td>Mateus Freitas</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-1059. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-1059" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-1059</a></td>
+</tr><tr>
+<td class="num">38</td>
+<td class="strong">Dados e Inovação</td>
+<td>BI — Painéis e Indicadores</td>
+<td class="obs">[Controladoria] Plataforma Superset — padronização e entrada em produção</td>
+<td>Mateus Freitas</td>
+<td>Bruno Lima</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-1077. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-1077" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-1077</a></td>
+</tr><tr>
+<td class="num">39</td>
+<td class="strong">Dados e Inovação</td>
+<td>Customização Sankhya</td>
+<td class="obs">[ERP Sankhya] Implementar customizações e automações internas</td>
+<td>Bruno Lima</td>
+<td>Bruno Lima</td>
+<td>—</td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td><span class="badge st-todo">A Iniciar</span></td>
+<td>Sem prazo</td>
+<td class="obs">Origem: Jira — Epic DI-1172. <a href="https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-1172" target="_blank" rel="noopener">https://meirelesefreitas-team-ovdvllqs.atlassian.net/browse/DI-1172</a></td>
 </tr></tbody>
         </table>
       </div>
     </div>
 
     <div class="footnote">
-      <strong>Fonte:</strong> aba "PROJ_AUTOM" da planilha PMO_AGOSTO_V2_2026.xlsx, data de referência 24/07/2026.
-      <b class="warn">Atenção:</b> a aba cresceu de 22 para <strong>24 iniciativas</strong> (novos IDs 23 e 24, de Customização Sankhya), mas o cabeçalho de KPI da própria planilha não foi atualizado e ainda mostra "22 / 18 concluídos / 4 em andamento / 82%". Recalculamos os totais linha a linha a partir da coluna "Status entrega": <strong>24 ativas, 19 concluídas, 1 em andamento, 4 a iniciar, 79% de avanço</strong>. O KPI "Em fluxo de validação" (20) conta os itens com alguma observação/tratativa registrada na coluna "Observação" da fonte.
+      <strong>Fonte:</strong> aba "PROJ_AUTOM" da planilha PMO_AGOSTO_V2_2026.xlsx, atualizada em 27/08/2026.
+      <strong>Nesta rodada</strong> a aba foi totalmente reestruturada: saiu o formato simples (consultas/views do Sankhya) e entrou um esquema mais rico com <strong>39 iniciativas</strong> — as 22 anteriores (renumeradas, com a observação "Origem: base anterior, ID X" preservando o vínculo) mais <strong>17 novas</strong>: 4 do projeto "Automação do Painel de Cotas e Padronização das Verticais do DP" e 13 vindas do Jira (epics "DI-xxx" da equipe de Dados e Inovação, com link para o board).
+      Números atuais: <strong>20 concluídas, 4 em andamento, 13 a iniciar, 2 bloqueadas</strong> (51% de avanço). A aba também passou a distinguir um status "Bloqueado", que não existia no esquema anterior.
     </div>
   </section>
 
@@ -1593,10 +1880,10 @@
     <span class="badge st-progress">Em Andamento</span>
   </div>
   <div class="rm-progress-wrap">
-    <div class="rm-progress-bar"><div class="rm-progress-fill st-progress" style="width:3%"></div></div>
-    <span class="rm-progress-pct">3%</span>
+    <div class="rm-progress-bar"><div class="rm-progress-fill st-progress" style="width:6%"></div></div>
+    <span class="rm-progress-pct">6%</span>
   </div>
-  <div class="rm-items"><span class='rm-seg rm-done'>Concluído: 2</span> · <span class='rm-seg rm-todo'>A Iniciar: 66</span></div>
+  <div class="rm-items"><span class='rm-seg rm-done'>Concluído: 4</span> · <span class='rm-seg rm-prog'>Em Andamento: 4</span> · <span class='rm-seg rm-todo'>A Iniciar: 59</span></div>
   <div class="rm-golive">Go Live <strong>13/10/2026</strong></div>
 </div>
 <div class="rm-card">
@@ -1674,7 +1961,7 @@
 
     <div class="footnote" style="margin-top:22px;">
       <strong>Fonte:</strong> aba "ROADMAP" (linha-resumo por operação) e aba "BD" (linhas de cronograma do programa Âncora Maranhão) da planilha PMO_AGOSTO_V2_2026.xlsx, atualizada em 27/08/2026.
-      <strong>Nesta rodada:</strong> o Roadmap passou a ter <strong>15 operações</strong> (11 com linha-resumo própria + 4 do Âncora Maranhão, vindas do detalhamento de tarefas na aba BD, sem linha-resumo própria). Progresso desde a última atualização: <strong>Light — RJ</strong> saiu de 0% para <strong>3%</strong> (2 de 68 itens concluídos), <strong>CPFL</strong> saiu de 0% para <strong>8%</strong> (3 de 40 itens concluídos), e <strong>Neoenergia — Troca de Medidores</strong> está em <strong>11%</strong> (6 concluídos, 3 em andamento, 48 a iniciar).
+      O Roadmap tem <strong>15 operações</strong> (11 com linha-resumo própria + 4 do Âncora Maranhão, vindas do detalhamento de tarefas na aba BD, sem linha-resumo própria). <strong>Nesta rodada, avanço em Light — RJ:</strong> de 3% para <strong>6%</strong> (4 de 67 itens concluídos, 4 em andamento, 59 a iniciar). CPFL segue em 8% e Neoenergia — Troca de Medidores em 11%.
       <strong>Coelba</strong> segue com 88% de avanço (98 itens concluídos / 14 em andamento) conforme a linha-resumo atual da aba ROADMAP — mantido tal como está na fonte, sem forçar reconciliação com a aba PRODUTOS (que mostra Coelba como "Concluído").
       <b class="warn">Atenção:</b> as datas de cronograma das 4 operações do Âncora Maranhão continuam gravadas na aba BD com o ano <b class="warn">100 anos a menos</b> (ex.: "25/02/1927"); corrigimos a exibição somando 100 anos, mas vale corrigir na origem. Os detalhamentos linha a linha completos (WBS/cronograma de cada operação) não foram replicados aqui — apenas os totais por operação.
     </div>
@@ -1687,16 +1974,19 @@
 <script>
   const buttons = document.querySelectorAll('nav.tabs button');
   const panels = document.querySelectorAll('.panel');
+  function activateTab(tab){
+    buttons.forEach(b=>b.classList.toggle('active', b.dataset.tab === tab));
+    panels.forEach(p=>p.classList.remove('active'));
+    const p = document.getElementById('panel-'+tab);
+    p.classList.add('active','fade-in');
+    p.addEventListener('animationend', ()=>p.classList.remove('fade-in'), {once:true});
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
   buttons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      buttons.forEach(b=>b.classList.remove('active'));
-      panels.forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      const p = document.getElementById('panel-'+btn.dataset.tab);
-      p.classList.add('active','fade-in');
-      p.addEventListener('animationend', ()=>p.classList.remove('fade-in'), {once:true});
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
+    btn.addEventListener('click', ()=>activateTab(btn.dataset.tab));
+  });
+  document.querySelectorAll('[data-goto]').forEach(el=>{
+    el.addEventListener('click', ()=>activateTab(el.dataset.goto));
   });
 </script>
 
