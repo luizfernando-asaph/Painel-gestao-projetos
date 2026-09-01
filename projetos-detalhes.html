@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalhamento de Projetos de Inovação · Meireles e Freitas PMO</title>
+<style>
+  :root{
+    --green:#2B7F32; --green-bg:#EAF3EC;
+    --amber:#C66504; --amber-bg:#FFF6ED;
+    --red:#7F1D1D; --red-bg:#FDECEC;
+    --neutral:#6B6580; --neutral-bg:#F4F2FB;
+    --ink:#1B1E24; --ink-soft:#4B5262; --line:#E2E5EA;
+    --paper:#FAFBFC; --panel:#FFFFFF;
+    --accent:#16352B; --accent-2:#8BC34A;
+    --radius:14px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Segoe UI','Aptos Narrow',-apple-system,BlinkMacSystemFont,Roboto,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:inherit; margin:0 0 .4em; letter-spacing:-0.01em; color:var(--ink);}
+  h2{font-size:1.8rem; font-weight:700;}
+  h3{font-size:1.1rem; font-weight:700;}
+  p{margin:0 0 1em;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  header.top{position:sticky; top:0; z-index:50; background:var(--accent); color:#fff; border-bottom:3px solid var(--accent-2);}
+  .top-inner{max-width:var(--maxw); margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .brand{font-size:.85rem; letter-spacing:.02em; opacity:.9;}
+  nav{display:flex; gap:2px; flex-wrap:wrap;}
+  nav a{font-size:.78rem; color:#E7ECEF; text-decoration:none; padding:6px 9px; border-radius:8px; opacity:.85; white-space:nowrap;}
+  nav a:hover{background:rgba(255,255,255,.12); opacity:1;}
+
+  .hero{background:linear-gradient(180deg, var(--accent) 0%, #1B4A3A 55%, var(--paper) 55%); color:#fff; padding:50px 0 80px;}
+  .eyebrow{font-size:.85rem; color:var(--accent-2); font-weight:600; margin-bottom:10px;}
+  .hero h1{font-size:2.3rem; color:#fff;}
+  .hero .sub{font-size:1.1rem; color:#C9D2DB; max-width:56ch; margin-top:6px;}
+  .hero-meta{margin-top:22px; font-size:.85rem; color:#B9C4CF;}
+
+  section{padding:50px 0; border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+  .kicker{font-size:.85rem; color:var(--ink-soft); margin-bottom:6px;}
+
+  .grid{display:grid; gap:14px;}
+  .grid-7{grid-template-columns:repeat(7,1fr);}
+  .grid-5{grid-template-columns:repeat(5,1fr);}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:1000px){.grid-7{grid-template-columns:repeat(4,1fr);} .grid-5{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:800px){.grid-4,.grid-3,.grid-2{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.grid-4,.grid-3,.grid-2,.grid-5,.grid-7{grid-template-columns:1fr;}}
+
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px;}
+  .stat .n{font-size:1.9rem; font-weight:800; line-height:1;}
+  .stat .l{font-size:.82rem; color:var(--ink-soft); margin-top:6px;}
+  .stat.green .n{color:var(--green);} .stat.amber .n{color:var(--amber);}
+  .stat.red .n{color:var(--red);} .stat.neutral .n{color:var(--neutral);}
+  .stat.accent .n{color:var(--accent);}
+
+  .badge{display:inline-block; font-size:.76rem; font-weight:700; padding:3px 9px; border-radius:999px;}
+  .badge.green{color:var(--green); background:var(--green-bg);}
+  .badge.amber{color:var(--amber); background:var(--amber-bg);}
+  .badge.red{color:var(--red); background:var(--red-bg);}
+  .badge.neutral{color:var(--neutral); background:var(--neutral-bg);}
+
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px;}
+  .card + .card{margin-top:12px;}
+
+  /* Resumo Executivo — cards de navegação */
+  .nav-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  @media(max-width:980px){.nav-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.nav-grid{grid-template-columns:1fr;}}
+  .nav-card{
+    display:flex; flex-direction:column; text-decoration:none; color:inherit;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; min-height:172px;
+    transition:box-shadow .15s, border-color .15s, transform .15s;
+  }
+  .nav-card:hover{box-shadow:0 6px 18px rgba(0,0,0,.08); border-color:var(--accent); transform:translateY(-1px);}
+  .nav-card .title-row{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:14px;}
+  .nav-card .title-row h3{font-size:.95rem; font-weight:700; margin:0; line-height:1.3;}
+  .nav-card .arrow{flex:0 0 auto; width:26px; height:26px; border-radius:50%; background:var(--neutral-bg); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:700;}
+  .nav-card .mini{display:grid; grid-template-columns:repeat(2,1fr); gap:12px 10px; font-size:.78rem; color:var(--ink-soft); margin-top:auto;}
+  .nav-card .mini b{display:block; color:var(--ink); font-size:1.05rem; font-weight:800; line-height:1.2;}
+
+  .callout{border-radius:var(--radius); padding:16px 18px; border:1px solid; margin:16px 0;}
+  .callout.green{background:var(--green-bg); border-color:#BFE8CB; color:#0F5A2B;}
+  .callout.amber{background:var(--amber-bg); border-color:#F2D19B; color:#8A4A08;}
+  .callout.red{background:var(--red-bg); border-color:#F3BEBE; color:#8C1D1D;}
+  .callout.neutral{background:var(--neutral-bg); border-color:#DAD5EE; color:#4A4560;}
+  .callout .lbl{font-weight:700; margin-bottom:4px; display:block;}
+
+  table{width:100%; border-collapse:collapse; font-size:.85rem;}
+  th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap;}
+  th{font-size:.72rem; text-transform:uppercase; letter-spacing:.02em; color:var(--ink-soft); font-weight:700;}
+  tr:last-child td{border-bottom:none;}
+  .num{text-align:right; font-variant-numeric:tabular-nums;}
+  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);}
+  .table-wrap table{border:none;}
+  .table-wrap th{background:#F5F6F8; position:sticky; top:0;}
+  .drag-note{font-size:.75rem; color:var(--ink-soft); margin:6px 0 0;}
+
+  .frente-list{list-style:none; margin:0; padding:0; display:grid; gap:8px;}
+  .frente-list li{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 13px; background:var(--panel); border:1px solid var(--line); border-radius:10px; font-size:.88rem;}
+
+  .op-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px;}
+  .op-card .n{font-size:.72rem; color:var(--ink-soft); font-weight:700;}
+  .op-card h4{font-size:.95rem; margin:2px 0 8px;}
+  .op-bar{height:8px; background:var(--neutral-bg); border-radius:999px; overflow:hidden; margin:6px 0;}
+  .op-bar span{display:block; height:100%;}
+  .op-pct{font-size:1.3rem; font-weight:800;}
+  .op-detail{font-size:.78rem; color:var(--ink-soft); margin-top:4px;}
+
+  /* Projeto (Inovação) — cards por iniciativa */
+  .proj-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; margin-top:16px;}
+  .proj-head{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px;}
+  .proj-head-left{display:flex; align-items:center; gap:12px;}
+  .proj-num{flex:0 0 34px; height:34px; border-radius:10px; background:var(--accent); color:#fff; font-size:.85rem; font-weight:800; display:flex; align-items:center; justify-content:center;}
+  .proj-title{font-size:1.05rem; font-weight:700; margin:0;}
+  .proj-sub{font-size:.85rem; color:var(--ink-soft); margin:2px 0 0;}
+  .proj-meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;}
+  .proj-meta .m-box{flex:1 1 190px; background:#F7F8FA; border:1px solid var(--line); border-radius:10px; padding:10px 12px;}
+  .proj-meta .m-k{font-size:.68rem; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-soft); font-weight:700;}
+  .proj-meta .m-v{font-size:.92rem; font-weight:700; color:var(--ink); margin-top:2px;}
+  .proj-team{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .proj-team .t-chip{background:var(--neutral-bg); border-radius:999px; padding:6px 12px; font-size:.8rem; color:var(--ink);}
+  .proj-team .t-chip b{font-weight:700;}
+  .proj-decision{background:var(--neutral-bg); border-radius:10px; padding:12px 14px; margin-top:14px; font-size:.87rem;}
+  .proj-decision b{display:block; font-size:.7rem; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-soft); margin-bottom:3px; font-weight:700;}
+  .proj-link{display:inline-block; margin-top:12px; font-size:.83rem; font-weight:700; color:var(--accent); text-decoration:none; border:1px solid var(--line); border-radius:8px; padding:7px 12px;}
+  .proj-link:hover{background:#F5F6F8;}
+  .proj-link-warn{font-size:.75rem; color:var(--red); margin-left:8px; font-weight:600;}
+  .proj-block{margin-top:22px; padding-top:18px; border-top:1px solid var(--line);}
+  .proj-block-title{font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); font-weight:700; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between;}
+  .proj-block-title .cnt{font-size:.72rem; color:var(--ink-soft); font-weight:600; text-transform:none;}
+
+  /* Cards resumidos de projeto (Inovação → link para página de detalhes) */
+  .proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px;}
+  @media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-mini{
+    display:flex; flex-direction:column; text-decoration:none; color:inherit;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px; min-height:150px;
+    transition:box-shadow .15s, border-color .15s, transform .15s;
+  }
+  .proj-mini:hover{box-shadow:0 6px 18px rgba(0,0,0,.08); border-color:var(--accent); transform:translateY(-1px);}
+  .proj-mini .pm-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;}
+  .proj-mini .pm-num{font-size:.72rem; font-weight:800; color:var(--accent); background:var(--neutral-bg); border-radius:6px; padding:2px 7px;}
+  .proj-mini h4{font-size:1rem; font-weight:700; margin:0 0 4px;}
+  .proj-mini .pm-sub{font-size:.8rem; color:var(--ink-soft); margin:0; line-height:1.4; flex:1;}
+  .proj-mini .pm-foot{display:flex; align-items:baseline; gap:6px; margin-top:12px; font-size:.75rem; color:var(--ink-soft);}
+  .proj-mini .pm-foot b{font-size:1.15rem; color:var(--ink); font-weight:800;}
+  .proj-mini-cta{align-items:flex-start; justify-content:center; background:var(--neutral-bg); border-style:dashed;}
+  .proj-mini-cta .pm-cta-icon{width:34px; height:34px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:10px;}
+  .proj-mini-cta h4{font-size:.95rem;}
+
+
+  /* Correção de tabelas com texto longo (Inovação): permitir quebra de linha */
+  .table-wrap.text-wrap td, .table-wrap.text-wrap th{white-space:normal; vertical-align:top;}
+  .table-wrap.text-wrap td{line-height:1.45;}
+  #tab-tratar th:nth-child(1),#tab-tratar td:nth-child(1){width:16%;}
+  #tab-tratar th:nth-child(2),#tab-tratar td:nth-child(2){width:32%;}
+  #tab-tratar th:nth-child(3),#tab-tratar td:nth-child(3){width:8%;}
+  #tab-tratar th:nth-child(4),#tab-tratar td:nth-child(4){width:44%;}
+  .proj-block .table-wrap.text-wrap th:first-child, .proj-block .table-wrap.text-wrap td:first-child{min-width:150px;}
+
+  footer{background:var(--accent); color:#C9D2DB; padding:34px 0; margin-top:30px;}
+  footer a{color:var(--accent-2); text-decoration:none;}
+  .note-list{margin:0; padding-left:1.2em;}
+  .note-list li{margin-bottom:10px; font-size:.9rem; color:var(--ink-soft);}
+  .note-list strong{color:var(--ink);}
+  .section-foot{font-size:.8rem; color:var(--ink-soft); margin-top:18px; padding-top:12px; border-top:1px dashed var(--line);}
+
+  /* Página de detalhamento — sistema de abas */
+  .tabbar{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 4px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+  .tabbtn{
+    font-family:inherit; font-size:.88rem; font-weight:700; color:var(--ink-soft);
+    background:var(--panel); border:1px solid var(--line); border-radius:999px;
+    padding:9px 18px; cursor:pointer; transition:all .15s;
+  }
+  .tabbtn:hover{border-color:var(--accent); color:var(--ink);}
+  .tabbtn.active{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .tabpanel{display:none;}
+  .tabpanel.active{display:block;}
+  .proj-card[data-tab]{display:none;}
+  .proj-card[data-tab].active{display:block;}
+  .back-link{display:inline-flex; align-items:center; gap:6px; font-size:.85rem; font-weight:700; color:var(--accent); text-decoration:none; margin-bottom:6px;}
+  .back-link:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">Meireles e Freitas · PMO</div>
+    <nav>
+      <a href="index.html#resumo">Resumo</a>
+      <a href="index.html#produtos">Produtos</a>
+      <a href="index.html#indicadores">Indicadores</a>
+      <a href="index.html#inovacao">Inovação</a>
+      <a href="index.html#automacao">Automação</a>
+      <a href="index.html#modelagem">Modelagem</a>
+      <a href="index.html#politicas">Políticas</a>
+      <a href="index.html#erp">ERP</a>
+      <a href="index.html#roadmap">Roadmap</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" style="padding:40px 0 64px;">
+  <div class="wrap">
+    <div class="eyebrow">DETALHAMENTO POR INICIATIVA</div>
+    <h1 style="font-size:2rem;">Projetos de Inovação e Melhoria Contínua</h1>
+    <div class="sub" style="font-size:1rem;">Backlog, sprints, equipe, TAP e matriz de riscos — cada projeto isolado, com seus próprios 5 riscos mapeados</div>
+  </div>
+</div>
+
+<section style="padding-top:36px;">
+  <div class="wrap">
+    <a class="back-link" href="index.html#inovacao">← Voltar ao Painel</a>
+
+    <div class="tabbar" id="tabbar">
+      <button class="tabbtn active" data-target="mira">3.1 MIRA</button>
+      <button class="tabbtn" data-target="precificacao">3.2 Precificação por IA</button>
+      <button class="tabbtn" data-target="iacob">3.3 IA COB</button>
+      <button class="tabbtn" data-target="datalake">3.4 Data Lake</button>
+      <button class="tabbtn" data-target="vendas">3.5 Processo de Vendas</button>
+    </div>
+
+    <div class="tabcontent" style="margin-top:8px;">
+    <!-- ============ PROJETO 1 — MIRA ============ -->
+    <div class="proj-card" id="mira" data-tab="mira">
+      <div class="proj-head">
+        <div class="proj-head-left">
+          <div class="proj-num">3.1</div>
+          <div>
+            <p class="proj-title">MIRA</p>
+            <p class="proj-sub">Monitoramento Inteligente e Roteirização Automatizada</p>
+          </div>
+        </div>
+        <span class="badge neutral">Iniciado</span>
+      </div>
+
+      <div class="proj-meta">
+        <div class="m-box"><div class="m-k">Início</div><div class="m-v">Mar/2026</div></div>
+        <div class="m-box"><div class="m-k">Final</div><div class="m-v">Abr/2027</div></div>
+        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">14 meses</div></div>
+        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">R$ 142.194,00</div></div>
+        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">1a 1m (ajust. 1a 3m)</div></div>
+        <div class="m-box"><div class="m-k">TIR</div><div class="m-v">79,70%</div></div>
+        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v">0% <span style="font-weight:400;color:var(--ink-soft);">⚠ desatualizado</span></div></div>
+        <div class="m-box"><div class="m-k">Fase</div><div class="m-v">Iniciado</div></div>
+      </div>
+
+      <div class="proj-team">
+        <span class="t-chip">Líder de Projetos: <b>Luiz Santos</b></span>
+        <span class="t-chip">Líder de Produto: <b>Ina Silveira</b></span>
+        <span class="t-chip">Apoio: <b>Laboratório de Produtos</b></span>
+      </div>
+
+      <a class="proj-link" href="https://docs.google.com/document/d/1REEqeqKDYX8hQn6iQUxc6SiZvK2H-ZQb/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
+
+      <div class="proj-block">
+        <div class="proj-block-title">Backlog — Histórias de Usuário <span class="cnt">1 de 20 iniciadas</span></div>
+        <div class="table-wrap text-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>História de usuário</th><th>Bloco</th><th>Sprint</th><th>Prioridade</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>US01</td><td>Como gestor quero mapear o processo atual para identificar melhorias.</td><td>Descoberta</td><td>Sprint 1</td><td>Alta</td><td><span class="badge amber">Em Andamento · 15%</span></td></tr>
+              <tr><td>US02</td><td>Como leiturista quero participar das entrevistas para contribuir com requisitos.</td><td>Descoberta</td><td>Sprint 1</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US03</td><td>Como PO quero backlog priorizado.</td><td>Descoberta</td><td>Sprint 1</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US04</td><td>Como usuário quero validar protótipo navegável.</td><td>UI/UX</td><td>Sprint 2</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US05</td><td>Como analista quero identificar fontes de dados.</td><td>Dados</td><td>Sprint 2</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US06</td><td>Como leiturista quero capturar foto do medidor.</td><td>MVP</td><td>Sprint 3</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US07</td><td>Como sistema quero validar qualidade da imagem.</td><td>MVP</td><td>Sprint 4</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US08</td><td>Como sistema quero extrair leitura via OCR.</td><td>OCR</td><td>Sprint 5</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US09</td><td>Como leiturista quero corrigir leitura OCR.</td><td>OCR</td><td>Sprint 6</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US10</td><td>Como gestor quero exportar leituras.</td><td>Exportação</td><td>Sprint 6</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US11</td><td>Como leiturista quero operar offline.</td><td>Offline</td><td>Sprint 6</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US12</td><td>Como sistema quero melhorar OCR continuamente.</td><td>IA</td><td>Sprint 7</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US13</td><td>Como sistema quero validar inconsistências.</td><td>Validação</td><td>Sprint 7</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US14</td><td>Como supervisor quero acompanhar leituras.</td><td>Dashboard</td><td>Sprint 7</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US15</td><td>Como gestor quero gerar rotas inteligentes.</td><td>Roteirização</td><td>Sprint 8</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US16</td><td>Como leiturista quero receber rota diária.</td><td>Roteirização</td><td>Sprint 9</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US17</td><td>Como gestor quero comparar rota atual e otimizada.</td><td>Roteirização</td><td>Sprint 10</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US18</td><td>Como diretor quero visualizar KPIs.</td><td>BI</td><td>Sprint 11</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US19</td><td>Como TI quero integrar sistemas.</td><td>Integração</td><td>Sprint 12</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+              <tr><td>US20</td><td>Como gestor quero documentação e transferência tecnológica.</td><td>Encerramento</td><td>Sprint 12</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="drag-note">Execução (parceiro): IFCE, em todas as histórias. Duração estimada por bloco: 2 a 4 meses.</p>
+      </div>
+    </div>
+
+    <!-- ============ PROJETO 2 — PRECIFICAÇÃO POR IA ============ -->
+    <div class="proj-card" id="precificacao" data-tab="precificacao">
+      <div class="proj-head">
+        <div class="proj-head-left">
+          <div class="proj-num">3.2</div>
+          <div>
+            <p class="proj-title">Precificação por IA</p>
+          </div>
+        </div>
+        <span class="badge amber">Execução</span>
+      </div>
+
+      <div class="proj-meta">
+        <div class="m-box"><div class="m-k">Início</div><div class="m-v">28/02/2026</div></div>
+        <div class="m-box"><div class="m-k">Final</div><div class="m-v">30/06/2026</div></div>
+        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">31/07/2026</div></div>
+        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">R$ 272.171,00</div></div>
+        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">2a 9m (ajust. 2a 7m)</div></div>
+        <div class="m-box"><div class="m-k">TIR</div><div class="m-v">38,78%</div></div>
+        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v" style="color:var(--amber);">68,42%</div></div>
+        <div class="m-box"><div class="m-k">Prazo</div><div class="m-v">30/09/2026</div></div>
+      </div>
+
+      <div class="proj-team">
+        <span class="t-chip">Líder de Projetos: <b>Luiz Santos</b></span>
+        <span class="t-chip">Tech Líder: <b>Bruno Lima</b></span>
+        <span class="t-chip">Líder de Infra: <b>Paulo Everton</b></span>
+      </div>
+
+      <div class="proj-decision"><b>Decisão</b>Em fase de aprovação dos critérios de sucesso. Prazo: 31/07/2026.</div>
+
+      <a class="proj-link" href="https://docs.google.com/document/d/1ZTX_NRUE9NzZlZDUYLGD-7UQL7SzKl3y/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
+
+      <div class="proj-block">
+        <div class="proj-block-title">Sprints / Entregas <span class="cnt">13 de 19 concluídas</span></div>
+        <div class="table-wrap text-wrap">
+          <table>
+            <thead><tr><th>Entrega</th><th>Sprint</th><th>Líder</th><th>Status</th><th>Período</th></tr></thead>
+            <tbody>
+              <tr><td>Workshop com as áreas</td><td>Sprint 1</td><td>Lucas Queiroz</td><td><span class="badge green">Concluído</span></td><td>05/12/25 → 16/12/25</td></tr>
+              <tr><td>Infraestrutura do projeto</td><td>Sprint 2</td><td>Paulo Everton</td><td><span class="badge green">Concluído</span></td><td>16/12/25 → 19/12/25</td></tr>
+              <tr><td>Viabilidade de recursos</td><td>Sprint 2</td><td>Lucas Queiroz</td><td><span class="badge green">Concluído</span></td><td>19/12/25 → 09/01/26</td></tr>
+              <tr><td>Realizar leitura da E.Tom IA</td><td>Sprint 3</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>02/02/26 → 19/02/26</td></tr>
+              <tr><td>Critérios de aceite</td><td>Sprint 4</td><td>Glaudêncio</td><td><span class="badge green">Concluído</span></td><td>23/02/26 → 24/03/26</td></tr>
+              <tr><td>MVP 1</td><td>Go-Live</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>27/02/26 → 28/02/26</td></tr>
+              <tr><td>Estruturar categorias</td><td>Sprint 5</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
+              <tr><td>Mapear insumos operacionais</td><td>Sprint 5</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
+              <tr><td>Mapear soluções tecnológicas</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
+              <tr><td>Mapear infraestrutura</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
+              <tr><td>Mapear aplicações e softwares</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
+              <tr><td>Mapear pacote de pessoal</td><td>Sprint 7</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
+              <tr><td>Mapear base de apoio</td><td>Sprint 8</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
+              <tr><td>Critérios de aceite</td><td>Sprint 9</td><td>Glaudêncio</td><td><span class="badge amber">Em Andamento</span></td><td>28/05/26 → 30/06/26 · Em validação</td></tr>
+              <tr><td>MVP 2</td><td>Go-Live</td><td>Luiz Santos</td><td><span class="badge neutral">A Iniciar</span></td><td>30/06/26 → 08/07/26</td></tr>
+              <tr><td>(Tarefa) Simular cenários</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
+              <tr><td>(Entrega Épica) DREs</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
+              <tr><td>Critérios de aceite</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
+              <tr><td>Entrega final</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="proj-block">
+        <div class="proj-block-title">Riscos e Impedimentos</div>
+        <div class="table-wrap text-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Risco</th><th class="num">Impacto</th><th class="num">Prob.</th><th class="num">Score</th><th>Mitigação</th></tr></thead>
+            <tbody>
+              <tr><td>R01</td><td>Qualidade e consistência dos dados utilizados pela IA</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Validar origem, completude e consistência dos insumos operacionais; criar regras de saneamento e base padronizada.</td></tr>
+              <tr><td>R02</td><td>Precificação gerada pela IA não refletir a realidade operacional</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Executar simulações com cenários reais e comparar resultados com preços históricos e custos efetivos.</td></tr>
+              <tr><td>R03</td><td>Divergência entre a precificação da IA e o DRE do projeto</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Usar as simulações de DRE do MVP 2 como etapa formal de validação.</td></tr>
+              <tr><td>R04</td><td>Critérios de aceite insuficientes para validar o MVP</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Formalizar critérios objetivos de aceite, com indicadores mínimos de acurácia e rastreabilidade.</td></tr>
+              <tr><td>R05</td><td>Baixa adoção ou confiança das áreas usuárias na recomendação da IA</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Envolver as áreas desde os testes e validar conjuntamente antes do Go-Live.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="drag-note">Legenda impacto: 1 baixo · 2 moderado · 3 médio · 4 alto · 5 crítico. Legenda probabilidade: 1 rara · 2 baixa · 3 possível · 4 provável · 5 muito provável.</p>
+      </div>
+    </div>
+
+    <!-- ============ PROJETO 3 — IA COB ============ -->
+    <div class="proj-card" id="iacob" data-tab="iacob">
+      <div class="proj-head">
+        <div class="proj-head-left">
+          <div class="proj-num">3.3</div>
+          <div>
+            <p class="proj-title">IA COB (MVP)</p>
+            <p class="proj-sub">Cenário White Label</p>
+          </div>
+        </div>
+        <span class="badge neutral">Em Hold</span>
+      </div>
+
+      <div class="proj-meta">
+        <div class="m-box"><div class="m-k">Início</div><div class="m-v">28/02/2026</div></div>
+        <div class="m-box"><div class="m-k">Final</div><div class="m-v">04/07/2026</div></div>
+        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">~3 meses (MVP)</div></div>
+        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">Em revisão de escopo</div></div>
+        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">Não apurado</div></div>
+        <div class="m-box"><div class="m-k">ROI 12/24/36m</div><div class="m-v">-61,6% / 19,2% / 46,2%</div></div>
+        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v">0%</div></div>
+        <div class="m-box"><div class="m-k">Fase</div><div class="m-v">Em Hold</div></div>
+      </div>
+
+      <div class="proj-decision"><b>Decisão</b>Implantar o IACOB com soluções de mercado (Sinergitech e OLOS) e mensurar ganhos.</div>
+
+      <a class="proj-link" href="https://docs.google.com/document/d/10XSlX-4iSFec-PF9-GpU73tO9OvoyNcw/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
+    </div>
+
+    <!-- ============ PROJETO 4 — DATA LAKE ============ -->
+    <div class="proj-card" id="datalake" data-tab="datalake">
+      <div class="proj-head">
+        <div class="proj-head-left">
+          <div class="proj-num">3.4</div>
+          <div>
+            <p class="proj-title">Data Lake (MEF)</p>
+          </div>
+        </div>
+        <span class="badge amber">Execução</span>
+      </div>
+
+      <div class="proj-meta">
+        <div class="m-box"><div class="m-k">Início</div><div class="m-v">28/02/2026</div></div>
+        <div class="m-box"><div class="m-k">Final</div><div class="m-v">28/02/2027</div></div>
+        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">12 meses</div></div>
+        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">R$ 515.908,00</div></div>
+        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">2a 3m (ajust. 2a 6m)</div></div>
+        <div class="m-box"><div class="m-k">TIR</div><div class="m-v">51,32%</div></div>
+        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v" style="color:var(--amber);">15%</div></div>
+        <div class="m-box"><div class="m-k">Prazo</div><div class="m-v">28/02/2027</div></div>
+      </div>
+
+      <div class="proj-team">
+        <span class="t-chip">Líder de Projetos: <b>Luiz Santos</b></span>
+        <span class="t-chip">Tech Líder: <b>Bruno Lima</b></span>
+        <span class="t-chip">Líder de Infra: <b>Paulo Everton</b></span>
+      </div>
+
+      <div class="proj-decision"><b>Decisão</b>Priorizar e dimensionar esforços para concluir o projeto do Data Lake.</div>
+
+      <a class="proj-link" href="https://docs.google.com/document/d/1CpUh00njicQNmteUgDL_66HYZMQONk_h/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
+
+      <div class="proj-block">
+        <div class="proj-block-title">Sprints / Entregas (ETL) <span class="cnt">0 de 10 concluídas</span></div>
+        <div class="table-wrap text-wrap">
+          <table>
+            <thead><tr><th>Entrega</th><th>Sprint</th><th>Líder</th><th>Status</th><th>Previsto</th><th>Start</th></tr></thead>
+            <tbody>
+              <tr><td>ETL — Domínio Sankhya</td><td>Sprint 1</td><td>Bruno Lima</td><td><span class="badge amber">Em Andamento</span></td><td>31/01/26</td><td>28/02/26</td></tr>
+              <tr><td>ETL — Ponto Tel</td><td>Sprint 2</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — Vixting</td><td>Sprint 3</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — Solides</td><td>Sprint 4</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — Domínio Action</td><td>Sprint 5</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — Domínio Olos</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — Domínio Trabe</td><td>Sprint 7</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — Sinergitech</td><td>Sprint 8</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — Domínio Task</td><td>Sprint 9</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+              <tr><td>ETL — BlueSend</td><td>Sprint 10</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="proj-block">
+        <div class="proj-block-title">Riscos e Impedimentos</div>
+        <div class="table-wrap text-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Risco</th><th class="num">Impacto</th><th class="num">Prob.</th><th class="num">Score</th><th>Mitigação</th></tr></thead>
+            <tbody>
+              <tr><td>R01</td><td>Atraso ou dificuldade na integração das múltiplas fontes de dados</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Priorizar o ETL Sankhya, definir responsáveis por fonte, padronizar layouts e validar acessos/APIs.</td></tr>
+              <tr><td>R02</td><td>Baixa qualidade, inconsistência ou ausência de dados nas fontes integradas</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Criar regras de qualidade, realizar profiling das fontes e tratamento para dados ausentes/duplicados.</td></tr>
+              <tr><td>R03</td><td>Complexidade de integração e manutenção dos múltiplos sistemas e tecnologias</td><td class="num">4</td><td class="num">4</td><td class="num"><span class="badge red">16</span></td><td>Adotar padrões de integração, documentação técnica, monitoramento dos pipelines e controle de versões.</td></tr>
+              <tr><td>R04</td><td>Dependência de acessos, APIs, fornecedores ou equipes responsáveis pelos sistemas de origem</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Mapear dependências críticas, formalizar SLAs e antecipar acessos.</td></tr>
+              <tr><td>R05</td><td>Atraso do Data Lake comprometer o Go Live de 30/09/2026</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Priorizar e dimensionar esforços, acompanhar cronograma por sprint e tratar desvios imediatamente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PROJETO 5 — PROCESSO DE VENDAS ============ -->
+    <div class="proj-card" id="vendas" data-tab="vendas">
+      <div class="proj-head">
+        <div class="proj-head-left">
+          <div class="proj-num">3.5</div>
+          <div>
+            <p class="proj-title">Processo de Vendas</p>
+            <p class="proj-sub">Automação Proc. Vendas · Estruturação de Vendas</p>
+          </div>
+        </div>
+        <span class="badge amber">Execução</span>
+      </div>
+
+      <div class="proj-meta">
+        <div class="m-box"><div class="m-k">Início</div><div class="m-v">15/05/2026</div></div>
+        <div class="m-box"><div class="m-k">Final</div><div class="m-v">31/07/2026</div></div>
+        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">1 mês</div></div>
+        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">Não disponível</div></div>
+        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v" style="color:var(--green);">77%</div></div>
+        <div class="m-box"><div class="m-k">Prazo</div><div class="m-v">31/08/2026</div></div>
+      </div>
+
+      <div class="proj-team">
+        <span class="t-chip">Líder de Projetos: <b>Jardene Ferreira Cruz</b> <span class="badge neutral" style="font-size:.62rem; margin-left:4px;">novo</span></span>
+        <span class="t-chip">Tech Líder: <b>Bruno Lima</b></span>
+        <span class="t-chip">Líder de Infra: <b>Paulo Everton</b></span>
+      </div>
+
+      <div class="proj-decision"><b>Decisão</b>Em execução. Prazo: 31/08/2026.</div>
+
+      <a class="proj-link" href="https://docs.google.com/document/d/1TgxLuLpbWeq2v7ZSII01u2qOHfnna-o_/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
+
+      <div class="proj-block">
+        <div class="proj-block-title">Entregas <span class="cnt">17 de 17 marcadas "Concluído"</span></div>
+        <div class="table-wrap text-wrap">
+          <table>
+            <thead><tr><th>Entrega</th><th>Área</th><th>Líder</th><th>Status</th><th>Etapa</th></tr></thead>
+            <tbody>
+              <tr><td>Realizar reunião de Kick-Off</td><td>Projetos</td><td>Jardene Ferreira Cruz</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Elaborar TAP</td><td>Projetos</td><td>Jardene Ferreira Cruz</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Definir responsabilidades com a Matriz RACI</td><td>Projetos</td><td>Jardene Ferreira Cruz</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Definir qual a vertical do Piloto</td><td>Financeiro/TI</td><td>Antônio Devid Rodrigues De Sousa</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Disponibilizar medições para TI</td><td>Financeiro</td><td>Antônio Devid Rodrigues De Sousa</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Analisar requisitos de automação do processo</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Automação — Elektro Atendimento de Loja SP</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Automação — Elektro Corte/Religa</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Automação — Enel</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Automação — Equatorial</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Realizar testes com usuário</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Analisar ajustes necessários</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Disponibilizar automação demais verticais</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
+              <tr><td>Neoenergia — Atendimento de Loja</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
+              <tr><td>Neoenergia — Corte e Religa</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
+              <tr><td>Enel</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
+              <tr><td>Equatorial</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="proj-block">
+        <div class="proj-block-title">Riscos e Impedimentos</div>
+        <div class="table-wrap text-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Risco</th><th class="num">Impacto</th><th class="num">Prob.</th><th class="num">Score</th><th>Mitigação</th></tr></thead>
+            <tbody>
+              <tr><td>R01</td><td>Falhas ou instabilidades nas integrações com os sistemas das verticais</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Monitorar as integrações, tratar erros e definir responsáveis/SLA para correção.</td></tr>
+              <tr><td>R02</td><td>Diferenças nos processos comerciais entre verticais dificultam padronização</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Mapear e documentar particularidades de cada vertical; definir padrão vs. parametrizável.</td></tr>
+              <tr><td>R03</td><td>Dados de entrada inconsistentes comprometem processamento e resultados</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Criar validações automáticas, regras de consistência e tratamento de exceções.</td></tr>
+              <tr><td>R04</td><td>Baixa adesão dos usuários, mantendo controles manuais paralelos</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Treinar usuários, comunicar ganhos e acompanhar indicadores de adesão.</td></tr>
+              <tr><td>R05</td><td>Necessidade de ajustes pós-produção (cenários não identificados em testes)</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Manter estabilização pós-Go Live, canal de incidentes e priorização de ajustes.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+    <p class="section-foot"><strong>Fonte:</strong> aba "PROJETOS" da planilha PMO_AGOSTO_V2_2026.xlsx, data de referência 24/07/2026 (avanço financeiro) com detalhamento de backlog, sprints, líderes e riscos incorporado em 01/09/2026. Cada projeto possui sua própria matriz de 5 riscos — não são compartilhados entre iniciativas.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0;">Painel de Gestão de Projetos · fonte: PMO_AGOSTO_V2_2026.xlsx (Google Drive) · gerado em 01/09/2026</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var buttons = document.querySelectorAll('.tabbtn');
+    var panels = document.querySelectorAll('.proj-card[data-tab]');
+
+    function activate(target, updateHash){
+      var i;
+      for(i=0; i<buttons.length; i++){
+        if(buttons[i].getAttribute('data-target') === target){ buttons[i].className = 'tabbtn active'; }
+        else{ buttons[i].className = 'tabbtn'; }
+      }
+      for(i=0; i<panels.length; i++){
+        if(panels[i].getAttribute('data-tab') === target){ panels[i].className = 'proj-card active'; }
+        else{ panels[i].className = 'proj-card'; }
+      }
+      if(updateHash && history.replaceState){ history.replaceState(null, '', '#' + target); }
+    }
+
+    for(var i=0; i<buttons.length; i++){
+      buttons[i].addEventListener('click', (function(btn){
+        return function(){ activate(btn.getAttribute('data-target'), true); };
+      })(buttons[i]));
+    }
+
+    var initial = window.location.hash ? window.location.hash.substring(1) : 'mira';
+    var valid = false;
+    for(var j=0; j<buttons.length; j++){
+      if(buttons[j].getAttribute('data-target') === initial){ valid = true; }
+    }
+    activate(valid ? initial : 'mira', false);
+  })();
+</script>
+
+</body>
+</html>
