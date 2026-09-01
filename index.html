@@ -72,11 +72,23 @@
 
   .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px;}
   .card + .card{margin-top:12px;}
-  .nav-card{display:block; text-decoration:none; color:inherit; transition:box-shadow .15s;}
-  .nav-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);}
-  .nav-card .title{font-weight:700; font-size:.95rem; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;}
-  .nav-card .mini{display:grid; grid-template-columns:repeat(2,1fr); gap:6px; font-size:.78rem; color:var(--ink-soft);}
-  .nav-card .mini b{display:block; color:var(--ink); font-size:1rem;}
+
+  /* Resumo Executivo — cards de navegação */
+  .nav-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  @media(max-width:980px){.nav-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.nav-grid{grid-template-columns:1fr;}}
+  .nav-card{
+    display:flex; flex-direction:column; text-decoration:none; color:inherit;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; min-height:172px;
+    transition:box-shadow .15s, border-color .15s, transform .15s;
+  }
+  .nav-card:hover{box-shadow:0 6px 18px rgba(0,0,0,.08); border-color:var(--accent); transform:translateY(-1px);}
+  .nav-card .title-row{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:14px;}
+  .nav-card .title-row h3{font-size:.95rem; font-weight:700; margin:0; line-height:1.3;}
+  .nav-card .arrow{flex:0 0 auto; width:26px; height:26px; border-radius:50%; background:var(--neutral-bg); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:700;}
+  .nav-card .mini{display:grid; grid-template-columns:repeat(2,1fr); gap:12px 10px; font-size:.78rem; color:var(--ink-soft); margin-top:auto;}
+  .nav-card .mini b{display:block; color:var(--ink); font-size:1.05rem; font-weight:800; line-height:1.2;}
 
   .callout{border-radius:var(--radius); padding:16px 18px; border:1px solid; margin:16px 0;}
   .callout.green{background:var(--green-bg); border-color:#BFE8CB; color:#0F5A2B;}
@@ -129,6 +141,28 @@
   .proj-block-title{font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); font-weight:700; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between;}
   .proj-block-title .cnt{font-size:.72rem; color:var(--ink-soft); font-weight:600; text-transform:none;}
 
+  /* Cards resumidos de projeto (Inovação → link para página de detalhes) */
+  .proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px;}
+  @media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-mini{
+    display:flex; flex-direction:column; text-decoration:none; color:inherit;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px; min-height:150px;
+    transition:box-shadow .15s, border-color .15s, transform .15s;
+  }
+  .proj-mini:hover{box-shadow:0 6px 18px rgba(0,0,0,.08); border-color:var(--accent); transform:translateY(-1px);}
+  .proj-mini .pm-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;}
+  .proj-mini .pm-num{font-size:.72rem; font-weight:800; color:var(--accent); background:var(--neutral-bg); border-radius:6px; padding:2px 7px;}
+  .proj-mini h4{font-size:1rem; font-weight:700; margin:0 0 4px;}
+  .proj-mini .pm-sub{font-size:.8rem; color:var(--ink-soft); margin:0; line-height:1.4; flex:1;}
+  .proj-mini .pm-foot{display:flex; align-items:baseline; gap:6px; margin-top:12px; font-size:.75rem; color:var(--ink-soft);}
+  .proj-mini .pm-foot b{font-size:1.15rem; color:var(--ink); font-weight:800;}
+  .proj-mini-cta{align-items:flex-start; justify-content:center; background:var(--neutral-bg); border-style:dashed;}
+  .proj-mini-cta .pm-cta-icon{width:34px; height:34px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:10px;}
+  .proj-mini-cta h4{font-size:.95rem;}
+
+
   /* Correção de tabelas com texto longo (Inovação): permitir quebra de linha */
   .table-wrap.text-wrap td, .table-wrap.text-wrap th{white-space:normal; vertical-align:top;}
   .table-wrap.text-wrap td{line-height:1.45;}
@@ -179,40 +213,35 @@
     <div class="kicker">Visão consolidada de todas as frentes do PMO</div>
     <h2>Resumo Executivo</h2>
 
-    <div class="grid grid-7" style="margin-top:20px;">
-      <a class="nav-card card" href="#produtos">
-        <div class="title">Produtos <span>→</span></div>
+    <div class="nav-grid" style="margin-top:22px;">
+      <a class="nav-card" href="#produtos">
+        <div class="title-row"><h3>Produtos</h3><span class="arrow">→</span></div>
         <div class="mini"><div><b>16</b>ativas</div><div><b>12</b>concluídas</div><div><b>3</b>em andamento</div><div><b>75%</b>avanço</div></div>
       </a>
-      <a class="nav-card card" href="#inovacao">
-        <div class="title">Inovação <span>→</span></div>
+      <a class="nav-card" href="#inovacao">
+        <div class="title-row"><h3>Inovação</h3><span class="arrow">→</span></div>
         <div class="mini"><div><b>5</b>ativas</div><div><b>3</b>em execução</div><div><b>0</b>em MVP</div><div><b>R$930k</b>investido</div></div>
       </a>
-      <a class="nav-card card" href="#automacao">
-        <div class="title">Automação <span>→</span></div>
+      <a class="nav-card" href="#automacao">
+        <div class="title-row"><h3>Automação</h3><span class="arrow">→</span></div>
         <div class="mini"><div><b>39</b>ativas</div><div><b>20</b>concluídas</div><div><b>4</b>em andamento</div><div><b>51%</b>avanço</div></div>
       </a>
-      <a class="nav-card card" href="#modelagem">
-        <div class="title">Modelagem · Supply Chain <span>→</span></div>
+      <a class="nav-card" href="#modelagem">
+        <div class="title-row"><h3>Modelagem</h3><span class="arrow">→</span></div>
         <div class="mini"><div><b>164</b>itens</div><div><b>6</b>frentes</div><div><b>28,66%</b>avanço</div><div><b>2026</b>go-lives</div></div>
       </a>
-      <a class="nav-card card" href="#politicas">
-        <div class="title">Políticas <span>→</span></div>
+      <a class="nav-card" href="#politicas">
+        <div class="title-row"><h3>Políticas</h3><span class="arrow">→</span></div>
         <div class="mini"><div><b>14</b>pipeline</div><div><b>11</b>concluídas</div><div><b>3</b>em andamento</div><div><b>79%</b>avanço</div></div>
       </a>
-      <a class="nav-card card" href="#erp">
-        <div class="title">ERP Sankhya <span>→</span></div>
+      <a class="nav-card" href="#erp">
+        <div class="title-row"><h3>ERP Sankhya</h3><span class="arrow">→</span></div>
         <div class="mini"><div><b>16</b>módulos</div><div><b>13</b>baixo risco</div><div><b>14%</b>restante</div><div><b>86%</b>avanço médio</div></div>
       </a>
-      <a class="nav-card card" href="#roadmap">
-        <div class="title">Roadmap <span>→</span></div>
+      <a class="nav-card" href="#roadmap">
+        <div class="title-row"><h3>Roadmap</h3><span class="arrow">→</span></div>
         <div class="mini"><div><b>15</b>operações</div><div><b>8</b>concluídas</div><div><b>3</b>em andamento</div><div><b>4</b>a iniciar</div></div>
       </a>
-    </div>
-
-    <div class="callout neutral" style="margin-top:20px;">
-      <span class="lbl">⚑ Nesta rodada (01/09/2026)</span>
-      A aba <strong>PROJETOS</strong> (Inovação) recebeu novo detalhamento: o projeto <strong>MIRA</strong> ganhou equipe e um backlog completo de 20 histórias de usuário (1 já em andamento); o <strong>Data Lake</strong> teve suas 10 sprints de ETL sequenciadas; e o projeto 5 foi expandido para <strong>"Processo de Vendas"</strong>, com 17 entregas — todas marcadas "Concluído". O % de avanço deste projeto foi recalculado de 35% para <strong>77%</strong> nesta atualização, corrigindo a divergência identificada na rodada anterior. Todos os 5 projetos agora têm link direto ao respectivo TAP. Demais frentes (Produtos, Indicadores, Automação, Modelagem, Políticas, ERP, Roadmap) permanecem sem alteração de conteúdo desde a rodada anterior.
     </div>
 
     <p class="section-foot"><strong>Fonte:</strong> aba "SUMARIO" da planilha PMO_AGOSTO_V2_2026.xlsx (Google Drive), atualizada em 01/09/2026. Clique em qualquer card para abrir a aba correspondente com o detalhamento completo.</p>
@@ -324,369 +353,50 @@
       <div class="stat accent"><div class="n">R$930.273,00</div><div class="l">Invest. inicial mapeado</div></div>
     </div>
 
-    <div class="callout amber" style="margin-top:20px;">
-      <span class="lbl">⚑ Nesta rodada — novo detalhamento</span>
-      A aba PROJETOS recebeu 3 atualizações relevantes: (1) o projeto <strong>MIRA</strong> ganhou equipe definida e um backlog completo de 20 histórias de usuário (US01–US20); (2) o <strong>Data Lake</strong> teve suas 10 sprints de ETL renumeradas e sequenciadas; (3) o projeto 5 foi expandido de "Automação Proc. Vendas" para <strong>"Processo de Vendas"</strong>, com 17 entregas detalhadas e 5 novos riscos específicos. Todos os projetos também ganharam link direto para o respectivo TAP (Termo de Abertura).
-    </div>
+    <h3 style="margin-top:28px;">Iniciativas</h3>
+    <p class="drag-note">Cada projeto tem sua própria matriz de riscos (5 riscos cada) — veja o detalhamento completo por projeto na página dedicada.</p>
 
-    <h3 style="margin-top:24px;">⚠ Itens que Requerem Tratamento</h3>
-    <p style="margin-bottom:10px; font-size:.9rem; color:var(--ink-soft);">Riscos por criticidade, mais inconsistências de dados identificadas nesta rodada.</p>
-    <div class="table-wrap text-wrap" id="tab-tratar">
-      <table>
-        <thead><tr><th>Projeto</th><th>Risco / Pendência</th><th class="num">Score</th><th>Ação de mitigação</th></tr></thead>
-        <tbody>
-          <tr><td>Precificação por IA</td><td>Qualidade e consistência dos dados utilizados pela IA</td><td class="num"><span class="badge red">20</span></td><td>Validar origem, completude e consistência dos insumos operacionais; criar regras de saneamento e base padronizada.</td></tr>
-          <tr><td>Data Lake</td><td>Atraso ou dificuldade na integração das múltiplas fontes de dados</td><td class="num"><span class="badge red">20</span></td><td>Priorizar o ETL Sankhya, definir responsáveis por fonte, padronizar layouts e validar acessos/APIs.</td></tr>
-          <tr><td>Processo de Vendas</td><td>Falhas ou instabilidades nas integrações com os sistemas das verticais</td><td class="num"><span class="badge red">20</span></td><td>Monitorar integrações, tratar erros e definir responsáveis/SLA para correção.</td></tr>
-          <tr><td>Processo de Vendas</td><td>Diferenças nos processos comerciais entre verticais dificultam padronização</td><td class="num"><span class="badge red">20</span></td><td>Mapear e documentar particularidades de cada vertical; definir o que é padrão vs. parametrizável.</td></tr>
-          <tr><td>Data Lake</td><td>Complexidade de integração e manutenção dos múltiplos sistemas</td><td class="num"><span class="badge red">16</span></td><td>Adotar padrões de integração, documentação técnica, monitoramento dos pipelines e controle de versões.</td></tr>
-          <tr><td>Precificação por IA</td><td>Precificação da IA não refletir a realidade operacional</td><td class="num"><span class="badge amber">15</span></td><td>Simular com cenários reais e comparar com preços históricos e custos efetivos; ajustar pesos do modelo.</td></tr>
-          <tr><td>Precificação por IA</td><td>Divergência entre a precificação da IA e o DRE do projeto</td><td class="num"><span class="badge amber">15</span></td><td>Usar as simulações de DRE do MVP 2 como etapa formal de validação.</td></tr>
-          <tr><td>Data Lake</td><td>Baixa qualidade/ausência de dados nas fontes integradas</td><td class="num"><span class="badge amber">15</span></td><td>Criar regras de qualidade, profiling das fontes e tratamento para dados ausentes/duplicados.</td></tr>
-          <tr><td>Data Lake</td><td><strong>Atraso pode comprometer o Go Live de 30/09/2026</strong></td><td class="num"><span class="badge amber">15</span></td><td>Apenas 1 de 10 sprints iniciada — priorizar e dimensionar esforços com urgência.</td></tr>
-          <tr><td>Processo de Vendas</td><td>Dados de entrada inconsistentes comprometem o processamento automatizado</td><td class="num"><span class="badge amber">15</span></td><td>Criar validações automáticas, regras de consistência e tratamento de exceções.</td></tr>
-          <tr><td>Precificação por IA</td><td>Critérios de aceite insuficientes para validar o MVP</td><td class="num"><span class="badge amber">12</span></td><td>Formalizar critérios objetivos com indicadores mínimos de acurácia e rastreabilidade.</td></tr>
-          <tr><td>Precificação por IA</td><td>Baixa adoção/confiança das áreas usuárias na recomendação da IA</td><td class="num"><span class="badge amber">12</span></td><td>Envolver as áreas desde os testes e validar conjuntamente antes do Go-Live.</td></tr>
-          <tr><td>Data Lake</td><td>Dependência de acessos, APIs e fornecedores dos sistemas de origem</td><td class="num"><span class="badge amber">12</span></td><td>Mapear dependências críticas, formalizar SLAs e antecipar acessos.</td></tr>
-          <tr><td>Processo de Vendas</td><td>Baixa adesão dos usuários, com manutenção de controles manuais paralelos</td><td class="num"><span class="badge amber">12</span></td><td>Treinar usuários, comunicar ganhos e acompanhar indicadores de adesão.</td></tr>
-          <tr><td>Processo de Vendas</td><td>Ajustes necessários após entrada em produção (cenários não testados)</td><td class="num"><span class="badge amber">12</span></td><td>Manter período de estabilização pós-Go Live e canal de registro de incidentes.</td></tr>
-          <tr><td>Precificação por IA</td><td>Sprint "Critérios de aceite" (Sprint 9) em validação, sem fechamento</td><td class="num">—</td><td>Concluir a validação para destravar o MVP 2 (Go-Live previsto 08/07/2026, já vencido).</td></tr>
-          <tr><td>Processo de Vendas</td><td>Todas as 17 entregas concluídas, mas ainda classificado como "Execução" (não "Concluído")</td><td class="num">—</td><td>Avanço já recalculado para 77% nesta rodada; avaliar formalmente o encerramento da fase quando as verticais em monitoramento estabilizarem.</td></tr>
-          <tr><td><strong>Processo de Vendas</strong></td><td><strong>Link do TAP idêntico ao TAP de "Precificação por IA"</strong></td><td class="num">—</td><td>O documento vinculado parece ser o mesmo dos dois projetos — confirmar e corrigir o link correto na origem.</td></tr>
-          <tr><td><strong>MIRA</strong></td><td><strong>US01 já "Em Andamento" (15%), mas o % de avanço do projeto no cabeçalho segue em 0%</strong></td><td class="num">—</td><td>Atualizar a célula de % de avanço agregado para refletir o início do backlog.</td></tr>
-          <tr><td>Data Lake</td><td>Sprint 1 (ETL Sankhya) com "Previsto" em 31/01/2026, mas "Start" registrado em 28/02/2026</td><td class="num">—</td><td>Início já saiu ~1 mês do previsto — confirmar se há atraso real ou erro de preenchimento das colunas.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- ============ PROJETO 1 — MIRA ============ -->
-    <div class="proj-card">
-      <div class="proj-head">
-        <div class="proj-head-left">
-          <div class="proj-num">3.1</div>
-          <div>
-            <p class="proj-title">MIRA</p>
-            <p class="proj-sub">Monitoramento Inteligente e Roteirização Automatizada</p>
-          </div>
-        </div>
-        <span class="badge neutral">Iniciado</span>
-      </div>
-
-      <div class="proj-meta">
-        <div class="m-box"><div class="m-k">Início</div><div class="m-v">Mar/2026</div></div>
-        <div class="m-box"><div class="m-k">Final</div><div class="m-v">Abr/2027</div></div>
-        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">14 meses</div></div>
-        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">R$ 142.194,00</div></div>
-        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">1a 1m (ajust. 1a 3m)</div></div>
-        <div class="m-box"><div class="m-k">TIR</div><div class="m-v">79,70%</div></div>
-        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v">0% <span style="font-weight:400;color:var(--ink-soft);">⚠ desatualizado</span></div></div>
-        <div class="m-box"><div class="m-k">Fase</div><div class="m-v">Iniciado</div></div>
-      </div>
-
-      <div class="proj-team">
-        <span class="t-chip">Líder de Projetos: <b>Luiz Santos</b></span>
-        <span class="t-chip">Líder de Produto: <b>Ina Silveira</b></span>
-        <span class="t-chip">Apoio: <b>Laboratório de Produtos</b></span>
-      </div>
-
-      <a class="proj-link" href="https://docs.google.com/document/d/1REEqeqKDYX8hQn6iQUxc6SiZvK2H-ZQb/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
-
-      <div class="proj-block">
-        <div class="proj-block-title">Backlog — Histórias de Usuário <span class="cnt">1 de 20 iniciadas</span></div>
-        <div class="table-wrap text-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>História de usuário</th><th>Bloco</th><th>Sprint</th><th>Prioridade</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr><td>US01</td><td>Como gestor quero mapear o processo atual para identificar melhorias.</td><td>Descoberta</td><td>Sprint 1</td><td>Alta</td><td><span class="badge amber">Em Andamento · 15%</span></td></tr>
-              <tr><td>US02</td><td>Como leiturista quero participar das entrevistas para contribuir com requisitos.</td><td>Descoberta</td><td>Sprint 1</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US03</td><td>Como PO quero backlog priorizado.</td><td>Descoberta</td><td>Sprint 1</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US04</td><td>Como usuário quero validar protótipo navegável.</td><td>UI/UX</td><td>Sprint 2</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US05</td><td>Como analista quero identificar fontes de dados.</td><td>Dados</td><td>Sprint 2</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US06</td><td>Como leiturista quero capturar foto do medidor.</td><td>MVP</td><td>Sprint 3</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US07</td><td>Como sistema quero validar qualidade da imagem.</td><td>MVP</td><td>Sprint 4</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US08</td><td>Como sistema quero extrair leitura via OCR.</td><td>OCR</td><td>Sprint 5</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US09</td><td>Como leiturista quero corrigir leitura OCR.</td><td>OCR</td><td>Sprint 6</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US10</td><td>Como gestor quero exportar leituras.</td><td>Exportação</td><td>Sprint 6</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US11</td><td>Como leiturista quero operar offline.</td><td>Offline</td><td>Sprint 6</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US12</td><td>Como sistema quero melhorar OCR continuamente.</td><td>IA</td><td>Sprint 7</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US13</td><td>Como sistema quero validar inconsistências.</td><td>Validação</td><td>Sprint 7</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US14</td><td>Como supervisor quero acompanhar leituras.</td><td>Dashboard</td><td>Sprint 7</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US15</td><td>Como gestor quero gerar rotas inteligentes.</td><td>Roteirização</td><td>Sprint 8</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US16</td><td>Como leiturista quero receber rota diária.</td><td>Roteirização</td><td>Sprint 9</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US17</td><td>Como gestor quero comparar rota atual e otimizada.</td><td>Roteirização</td><td>Sprint 10</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US18</td><td>Como diretor quero visualizar KPIs.</td><td>BI</td><td>Sprint 11</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US19</td><td>Como TI quero integrar sistemas.</td><td>Integração</td><td>Sprint 12</td><td>Média</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-              <tr><td>US20</td><td>Como gestor quero documentação e transferência tecnológica.</td><td>Encerramento</td><td>Sprint 12</td><td>Alta</td><td><span class="badge neutral">A Iniciar</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="drag-note">Execução (parceiro): IFCE, em todas as histórias. Duração estimada por bloco: 2 a 4 meses.</p>
-      </div>
-    </div>
-
-    <!-- ============ PROJETO 2 — PRECIFICAÇÃO POR IA ============ -->
-    <div class="proj-card">
-      <div class="proj-head">
-        <div class="proj-head-left">
-          <div class="proj-num">3.2</div>
-          <div>
-            <p class="proj-title">Precificação por IA</p>
-          </div>
-        </div>
-        <span class="badge amber">Execução</span>
-      </div>
-
-      <div class="proj-meta">
-        <div class="m-box"><div class="m-k">Início</div><div class="m-v">28/02/2026</div></div>
-        <div class="m-box"><div class="m-k">Final</div><div class="m-v">30/06/2026</div></div>
-        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">31/07/2026</div></div>
-        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">R$ 272.171,00</div></div>
-        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">2a 9m (ajust. 2a 7m)</div></div>
-        <div class="m-box"><div class="m-k">TIR</div><div class="m-v">38,78%</div></div>
-        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v" style="color:var(--amber);">68,42%</div></div>
-        <div class="m-box"><div class="m-k">Prazo</div><div class="m-v">30/09/2026</div></div>
-      </div>
-
-      <div class="proj-team">
-        <span class="t-chip">Líder de Projetos: <b>Luiz Santos</b></span>
-        <span class="t-chip">Tech Líder: <b>Bruno Lima</b></span>
-        <span class="t-chip">Líder de Infra: <b>Paulo Everton</b></span>
-      </div>
-
-      <div class="proj-decision"><b>Decisão</b>Em fase de aprovação dos critérios de sucesso. Prazo: 31/07/2026.</div>
-
-      <a class="proj-link" href="https://docs.google.com/document/d/1ZTX_NRUE9NzZlZDUYLGD-7UQL7SzKl3y/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
-
-      <div class="proj-block">
-        <div class="proj-block-title">Sprints / Entregas <span class="cnt">13 de 19 concluídas</span></div>
-        <div class="table-wrap text-wrap">
-          <table>
-            <thead><tr><th>Entrega</th><th>Sprint</th><th>Líder</th><th>Status</th><th>Período</th></tr></thead>
-            <tbody>
-              <tr><td>Workshop com as áreas</td><td>Sprint 1</td><td>Lucas Queiroz</td><td><span class="badge green">Concluído</span></td><td>05/12/25 → 16/12/25</td></tr>
-              <tr><td>Infraestrutura do projeto</td><td>Sprint 2</td><td>Paulo Everton</td><td><span class="badge green">Concluído</span></td><td>16/12/25 → 19/12/25</td></tr>
-              <tr><td>Viabilidade de recursos</td><td>Sprint 2</td><td>Lucas Queiroz</td><td><span class="badge green">Concluído</span></td><td>19/12/25 → 09/01/26</td></tr>
-              <tr><td>Realizar leitura da E.Tom IA</td><td>Sprint 3</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>02/02/26 → 19/02/26</td></tr>
-              <tr><td>Critérios de aceite</td><td>Sprint 4</td><td>Glaudêncio</td><td><span class="badge green">Concluído</span></td><td>23/02/26 → 24/03/26</td></tr>
-              <tr><td>MVP 1</td><td>Go-Live</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>27/02/26 → 28/02/26</td></tr>
-              <tr><td>Estruturar categorias</td><td>Sprint 5</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
-              <tr><td>Mapear insumos operacionais</td><td>Sprint 5</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
-              <tr><td>Mapear soluções tecnológicas</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
-              <tr><td>Mapear infraestrutura</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
-              <tr><td>Mapear aplicações e softwares</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
-              <tr><td>Mapear pacote de pessoal</td><td>Sprint 7</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
-              <tr><td>Mapear base de apoio</td><td>Sprint 8</td><td>Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>15/05/26 → 28/05/26</td></tr>
-              <tr><td>Critérios de aceite</td><td>Sprint 9</td><td>Glaudêncio</td><td><span class="badge amber">Em Andamento</span></td><td>28/05/26 → 30/06/26 · Em validação</td></tr>
-              <tr><td>MVP 2</td><td>Go-Live</td><td>Luiz Santos</td><td><span class="badge neutral">A Iniciar</span></td><td>30/06/26 → 08/07/26</td></tr>
-              <tr><td>(Tarefa) Simular cenários</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
-              <tr><td>(Entrega Épica) DREs</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
-              <tr><td>Critérios de aceite</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
-              <tr><td>Entrega final</td><td>—</td><td>—</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="proj-block">
-        <div class="proj-block-title">Riscos e Impedimentos</div>
-        <div class="table-wrap text-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>Risco</th><th class="num">Impacto</th><th class="num">Prob.</th><th class="num">Score</th><th>Mitigação</th></tr></thead>
-            <tbody>
-              <tr><td>R01</td><td>Qualidade e consistência dos dados utilizados pela IA</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Validar origem, completude e consistência dos insumos operacionais; criar regras de saneamento e base padronizada.</td></tr>
-              <tr><td>R02</td><td>Precificação gerada pela IA não refletir a realidade operacional</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Executar simulações com cenários reais e comparar resultados com preços históricos e custos efetivos.</td></tr>
-              <tr><td>R03</td><td>Divergência entre a precificação da IA e o DRE do projeto</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Usar as simulações de DRE do MVP 2 como etapa formal de validação.</td></tr>
-              <tr><td>R04</td><td>Critérios de aceite insuficientes para validar o MVP</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Formalizar critérios objetivos de aceite, com indicadores mínimos de acurácia e rastreabilidade.</td></tr>
-              <tr><td>R05</td><td>Baixa adoção ou confiança das áreas usuárias na recomendação da IA</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Envolver as áreas desde os testes e validar conjuntamente antes do Go-Live.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="drag-note">Legenda impacto: 1 baixo · 2 moderado · 3 médio · 4 alto · 5 crítico. Legenda probabilidade: 1 rara · 2 baixa · 3 possível · 4 provável · 5 muito provável.</p>
-      </div>
-    </div>
-
-    <!-- ============ PROJETO 3 — IA COB ============ -->
-    <div class="proj-card">
-      <div class="proj-head">
-        <div class="proj-head-left">
-          <div class="proj-num">3.3</div>
-          <div>
-            <p class="proj-title">IA COB (MVP)</p>
-            <p class="proj-sub">Cenário White Label</p>
-          </div>
-        </div>
-        <span class="badge neutral">Em Hold</span>
-      </div>
-
-      <div class="proj-meta">
-        <div class="m-box"><div class="m-k">Início</div><div class="m-v">28/02/2026</div></div>
-        <div class="m-box"><div class="m-k">Final</div><div class="m-v">04/07/2026</div></div>
-        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">~3 meses (MVP)</div></div>
-        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">Em revisão de escopo</div></div>
-        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">Não apurado</div></div>
-        <div class="m-box"><div class="m-k">ROI 12/24/36m</div><div class="m-v">-61,6% / 19,2% / 46,2%</div></div>
-        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v">0%</div></div>
-        <div class="m-box"><div class="m-k">Fase</div><div class="m-v">Em Hold</div></div>
-      </div>
-
-      <div class="proj-decision"><b>Decisão</b>Implantar o IACOB com soluções de mercado (Sinergitech e OLOS) e mensurar ganhos.</div>
-
-      <a class="proj-link" href="https://docs.google.com/document/d/10XSlX-4iSFec-PF9-GpU73tO9OvoyNcw/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
-    </div>
-
-    <!-- ============ PROJETO 4 — DATA LAKE ============ -->
-    <div class="proj-card">
-      <div class="proj-head">
-        <div class="proj-head-left">
-          <div class="proj-num">3.4</div>
-          <div>
-            <p class="proj-title">Data Lake (MEF)</p>
-          </div>
-        </div>
-        <span class="badge amber">Execução</span>
-      </div>
-
-      <div class="proj-meta">
-        <div class="m-box"><div class="m-k">Início</div><div class="m-v">28/02/2026</div></div>
-        <div class="m-box"><div class="m-k">Final</div><div class="m-v">28/02/2027</div></div>
-        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">12 meses</div></div>
-        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">R$ 515.908,00</div></div>
-        <div class="m-box"><div class="m-k">Payback</div><div class="m-v">2a 3m (ajust. 2a 6m)</div></div>
-        <div class="m-box"><div class="m-k">TIR</div><div class="m-v">51,32%</div></div>
-        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v" style="color:var(--amber);">15%</div></div>
-        <div class="m-box"><div class="m-k">Prazo</div><div class="m-v">28/02/2027</div></div>
-      </div>
-
-      <div class="proj-team">
-        <span class="t-chip">Líder de Projetos: <b>Luiz Santos</b></span>
-        <span class="t-chip">Tech Líder: <b>Bruno Lima</b></span>
-        <span class="t-chip">Líder de Infra: <b>Paulo Everton</b></span>
-      </div>
-
-      <div class="proj-decision"><b>Decisão</b>Priorizar e dimensionar esforços para concluir o projeto do Data Lake.</div>
-
-      <a class="proj-link" href="https://docs.google.com/document/d/1CpUh00njicQNmteUgDL_66HYZMQONk_h/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
-
-      <div class="proj-block">
-        <div class="proj-block-title">Sprints / Entregas (ETL) <span class="cnt">0 de 10 concluídas</span></div>
-        <div class="table-wrap text-wrap">
-          <table>
-            <thead><tr><th>Entrega</th><th>Sprint</th><th>Líder</th><th>Status</th><th>Previsto</th><th>Start</th></tr></thead>
-            <tbody>
-              <tr><td>ETL — Domínio Sankhya</td><td>Sprint 1</td><td>Bruno Lima</td><td><span class="badge amber">Em Andamento</span></td><td>31/01/26</td><td>28/02/26</td></tr>
-              <tr><td>ETL — Ponto Tel</td><td>Sprint 2</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — Vixting</td><td>Sprint 3</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — Solides</td><td>Sprint 4</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — Domínio Action</td><td>Sprint 5</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — Domínio Olos</td><td>Sprint 6</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — Domínio Trabe</td><td>Sprint 7</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — Sinergitech</td><td>Sprint 8</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — Domínio Task</td><td>Sprint 9</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-              <tr><td>ETL — BlueSend</td><td>Sprint 10</td><td>Bruno Lima</td><td><span class="badge neutral">A Iniciar</span></td><td>—</td><td>—</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="proj-block">
-        <div class="proj-block-title">Riscos e Impedimentos</div>
-        <div class="table-wrap text-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>Risco</th><th class="num">Impacto</th><th class="num">Prob.</th><th class="num">Score</th><th>Mitigação</th></tr></thead>
-            <tbody>
-              <tr><td>R01</td><td>Atraso ou dificuldade na integração das múltiplas fontes de dados</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Priorizar o ETL Sankhya, definir responsáveis por fonte, padronizar layouts e validar acessos/APIs.</td></tr>
-              <tr><td>R02</td><td>Baixa qualidade, inconsistência ou ausência de dados nas fontes integradas</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Criar regras de qualidade, realizar profiling das fontes e tratamento para dados ausentes/duplicados.</td></tr>
-              <tr><td>R03</td><td>Complexidade de integração e manutenção dos múltiplos sistemas e tecnologias</td><td class="num">4</td><td class="num">4</td><td class="num"><span class="badge red">16</span></td><td>Adotar padrões de integração, documentação técnica, monitoramento dos pipelines e controle de versões.</td></tr>
-              <tr><td>R04</td><td>Dependência de acessos, APIs, fornecedores ou equipes responsáveis pelos sistemas de origem</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Mapear dependências críticas, formalizar SLAs e antecipar acessos.</td></tr>
-              <tr><td>R05</td><td>Atraso do Data Lake comprometer o Go Live de 30/09/2026</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Priorizar e dimensionar esforços, acompanhar cronograma por sprint e tratar desvios imediatamente.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ PROJETO 5 — PROCESSO DE VENDAS ============ -->
-    <div class="proj-card">
-      <div class="proj-head">
-        <div class="proj-head-left">
-          <div class="proj-num">3.5</div>
-          <div>
-            <p class="proj-title">Processo de Vendas</p>
-            <p class="proj-sub">Automação Proc. Vendas · Estruturação de Vendas</p>
-          </div>
-        </div>
-        <span class="badge amber">Execução</span>
-      </div>
-
-      <div class="proj-meta">
-        <div class="m-box"><div class="m-k">Início</div><div class="m-v">15/05/2026</div></div>
-        <div class="m-box"><div class="m-k">Final</div><div class="m-v">31/07/2026</div></div>
-        <div class="m-box"><div class="m-k">Deadline</div><div class="m-v">1 mês</div></div>
-        <div class="m-box"><div class="m-k">Investimento</div><div class="m-v">Não disponível</div></div>
-        <div class="m-box"><div class="m-k">Avanço</div><div class="m-v" style="color:var(--green);">77%</div></div>
-        <div class="m-box"><div class="m-k">Prazo</div><div class="m-v">31/08/2026</div></div>
-      </div>
-
-      <div class="proj-team">
-        <span class="t-chip">Líder de Projetos: <b>Jardene Ferreira Cruz</b> <span class="badge neutral" style="font-size:.62rem; margin-left:4px;">novo</span></span>
-        <span class="t-chip">Tech Líder: <b>Bruno Lima</b></span>
-        <span class="t-chip">Líder de Infra: <b>Paulo Everton</b></span>
-      </div>
-
-      <div class="proj-decision"><b>Decisão</b>Em execução. Prazo: 31/08/2026.</div>
-
-      <a class="proj-link" href="https://docs.google.com/document/d/1ZTX_NRUE9NzZlZDUYLGD-7UQL7SzKl3y/edit?usp=drive_link" target="_blank" rel="noopener">📄 Abrir TAP do projeto</a>
-      <span class="proj-link-warn">⚠ link idêntico ao TAP de Precificação por IA — verificar</span>
-
-      <div class="proj-block">
-        <div class="proj-block-title">Entregas <span class="cnt">17 de 17 marcadas "Concluído"</span></div>
-        <div class="table-wrap text-wrap">
-          <table>
-            <thead><tr><th>Entrega</th><th>Área</th><th>Líder</th><th>Status</th><th>Etapa</th></tr></thead>
-            <tbody>
-              <tr><td>Realizar reunião de Kick-Off</td><td>Projetos</td><td>Jardene Ferreira Cruz</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Elaborar TAP</td><td>Projetos</td><td>Jardene Ferreira Cruz</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Definir responsabilidades com a Matriz RACI</td><td>Projetos</td><td>Jardene Ferreira Cruz</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Definir qual a vertical do Piloto</td><td>Financeiro/TI</td><td>Antônio Devid Rodrigues De Sousa</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Disponibilizar medições para TI</td><td>Financeiro</td><td>Antônio Devid Rodrigues De Sousa</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Analisar requisitos de automação do processo</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Automação — Elektro Atendimento de Loja SP</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Automação — Elektro Corte/Religa</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Automação — Enel</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Automação — Equatorial</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Realizar testes com usuário</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Analisar ajustes necessários</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Disponibilizar automação demais verticais</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Encerrada</td></tr>
-              <tr><td>Neoenergia — Atendimento de Loja</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
-              <tr><td>Neoenergia — Corte e Religa</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
-              <tr><td>Enel</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
-              <tr><td>Equatorial</td><td>TI</td><td>Paulo Everton / Bruno Lima</td><td><span class="badge green">Concluído</span></td><td>Em monitoramento</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="proj-block">
-        <div class="proj-block-title">Riscos e Impedimentos</div>
-        <div class="table-wrap text-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>Risco</th><th class="num">Impacto</th><th class="num">Prob.</th><th class="num">Score</th><th>Mitigação</th></tr></thead>
-            <tbody>
-              <tr><td>R01</td><td>Falhas ou instabilidades nas integrações com os sistemas das verticais</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Monitorar as integrações, tratar erros e definir responsáveis/SLA para correção.</td></tr>
-              <tr><td>R02</td><td>Diferenças nos processos comerciais entre verticais dificultam padronização</td><td class="num">5</td><td class="num">4</td><td class="num"><span class="badge red">20</span></td><td>Mapear e documentar particularidades de cada vertical; definir padrão vs. parametrizável.</td></tr>
-              <tr><td>R03</td><td>Dados de entrada inconsistentes comprometem processamento e resultados</td><td class="num">5</td><td class="num">3</td><td class="num"><span class="badge amber">15</span></td><td>Criar validações automáticas, regras de consistência e tratamento de exceções.</td></tr>
-              <tr><td>R04</td><td>Baixa adesão dos usuários, mantendo controles manuais paralelos</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Treinar usuários, comunicar ganhos e acompanhar indicadores de adesão.</td></tr>
-              <tr><td>R05</td><td>Necessidade de ajustes pós-produção (cenários não identificados em testes)</td><td class="num">4</td><td class="num">3</td><td class="num"><span class="badge amber">12</span></td><td>Manter estabilização pós-Go Live, canal de incidentes e priorização de ajustes.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="proj-grid">
+      <a class="proj-mini" href="projetos-detalhes.html#mira">
+        <div class="pm-head"><span class="pm-num">3.1</span><span class="badge neutral">Iniciado</span></div>
+        <h4>MIRA</h4>
+        <p class="pm-sub">Monitoramento Inteligente e Roteirização Automatizada</p>
+        <div class="pm-foot"><span>Avanço</span><b>0%</b></div>
+      </a>
+      <a class="proj-mini" href="projetos-detalhes.html#precificacao">
+        <div class="pm-head"><span class="pm-num">3.2</span><span class="badge amber">Execução</span></div>
+        <h4>Precificação por IA</h4>
+        <p class="pm-sub">Modelo de precificação assistido por IA para operações</p>
+        <div class="pm-foot"><span>Avanço</span><b>68,42%</b></div>
+      </a>
+      <a class="proj-mini" href="projetos-detalhes.html#iacob">
+        <div class="pm-head"><span class="pm-num">3.3</span><span class="badge neutral">Em Hold</span></div>
+        <h4>IA COB (MVP)</h4>
+        <p class="pm-sub">Cenário White Label — cobrança assistida por IA</p>
+        <div class="pm-foot"><span>Avanço</span><b>0%</b></div>
+      </a>
+      <a class="proj-mini" href="projetos-detalhes.html#datalake">
+        <div class="pm-head"><span class="pm-num">3.4</span><span class="badge amber">Execução</span></div>
+        <h4>Data Lake (MEF)</h4>
+        <p class="pm-sub">Consolidação de dados de todas as fontes operacionais</p>
+        <div class="pm-foot"><span>Avanço</span><b>15%</b></div>
+      </a>
+      <a class="proj-mini" href="projetos-detalhes.html#vendas">
+        <div class="pm-head"><span class="pm-num">3.5</span><span class="badge green">Execução</span></div>
+        <h4>Processo de Vendas</h4>
+        <p class="pm-sub">Automação do processo comercial entre verticais</p>
+        <div class="pm-foot"><span>Avanço</span><b>77%</b></div>
+      </a>
+      <a class="proj-mini proj-mini-cta" href="projetos-detalhes.html">
+        <div class="pm-cta-icon">→</div>
+        <h4>Ver detalhamento completo</h4>
+        <p class="pm-sub">Backlog, sprints, equipe, TAP e riscos de cada projeto, individualmente</p>
+      </a>
     </div>
 
     <p class="section-foot"><strong>Fonte:</strong> aba "PROJETOS" da planilha PMO_AGOSTO_V2_2026.xlsx, data de referência 24/07/2026 (avanço financeiro) com detalhamento de backlog, sprints, líderes e riscos incorporado em 01/09/2026. O KPI "Em MVP" está em 0 porque nenhum projeto está classificado nessa fase.</p>
   </div>
 </section>
-
 <section id="automacao">
   <div class="wrap">
     <div class="kicker">Projetos em andamento · consultas, views, relatórios e iniciativas de dados</div>
