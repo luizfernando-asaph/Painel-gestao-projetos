@@ -40,6 +40,14 @@
   .badge { display:inline-block; padding:3px 9px; border-radius:20px; font-size:12px; font-weight:700; white-space:nowrap; }
   .st-alta { background:rgba(34,197,94,.18); color:var(--green); }
   .st-media { background:rgba(251,191,119,.2); color:var(--amber); }
+  .st-ready { background:rgba(34,197,94,.22); color:var(--green); }
+  .st-pending { background:rgba(251,191,119,.22); color:var(--amber); }
+  tr.row-ready { background:rgba(34,197,94,.07); }
+  .card-flag { display:inline-block; margin-top:10px; padding:6px 12px; border-radius:8px; font-size:12.5px; font-weight:700; }
+  .card-flag.ready { background:rgba(34,197,94,.16); color:var(--green); }
+  .card-flag.pending { background:rgba(251,191,119,.18); color:var(--amber); }
+  .folder-cta { display:inline-flex; align-items:center; gap:8px; margin-top:16px; background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px 16px; color:var(--lime); text-decoration:none; font-weight:700; font-size:14px; }
+  .folder-cta:hover { background:var(--panel2); }
   .proj-grid { display:flex; flex-direction:column; gap:18px; }
   .proj-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:22px; }
   .proj-head { display:flex; gap:16px; align-items:center; margin-bottom:10px; }
@@ -78,6 +86,7 @@
   <div class="kicker">Radar de soluções · 2026</div>
   <h1>Projetos de Inovação em Análise</h1>
   <p class="sub">Avaliação de 7 projetos de inovação — pontos fortes, pontos fracos e perguntas de levantamento de requisitos para quantificar corretamente a viabilidade de cada projeto, antes de comprometer investimento além do piloto.</p>
+  <a class="folder-cta" href="https://drive.google.com/drive/folders/1kL_RHvlSfCOxIzDVuLMDir1YDhotZpWb" target="_blank" rel="noopener">📁 Acessar pasta com todos os arquivos dos 7 projetos →</a>
 </div>
 
 <main>
@@ -106,18 +115,19 @@
   <div class="section-sub">Ordenado por Score de Viabilidade (0–5)</div>
   <div class="table-wrap">
   <table>
-    <thead><tr><th>#</th><th>Projeto</th><th>Vertical</th><th>Score</th><th>Classificação</th><th>Status Financeiro</th><th>Riscos Crít./Altos</th></tr></thead>
+    <thead><tr><th>#</th><th>Projeto</th><th>Vertical</th><th>Score</th><th>Classificação</th><th>Status Financeiro</th><th>Riscos Crít./Altos</th><th>Prontidão</th></tr></thead>
     <tbody>
-<tr><td>1</td><td>GeoCliente</td><td>Serviços de Campo</td><td><b>4.0</b></td><td><span class='badge st-alta'>Alta Viabilidade</span></td><td>Investimento R$ 2.500</td><td>2 de 7</td></tr>
-<tr><td>2</td><td>Reaviso Digital</td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento R$ 3.000</td><td>2 de 8</td></tr>
-<tr><td>3</td><td>Oper Analytics</td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento único R$ 13.498</td><td>5 de 8</td></tr>
-<tr><td>4</td><td>AgilizaAI</td><td>Atend. Loja</td><td><b>3.6</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando premissas unitárias (investimento e benefício ainda zerados)</td><td>5 de 8</td></tr>
-<tr><td>5</td><td>Nexus Intelligence</td><td>Cobrança</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (framework de fórmulas pronto, valores pendentes)</td><td>6 de 8</td></tr>
-<tr><td>6</td><td>PulseBOT</td><td>Atend. Loja</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (percentuais informados, valores absolutos pendentes)</td><td>5 de 8</td></tr>
-<tr><td>7</td><td>MENTOR.IA</td><td>Atendimento de Lojas</td><td><b>3.2</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Monetização direta enxuta (~R$ 45/licença); demais valores pendentes</td><td>4 de 8</td></tr>
+<tr class="row-ready"><td>1</td><td>GeoCliente</td><td>Serviços de Campo</td><td><b>4.0</b></td><td><span class='badge st-alta'>Alta Viabilidade</span></td><td>Investimento R$ 2.500</td><td>2 de 7</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
+<tr class="row-ready"><td>2</td><td>Reaviso Digital</td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento R$ 3.000</td><td>2 de 8</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
+<tr class="row-ready"><td>3</td><td>Oper Analytics</td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento único R$ 13.498</td><td>5 de 8</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
+<tr><td>4</td><td>AgilizaAI</td><td>Atend. Loja</td><td><b>3.6</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando premissas unitárias (investimento e benefício ainda zerados)</td><td>5 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
+<tr><td>5</td><td>Nexus Intelligence</td><td>Cobrança</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (framework de fórmulas pronto, valores pendentes)</td><td>6 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
+<tr><td>6</td><td>PulseBOT</td><td>Atend. Loja</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (percentuais informados, valores absolutos pendentes)</td><td>5 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
+<tr><td>7</td><td>MENTOR.IA</td><td>Atendimento de Lojas</td><td><b>3.2</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Monetização direta enxuta (~R$ 45/licença); demais valores pendentes</td><td>4 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
     </tbody>
   </table>
   </div>
+  <p class="section-sub" style="margin-top:10px;">✅ <b>3 projetos com investimento definido</b> (GeoCliente, Reaviso Digital, Oper Analytics) já têm dados suficientes para avançar para uma decisão de implantação. ⏳ <b>4 projetos</b> (AgilizaAI, Nexus Intelligence, PulseBOT, MENTOR.IA) ainda não têm investimento/benefício quantificados — antes de avançar, é preciso completar o levantamento de premissas junto ao time responsável.</p>
 </section>
 
 <section>
@@ -134,6 +144,7 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Investimento R$ 2.500 · ROI 88,4x · Payback 1 mês · VPL R$ 46.395</div>
+  <div class="card-flag ready">✅ Destacado para implantar — investimento definido</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -159,6 +170,7 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Investimento R$ 3.000 · ROI 845x · Payback 1 mês · VPL R$ 2,21 milhões</div>
+  <div class="card-flag ready">✅ Destacado para implantar — investimento definido</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -184,6 +196,7 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Investimento único R$ 13.498 · ROI 141x · Payback 1 mês · VPL R$ 1,66 milhão</div>
+  <div class="card-flag ready">✅ Destacado para implantar — investimento definido</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -209,6 +222,7 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Aguardando premissas unitárias (investimento e benefício ainda zerados)</div>
+  <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -234,6 +248,7 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Aguardando linha de base (framework de fórmulas pronto, valores pendentes)</div>
+  <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -259,6 +274,7 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Aguardando linha de base (percentuais informados, valores absolutos pendentes)</div>
+  <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -284,6 +300,7 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Monetização direta enxuta (~R$ 45/licença); demais valores pendentes</div>
+  <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -317,7 +334,7 @@
 </main>
 
 <footer>
-  Radar de Soluções · Meireles e Freitas · fonte: pasta do Google Drive (Radar_Solucoes_Avaliacao_7_Projetos.pdf + fichas individuais) · gerado em 10/09/2026 · <a href="index.html#resumo">← Voltar ao Painel PMO</a>
+  Radar de Soluções · Meireles e Freitas · fonte: pasta do Google Drive (Radar_Solucoes_Avaliacao_7_Projetos.pdf + fichas individuais) · gerado em 10/09/2026 · <a href="https://drive.google.com/drive/folders/1kL_RHvlSfCOxIzDVuLMDir1YDhotZpWb" target="_blank" rel="noopener">📁 Pasta com todos os arquivos dos projetos</a> · <a href="index.html#resumo">← Voltar ao Painel PMO</a>
 </footer>
 
 </body>
