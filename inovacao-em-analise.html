@@ -61,6 +61,11 @@
   .proj-cols h5.c-fracos { color:#ff9b9b; margin:0 0 6px; font-size:13px; }
   .proj-cols ul { margin:0; padding-left:18px; font-size:13px; color:var(--text); }
   .proj-cols li { margin-bottom:6px; }
+  .proj-anexos { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:12px 0 4px; font-size:13.5px; }
+  .proj-anexos .lbl { color:var(--muted); }
+  .anexo-link { display:inline-flex; gap:6px; align-items:center; padding:6px 12px; border:1px solid var(--border); border-radius:8px; color:#fff; text-decoration:none; background:rgba(255,255,255,.04); }
+  .anexo-link:hover, .anexo-link:focus-visible { border-color:var(--blue); background:rgba(37,99,235,.12); }
+  .anexo-link small { color:var(--muted); }
   .proj-perguntas { margin-top:16px; background:rgba(37,99,235,.08); border-left:3px solid var(--blue); border-radius:6px; padding:10px 14px; }
   .proj-perguntas h5 { margin:0 0 6px; color:#7aa5ff; font-size:13px; }
   .proj-perguntas ul { margin:0; padding-left:18px; font-size:13px; }
@@ -115,15 +120,15 @@
   <div class="section-sub">Ordenado por Score de Viabilidade (0–5)</div>
   <div class="table-wrap">
   <table>
-    <thead><tr><th>#</th><th>Projeto</th><th>Vertical</th><th>Score</th><th>Classificação</th><th>Status Financeiro</th><th>Riscos Crít./Altos</th><th>Prontidão</th></tr></thead>
+    <thead><tr><th>#</th><th>Projeto <small style="font-weight:400">(clique para abrir a ficha)</small></th><th>Vertical</th><th>Score</th><th>Classificação</th><th>Status Financeiro</th><th>Riscos Crít./Altos</th><th>Prontidão</th></tr></thead>
     <tbody>
-<tr class="row-ready"><td>1</td><td>GeoCliente</td><td>Serviços de Campo</td><td><b>4.0</b></td><td><span class='badge st-alta'>Alta Viabilidade</span></td><td>Investimento R$ 2.500</td><td>2 de 7</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
-<tr class="row-ready"><td>2</td><td>Reaviso Digital</td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento R$ 3.000</td><td>2 de 8</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
-<tr class="row-ready"><td>3</td><td>Oper Analytics</td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento único R$ 13.498</td><td>5 de 8</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
-<tr><td>4</td><td>AgilizaAI</td><td>Atend. Loja</td><td><b>3.6</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando premissas unitárias (investimento e benefício ainda zerados)</td><td>5 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
-<tr><td>5</td><td>Nexus Intelligence</td><td>Cobrança</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (framework de fórmulas pronto, valores pendentes)</td><td>6 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
-<tr><td>6</td><td>PulseBOT</td><td>Atend. Loja</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (percentuais informados, valores absolutos pendentes)</td><td>5 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
-<tr><td>7</td><td>MENTOR.IA</td><td>Atendimento de Lojas</td><td><b>3.2</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Monetização direta enxuta (~R$ 45/licença); demais valores pendentes</td><td>4 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
+<tr class="row-ready"><td>1</td><td><a href="https://drive.google.com/file/d/11VqUbXsP42Rnjz6nnyXLjXdnUEVJPZhj/view?usp=drivesdk" target="_blank" rel="noopener" title="Abrir ficha de avaliação">GeoCliente</a></td><td>Serviços de Campo</td><td><b>4.0</b></td><td><span class='badge st-alta'>Alta Viabilidade</span></td><td>Investimento R$ 2.500</td><td>2 de 7</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
+<tr class="row-ready"><td>2</td><td><a href="https://drive.google.com/file/d/1wJAsx33FwZb_f2wLYTeErhE552RH2Rn1/view?usp=drivesdk" target="_blank" rel="noopener" title="Abrir ficha de avaliação">Reaviso Digital</a></td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento R$ 3.000</td><td>2 de 8</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
+<tr class="row-ready"><td>3</td><td><a href="https://drive.google.com/file/d/12CyI11ibp0BTX-TpNN5_FPlrzQIUibbn/view?usp=drivesdk" target="_blank" rel="noopener" title="Abrir ficha de avaliação">Oper Analytics</a></td><td>Serviços de Campo</td><td><b>3.8</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Investimento único R$ 13.498</td><td>5 de 8</td><td><span class='badge st-ready'>✅ Destacado p/ implantar</span></td></tr>
+<tr><td>4</td><td><a href="https://drive.google.com/file/d/1bDpZv1k1ASYFuWDrkUXRSHf09JzdX2rS/view?usp=drivesdk" target="_blank" rel="noopener" title="Abrir ficha de avaliação">AgilizaAI</a></td><td>Atend. Loja</td><td><b>3.6</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Benefício parcial confirmado: R$ 5.721/mês (R$ 129,3 mil em 24 meses); investimento do MVP ainda pendente</td><td>5 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
+<tr><td>5</td><td><a href="https://drive.google.com/file/d/12y6DSU0AJca2Np4-TYenpQAU6LLn-rCw/view?usp=drivesdk" target="_blank" rel="noopener" title="Abrir ficha de avaliação">Nexus Intelligence</a></td><td>Cobrança</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (framework de fórmulas pronto, valores pendentes)</td><td>6 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
+<tr><td>6</td><td><a href="https://drive.google.com/file/d/15W7-EqTETOCtd50QzID5x6_feb2xL92J/view?usp=drivesdk" target="_blank" rel="noopener" title="Abrir ficha de avaliação">PulseBOT</a></td><td>Atend. Loja</td><td><b>3.4</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Aguardando linha de base (período de referência confirmado: 3 meses; valores absolutos pendentes)</td><td>5 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
+<tr><td>7</td><td><a href="https://drive.google.com/file/d/12cTjEzLZaHobO8_mfKzS5SaYRUdGLn91/view?usp=drivesdk" target="_blank" rel="noopener" title="Abrir ficha de avaliação">MENTOR.IA</a></td><td>Atendimento de Lojas</td><td><b>3.2</b></td><td><span class='badge st-media'>Média Viabilidade</span></td><td>Monetização direta enxuta (~R$ 45/licença); demais valores pendentes</td><td>4 de 8</td><td><span class='badge st-pending'>⏳ Faltam dados p/ viabilidade</span></td></tr>
     </tbody>
   </table>
   </div>
@@ -144,6 +149,10 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Investimento R$ 2.500 · ROI 88,4x · Payback 1 mês · VPL R$ 46.395</div>
+  <div class="proj-anexos"><span class="lbl">Anexos:</span>
+    <a class="anexo-link" href="https://drive.google.com/file/d/11VqUbXsP42Rnjz6nnyXLjXdnUEVJPZhj/view?usp=drivesdk" target="_blank" rel="noopener">📊 Ficha de avaliação <small>1_GeoCliente_Avaliacao_Projeto.xlsx · atualizada em 13/08/2026</small></a>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wKaSW2bU3HlamG6wmm0O5vZ8Xxw03kpf/view?usp=drivesdk" target="_blank" rel="noopener">📄 Relatório consolidado do Radar <small>PDF</small></a>
+  </div>
   <div class="card-flag ready">✅ Destacado para implantar — investimento definido</div>
   <div class="proj-cols">
     <div>
@@ -170,6 +179,10 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Investimento R$ 3.000 · ROI 845x · Payback 1 mês · VPL R$ 2,21 milhões</div>
+  <div class="proj-anexos"><span class="lbl">Anexos:</span>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wJAsx33FwZb_f2wLYTeErhE552RH2Rn1/view?usp=drivesdk" target="_blank" rel="noopener">📊 Ficha de avaliação <small>2_ReavisoDigital_Avaliacao_Projeto.xlsx · atualizada em 13/08/2026</small></a>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wKaSW2bU3HlamG6wmm0O5vZ8Xxw03kpf/view?usp=drivesdk" target="_blank" rel="noopener">📄 Relatório consolidado do Radar <small>PDF</small></a>
+  </div>
   <div class="card-flag ready">✅ Destacado para implantar — investimento definido</div>
   <div class="proj-cols">
     <div>
@@ -196,6 +209,10 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Investimento único R$ 13.498 · ROI 141x · Payback 1 mês · VPL R$ 1,66 milhão</div>
+  <div class="proj-anexos"><span class="lbl">Anexos:</span>
+    <a class="anexo-link" href="https://drive.google.com/file/d/12CyI11ibp0BTX-TpNN5_FPlrzQIUibbn/view?usp=drivesdk" target="_blank" rel="noopener">📊 Ficha de avaliação <small>3_OperAnalytics_Avaliacao_Projeto.xlsx · atualizada em 13/08/2026</small></a>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wKaSW2bU3HlamG6wmm0O5vZ8Xxw03kpf/view?usp=drivesdk" target="_blank" rel="noopener">📄 Relatório consolidado do Radar <small>PDF</small></a>
+  </div>
   <div class="card-flag ready">✅ Destacado para implantar — investimento definido</div>
   <div class="proj-cols">
     <div>
@@ -221,8 +238,12 @@
       <div class="proj-meta"><span class="badge st-media">Média Viabilidade</span> · Atend. Loja · Riscos críticos/altos: 5 de 8</div>
     </div>
   </div>
-  <div class="proj-financeiro">💰 Aguardando premissas unitárias (investimento e benefício ainda zerados)</div>
-  <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
+  <div class="proj-financeiro">💰 Benefício confirmado (set/2026): redução de penalidade de TMA de R$ 5.721/mês — 20 penalidades/mês em 244 lojas SP/DF × R$ 14.302,54 de faturamento médio × 2%. Benefício em 24 meses: R$ 129,3 mil. ROI, payback, VPL e TIR aguardam o investimento do MVP</div>
+  <div class="proj-anexos"><span class="lbl">Anexos:</span>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1bDpZv1k1ASYFuWDrkUXRSHf09JzdX2rS/view?usp=drivesdk" target="_blank" rel="noopener">📊 Ficha de avaliação <small>7_AgilizaAI_Avaliacao_Projeto.xlsx · atualizada em 15/09/2026</small></a>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wKaSW2bU3HlamG6wmm0O5vZ8Xxw03kpf/view?usp=drivesdk" target="_blank" rel="noopener">📄 Relatório consolidado do Radar <small>PDF</small></a>
+  </div>
+  <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento do MVP não informado</div>
   <div class="proj-cols">
     <div>
       <h5 class="c-fortes">+ Pontos Fortes</h5>
@@ -230,7 +251,7 @@
     </div>
     <div>
       <h5 class="c-fracos">! Pontos Fracos</h5>
-      <ul><li>Faltam premissas unitárias: custo por atendimento, preço da assinatura, taxa de setup B2B</li><li>Período de referência da penalidade de R$ 13.828,33 (mensal/semestral/anual) não está claro</li><li>Maior complexidade tecnológica entre os projetos (OCR + chat conversacional + roteamento dinâmico)</li></ul>
+      <ul><li>Ainda faltam: investimento do MVP, custo por atendimento, TMA potencial pós-solução, preço da assinatura SaaS e taxa de setup B2B</li><li>Período de referência da penalidade de R$ 13.828,33 (45 unidades) segue ambíguo e ficou fora do modelo</li><li>Maior complexidade tecnológica entre os projetos (OCR + chat conversacional + roteamento dinâmico)</li></ul>
     </div>
   </div>
   <div class="proj-perguntas">
@@ -248,6 +269,10 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Aguardando linha de base (framework de fórmulas pronto, valores pendentes)</div>
+  <div class="proj-anexos"><span class="lbl">Anexos:</span>
+    <a class="anexo-link" href="https://drive.google.com/file/d/12y6DSU0AJca2Np4-TYenpQAU6LLn-rCw/view?usp=drivesdk" target="_blank" rel="noopener">📊 Ficha de avaliação <small>4_Nexus Inteligence_Avaliacao_Projeto.xlsx · atualizada em 13/08/2026</small></a>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wKaSW2bU3HlamG6wmm0O5vZ8Xxw03kpf/view?usp=drivesdk" target="_blank" rel="noopener">📄 Relatório consolidado do Radar <small>PDF</small></a>
+  </div>
   <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
   <div class="proj-cols">
     <div>
@@ -273,7 +298,11 @@
       <div class="proj-meta"><span class="badge st-media">Média Viabilidade</span> · Atend. Loja · Riscos críticos/altos: 5 de 8</div>
     </div>
   </div>
-  <div class="proj-financeiro">💰 Aguardando linha de base (percentuais informados, valores absolutos pendentes)</div>
+  <div class="proj-financeiro">💰 Aguardando linha de base. As respostas de set/2026 explicam o mecanismo dos 2% e dos 40% e confirmam o período de referência (3 meses), mas ainda sem valores numéricos (faturamento por P.A., nº e valor das multas evitáveis)</div>
+  <div class="proj-anexos"><span class="lbl">Anexos:</span>
+    <a class="anexo-link" href="https://drive.google.com/file/d/15W7-EqTETOCtd50QzID5x6_feb2xL92J/view?usp=drivesdk" target="_blank" rel="noopener">📊 Ficha de avaliação <small>5_PulseBOT_Avaliacao_Projeto.xlsx · atualizada em 15/09/2026</small></a>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wKaSW2bU3HlamG6wmm0O5vZ8Xxw03kpf/view?usp=drivesdk" target="_blank" rel="noopener">📄 Relatório consolidado do Radar <small>PDF</small></a>
+  </div>
   <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
   <div class="proj-cols">
     <div>
@@ -300,6 +329,10 @@
     </div>
   </div>
   <div class="proj-financeiro">💰 Monetização direta enxuta (~R$ 45/licença); demais valores pendentes</div>
+  <div class="proj-anexos"><span class="lbl">Anexos:</span>
+    <a class="anexo-link" href="https://drive.google.com/file/d/12cTjEzLZaHobO8_mfKzS5SaYRUdGLn91/view?usp=drivesdk" target="_blank" rel="noopener">📊 Ficha de avaliação <small>6_MENTORIA_Avaliacao_Projeto.xlsx · atualizada em 14/08/2026</small></a>
+    <a class="anexo-link" href="https://drive.google.com/file/d/1wKaSW2bU3HlamG6wmm0O5vZ8Xxw03kpf/view?usp=drivesdk" target="_blank" rel="noopener">📄 Relatório consolidado do Radar <small>PDF</small></a>
+  </div>
   <div class="card-flag pending">⏳ Faltam dados para viabilidade — investimento/benefício não informados</div>
   <div class="proj-cols">
     <div>
@@ -323,7 +356,7 @@
   <h2>Síntese e próximos passos</h2>
   <div class="section-sub">O que precisa ser resolvido antes de comprometer investimento além do MVP/piloto</div>
   <ul class="steps">
-    <li>Levantar a linha de base financeira dos 4 projetos pré-piloto (AgilizaAI, Nexus Intelligence, PulseBOT, MENTOR.IA), hoje com investimento e benefício zerados.</li>
+    <li>Levantar a linha de base financeira dos 4 projetos pré-piloto (AgilizaAI, Nexus Intelligence, PulseBOT, MENTOR.IA). O AgilizaAI já tem benefício parcial confirmado (R$ 5.721/mês), mas nenhum dos 4 tem investimento definido.</li>
     <li>Documentar a memória de cálculo (fonte, fórmula, período de referência) por trás de cada percentual apresentado no pitch — especialmente em PulseBOT e MENTOR.IA.</li>
     <li>Padronizar o período de referência dos indicadores (mensal vs. anual) para permitir comparação justa de ROI entre os 7 projetos.</li>
     <li>Formalizar os riscos hoje mapeados como "Sem incertezas" ou "Desconhecido" (ex.: Oper Analytics), evitando excesso de otimismo na comunicação dos ganhos.</li>
@@ -334,7 +367,7 @@
 </main>
 
 <footer>
-  Radar de Soluções · Meireles e Freitas · fonte: pasta do Google Drive (Radar_Solucoes_Avaliacao_7_Projetos.pdf + fichas individuais) · gerado em 10/09/2026 · <a href="https://drive.google.com/drive/folders/1kL_RHvlSfCOxIzDVuLMDir1YDhotZpWb" target="_blank" rel="noopener">📁 Pasta com todos os arquivos dos projetos</a> · <a href="index.html#resumo">← Voltar ao Painel PMO</a>
+  Radar de Soluções · Meireles e Freitas · fonte: pasta do Google Drive (Radar_Solucoes_Avaliacao_7_Projetos.pdf + fichas individuais) · gerado em 29/09/2026 · <a href="https://drive.google.com/drive/folders/1kL_RHvlSfCOxIzDVuLMDir1YDhotZpWb" target="_blank" rel="noopener">📁 Pasta com todos os arquivos dos projetos</a> · <a href="index.html#resumo">← Voltar ao Painel PMO</a>
 </footer>
 
 </body>
